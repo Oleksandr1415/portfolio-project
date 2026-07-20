@@ -1,5 +1,7 @@
 ---
+import Picture from "astro/components/Picture.astro";
 import "../styles/global.css";
+import heroBg from "../assets/heroBg.jpg";
 ---
 
 <html lang="en">
@@ -12,6 +14,83 @@ import "../styles/global.css";
 		<title>Astro</title>
 	</head>
 	<body>
-		<h1 class="text-[150px]! bg-red-500">Astro</h1>
+		<div
+			data-slot="content"
+			class="flex flex-col items-center w-screen h-screen"
+		>
+			<nav
+				data-slot="nav"
+				class="fixed top-0 left-0 z-1 right-0 h-15 max-w-300 w-full mx-auto flex justify-between items-center px-2.5 md:px-10 bg-gray-500/40 text-white"
+			>
+				<span data-slot="logo" class="text-white text-2xl font-bold"
+					>Portfolio</span
+				>
+				<div
+					class="menu flex flex-col md:flex-row gap-4 text-white text-md font-bold p-2"
+				>
+					<div data-slot="menu-item" class="">Hero</div>
+					<div data-slot="menu-item" class="">About</div>
+					<div data-slot="menu-item" class="">Skills</div>
+					<div data-slot="menu-item" class="">Roadmap</div>
+					<div data-slot="menu-item" class="">Hobbies</div>
+					<div data-slot="menu-item" class="">Contact</div>
+				</div>
+			</nav>
+
+			<section
+				data-slot="Hero"
+				class="flex flex-col items-center justify-center relative h-screen w-screen"
+			>
+				<Picture
+					src={heroBg}
+					alt=""
+					formats={["avif", "webp"]}
+					widths={[640, 1280, 1920]}
+					sizes="100vw"
+					class="absolute inset-0 w-full h-full object-cover -z-10"
+				/>
+				<div data-slot="text" class="flex">
+					<span class="text-8xl text-white">I am DEV.</span>
+				</div>
+				<div class="anchors flex">
+					<a
+						href="#about"
+						class="flex h-12 rounded-2xl w-25 items-center justify-center bg-red-400"
+					>
+						about
+					</a>
+					<a
+						href="#skills"
+						class="flex h-12 rounded-2xl w-25 items-center justify-center bg-red-400"
+					>
+						Skills
+					</a>
+				</div>
+
+				<div
+					data-slot="contact"
+					class="h-15 absolute bottom-0 left-0 right-0 flex justify-center gap-2"
+				>
+					<div
+						data-slot="icon1"
+						class="flex items-center h-8 text-white text-md bg-gray-500/70"
+					>
+						kitty
+					</div>
+					<div
+						data-slot="icon2"
+						class="flex items-center h-8 text-white text-md bg-gray-500/70"
+					>
+						twitter
+					</div>
+					<div
+						data-slot="icon3"
+						class="flex items-center h-8 text-white text-md bg-gray-500/70"
+					>
+						LinkedIn
+					</div>
+				</div>
+			</section>
+		</div>
 	</body>
 </html>
