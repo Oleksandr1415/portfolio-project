@@ -1,0 +1,123 @@
+#ddev-generated
+# If you remove the ddev-generated line above you
+# are responsible for maintaining this file. DDEV will not then
+# update it, for example if you add `additional_hostnames`, etc.
+
+http:
+  routers:
+    portfolio-project-web-80-http:
+      entrypoints:
+        - http-80
+      rule: HostRegexp(`^portfolio-project\.ddev\.site$`)
+      
+      service: "portfolio-project-web-80"
+      tls: false
+      # middlewares:
+      #   - "portfolio-project-redirectHttps"
+    portfolio-project-web-8025-http:
+      entrypoints:
+        - http-8025
+      rule: HostRegexp(`^portfolio-project\.ddev\.site$`)
+      
+      service: "portfolio-project-web-8025"
+      tls: false
+      # middlewares:
+      #   - "portfolio-project-redirectHttps"
+    portfolio-project-web-4321-http:
+      entrypoints:
+        - http-4321
+      rule: HostRegexp(`^portfolio-project\.ddev\.site$`)
+      
+      service: "portfolio-project-web-4321"
+      tls: false
+      # middlewares:
+      #   - "portfolio-project-redirectHttps"
+    portfolio-project-xhgui-80-http:
+      entrypoints:
+        - http-8143
+      rule: HostRegexp(`^portfolio-project\.ddev\.site$`)
+      
+      service: "portfolio-project-xhgui-80"
+      tls: false
+      # middlewares:
+      #   - "portfolio-project-redirectHttps"
+    
+    
+    
+    
+    portfolio-project-web-80-https:
+      entrypoints:
+        - http-443
+      rule: HostRegexp(`^portfolio-project\.ddev\.site$`)
+      
+      service: "portfolio-project-web-80"
+      
+      tls: true
+      
+    portfolio-project-web-8025-https:
+      entrypoints:
+        - http-8026
+      rule: HostRegexp(`^portfolio-project\.ddev\.site$`)
+      
+      service: "portfolio-project-web-8025"
+      
+      tls: true
+      
+    portfolio-project-web-4321-https:
+      entrypoints:
+        - http-4322
+      rule: HostRegexp(`^portfolio-project\.ddev\.site$`)
+      
+      service: "portfolio-project-web-4321"
+      
+      tls: true
+      
+    
+    portfolio-project-xhgui-80-https:
+      entrypoints:
+        - http-8142
+      rule: HostRegexp(`^portfolio-project\.ddev\.site$`)
+      
+      service: "portfolio-project-xhgui-80"
+      
+      tls: true
+      
+    
+
+  middlewares:
+    portfolio-project-redirectHttps:
+      redirectScheme:
+        scheme: https
+        permanent: true
+
+  services:
+    portfolio-project-web-80:
+      loadbalancer:
+        servers:
+          - url: http://ddev-portfolio-project-web:80
+        
+    portfolio-project-web-8025:
+      loadbalancer:
+        servers:
+          - url: http://ddev-portfolio-project-web:8025
+        
+    portfolio-project-web-4321:
+      loadbalancer:
+        servers:
+          - url: http://ddev-portfolio-project-web:4321
+        
+    
+    
+    
+    portfolio-project-xhgui-80:
+      loadbalancer:
+        servers:
+          - url: http://ddev-portfolio-project-xhgui:80
+        
+    
+    
+
+tls:
+  certificates:
+    - certFile: /mnt/ddev-global-cache/traefik/certs/portfolio-project.crt
+      keyFile: /mnt/ddev-global-cache/traefik/certs/portfolio-project.key
