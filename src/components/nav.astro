@@ -1,0 +1,50 @@
+---
+import IconMenu from "../assets/icons/hamburger.astro";
+import IconClose from "../assets/icons/close.astro";
+---
+
+<nav
+	data-slot="nav"
+	class="fixed top-0 left-0 z-1 right-0 h-15 max-w-300 w-full mx-auto px-3 md:px-10 bg-gray-500/40 text-white rounded-b-md"
+>
+	<div
+		data-slot="container"
+		class="relative flex justify-between h-full items-center"
+	>
+		<a
+			href="/"
+			data-slot="logo"
+			class="text-white text-2xl font-bold hover:bg-linear-to-r from-red-600 via-yellow-500 to-orange-400 bg-clip-text hover:text-transparent transition-all duration-300"
+		>
+			Portfolio
+		</a>
+		<button data-slot="toggleMenu" class="group relative md:hidden size-8">
+			<IconMenu
+				id="nav-menu-burger-icon"
+				fill="white"
+				class="absolute top-0 group-hover:rotate-10 transition-all duration-300 rotate-0 hover:cursor-pointer"
+			/>
+			<IconClose
+				id="nav-menu-close-icon"
+				fill="white"
+				class="absolute top-0 opacity-0 rotate-45 transition-all duration-300 hover:cursor-pointer group-hover:rotate-10"
+			/>
+		</button>
+
+		<div
+			data-slot="menu"
+			class="hidden md:flex flex-col md:flex-row gap-4 text-white text-md font-bold p-2"
+		>
+			<a href="#hero" data-slot="menu-item" class="">Hero</a>
+			<a href="#about" data-slot="menu-item" class="">About</a>
+			<a href="#skills" data-slot="menu-item" class="">Skills</a>
+			<a href="#roadmap" data-slot="menu-item" class="">Roadmap</a>
+			<a href="#hobbies" data-slot="menu-item" class="">Hobbies</a>
+			<a href="#contact" data-slot="menu-item" class="">Contact</a>
+		</div>
+	</div>
+</nav>
+
+<script>
+	import "../scripts/nav/menu.js";
+</script>

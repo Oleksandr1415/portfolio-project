@@ -1,0 +1,97 @@
+---
+import Picture from "astro/components/Picture.astro";
+import heroBg from "../assets/heroBg.jpg";
+
+import ChevronUpIcon from "../assets/icons/chevronUp.astro";
+import TwitterIcon from "../assets/icons/logos/twitter.astro";
+import LinkedIn from "../assets/icons/logos/linkedIn.astro";
+import GithubIcon from "../assets/icons/logos/github.astro";
+---
+
+<section
+	data-slot="Hero"
+	class="flex flex-col items-center justify-center relative h-screen w-screen text-gray-600"
+>
+	<Picture
+		src={heroBg}
+		alt=""
+		formats={["avif", "webp"]}
+		widths={[640, 1280, 1920]}
+		sizes="100vw"
+		class="absolute inset-0 bg-black w-full h-full object-cover -z-10 bg-linear-to-b from-transparent from-50% to-black"
+	/>
+	<div
+		class="absolute inset-0 bg-linear-to-b from-transparent from-50% to-black pointer-events-none"
+	>
+	</div>
+	<span class="mx-auto text-white">Hello,</span>
+
+	<div data-slot="text" class="flex justify-center p-4">
+		<span class="text-8xl text-white select-none text-center"
+			>I am <span
+				class="bg-linear-to-r from-cyan-400 to-blue-600 bg-clip-text text-transparent"
+			>
+				Dev.
+			</span></span
+		>
+	</div>
+
+	<span>Fast & curious . communicative</span>
+
+	<div
+		class="anchors w-full flex flex-col items-center justify-center md:flex-row gap-5 p-10 pb-5 text-white"
+	>
+		<a
+			href="#about"
+			class="max-w-100 w-full min-w-35 flex h-12 rounded-2xl md:max-w-25 items-center justify-center bg-linear-to-l from-cyan-400 to-blue-600 hover:from-cyan-500 hover:to-blue-700"
+		>
+			About
+		</a>
+		<a
+			href="#skills"
+			class="max-w-100 w-full min-w-35 flex h-12 rounded-2xl md:max-w-25 items-center
+			justify-center bg-linear-to-r from-cyan-400 to-blue-600 hover:from-cyan-500 hover:to-blue-700 transition-all duration-300"
+		>
+			Skills
+		</a>
+	</div>
+
+	<a
+		href="#contact"
+		class="flex group hover:bg-gray-200/20 p-3 rounded-md justify-center flex-col text-gray-400 text-md duration-300"
+	>
+		<span class="group-hover:text-gray-100 block"> get it touch! </span>
+		<span class="block">
+			<ChevronUpIcon
+				class="rotate-180 mx-auto size-4 group-hover:translate-y-0.75 duration-300"
+			/>
+		</span>
+	</a>
+
+	<div
+		data-slot="contact"
+		class="h-15 absolute bottom-0 left-0 right-0 flex justify-center items-start gap-4"
+	>
+		<a
+			href="#"
+			data-slot="icon1"
+			class="rounded-md size-6 hover:-translate-y-0.5 hover:shadow-[0_2px_3px_rgba(255,255,255,0.8)]"
+		>
+			<LinkedIn class="size-6" fill="white" stroke="white" />
+		</a>
+		<a
+			href="#"
+			data-slot="icon2"
+			class="rounded-md size-6 hover:-translate-y-0.5 hover:shadow-[0_2px_3px_rgba(255,255,255,0.8)]"
+		>
+			<TwitterIcon outline fill="white" stroke="white" class="size-full" />
+		</a>
+		<a
+			href="#"
+			data-slot="icon3"
+			class="rounded-md size-6 hover:-translate-y-0.5 hover:shadow-[0_2px_3px_rgba(255,255,255,0.8)]"
+		>
+			<GithubIcon class="size-6" fill="white" strokee="white" style="0" />
+		</a>
+	</div>
+</section>
