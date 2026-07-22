@@ -1,0 +1,46 @@
+/* Gradients */
+@utility bg-gradient-hero {
+	background-image: linear-gradient(
+		135deg,
+		var(--color-primary-dark),
+		var(--color-accent-dark)
+	);
+}
+@utility bg-gradient-hero-hover {
+	background-image: linear-gradient(
+		135deg,
+		var(--color-primary-dark),
+		var(--color-accent-dark)
+	);
+}
+
+@utility bg-gradient-planet {
+	background: radial-gradient(
+		95.02% 95.02% at 38% 28%,
+		var(--color-primary) 0%,
+		var(--color-primary-dark) 30%,
+		#0f172a 68%,
+		#020617 100%
+	);
+}
+
+@utility bg-gradient-mobile-menu {
+	background: radial-gradient(
+		84.9% 84.9% at 42% 38%,
+		#5b21b6 0%,
+		#3b0764 22%,
+		#130826 50%,
+		var(--color-background) 88%
+	);
+}
+
+@utility bg-gradient-text {
+	-webkit-background-clip: text;
+	color: transparent;
+
+	background-image: linear-gradient(
+		135deg,
+		var(--color-primary-light) 0%,
+		var(--color-accent) 100%
+	);
+}

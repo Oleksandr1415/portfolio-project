@@ -1,0 +1,71 @@
+---
+import { Menu, X } from "@lucide/astro";
+---
+
+<nav
+	data-slot="nav"
+	class="fixed top-0 left-0 z-1 right-0 h-15 max-w-300 w-full mx-auto px-6 md:px-10 bg-gray-500/40 text-white rounded-b-md"
+>
+	<div
+		data-slot="container"
+		class="relative flex justify-between h-full items-center"
+	>
+		<a
+			href="/"
+			data-slot="logo"
+			class="text-white font-heading text-2xl font-black tracking-[4px] hover:bg-linear-to-r from-red-600 via-yellow-500 to-orange-400 bg-clip-text hover:text-transparent transition-all duration-300"
+		>
+			Oleksandr
+		</a>
+		<button data-slot="toggleMenu" class="relative md:hidden size-7">
+			<Menu
+				id="nav-menu-burger-icon"
+				class="absolute top-0 size-full transition-all duration-300 hover:cursor-pointer"
+			/>
+			<X
+				id="nav-menu-close-icon"
+				fill="white"
+				class="absolute top-0 opacity-0 size-full transition-all duration-300 hover:cursor-pointer"
+			/>
+		</button>
+
+		<ul
+			data-slot="menu"
+			class="hidden md:flex flex-col md:flex-row gap-4 text-white text-md font-bold p-2"
+		>
+			<li>
+				<a href="#hero" data-slot="menu-item" class="on-hover-text-purple"
+					>Hero</a>
+			</li>
+			<li>
+				<a href="#about" data-slot="menu-item" class="on-hover-text-purple"
+					>About me</a
+				>
+			</li>
+			<li>
+				<a href="#skills" data-slot="menu-item" class="on-hover-text-purple"
+					>Skills</a
+				>
+			</li>
+			<li>
+				<a href="#roadmap" data-slot="menu-item" class="on-hover-text-purple"
+					>Roadmap</a
+				>
+			</li>
+			<li>
+				<a href="#hobbies" data-slot="menu-item" class="on-hover-text-purple"
+					>Hobbies</a
+				>
+			</li>
+			<li>
+				<a href="#contact" data-slot="menu-item" class="on-hover-text-purple"
+					>Contact</a
+				>
+			</li>
+		</ul>
+	</div>
+</nav>
+
+<script>
+	import "../scripts/nav/menu.js";
+</script>
