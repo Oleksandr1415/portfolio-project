@@ -5,4 +5,5 @@ const closeMenu = document.getElementById("nav-menu-close-icon");
 menuButton?.addEventListener("click", () => {
 	openMenu.classList.toggle("opacity-0");
 	closeMenu.classList.toggle("opacity-0");
+	closeMenu.classList.toggle("rotate-90");
 });
