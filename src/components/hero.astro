@@ -2,7 +2,7 @@
 import Picture from "astro/components/Picture.astro";
 import heroBg from "../assets/heroBg.jpg";
 
-import ChevronUpIcon from "../assets/icons/chevronUp.astro";
+import { ChevronDown, Dot } from "@lucide/astro";
 import TwitterIcon from "../assets/icons/logos/twitter.astro";
 import LinkedIn from "../assets/icons/logos/linkedIn.astro";
 import GithubIcon from "../assets/icons/logos/github.astro";
@@ -10,7 +10,7 @@ import GithubIcon from "../assets/icons/logos/github.astro";
 
 <section
 	data-slot="Hero"
-	class="flex flex-col items-center justify-center relative h-screen w-screen text-gray-600"
+	class="flex flex-col items-center justify-center relative min-h-screen w-screen px-4 text-gray-600"
 >
 	<Picture
 		src={heroBg}
@@ -24,35 +24,41 @@ import GithubIcon from "../assets/icons/logos/github.astro";
 		class="absolute inset-0 bg-linear-to-b from-transparent from-50% to-black pointer-events-none"
 	>
 	</div>
-	<span class="mx-auto text-white">Hello,</span>
+	<span
+		class="mx-auto pl-2 text-white/90 uppercase backdrop-blur-[1px] tracking-[8px]"
+		>Hello</span
+	>
 
-	<div data-slot="text" class="flex justify-center p-4">
-		<span class="text-8xl text-white select-none text-center"
+	<div data-slot="text" class="flex justify-center p-2 backdrop-blur-[1px]">
+		<span
+			class="text-8xl text-white select-none font-black text-center font-heading"
 			>I am <span
-				class="bg-linear-to-r from-cyan-400 to-blue-600 bg-clip-text text-transparent"
+				class="bg-gradient-hero bg-clip-text text-transparent font-black font-heading"
 			>
 				Dev.
-			</span></span
-		>
+			</span>
+		</span>
 	</div>
 
-	<span>Fast & curious . communicative</span>
+	<span class="text-white/45"
+		>Fast & curious<Dot class="inline size-6" />communicative
+	</span>
 
 	<div
-		class="anchors w-full flex flex-col items-center justify-center md:flex-row gap-5 p-10 pb-5 text-white"
+		class="anchors w-full flex flex-col items-center justify-center md:flex-row gap-5 p-5 pb-5 text-white text-sm"
 	>
 		<a
 			href="#about"
-			class="max-w-100 w-full min-w-35 flex h-12 rounded-2xl md:max-w-25 items-center justify-center bg-linear-to-l from-cyan-400 to-blue-600 hover:from-cyan-500 hover:to-blue-700"
+			class="max-w-100 font-semibold w-full min-w-35 tracking-widest flex h-14 rounded-[100px] md:max-w-25 items-center justify-center bg-gradient-hero"
 		>
-			About
+			<span class="on-hover-text-purple">About</span>
 		</a>
 		<a
 			href="#skills"
-			class="max-w-100 w-full min-w-35 flex h-12 rounded-2xl md:max-w-25 items-center
-			justify-center bg-linear-to-r from-cyan-400 to-blue-600 hover:from-cyan-500 hover:to-blue-700 transition-all duration-300"
+			class="max-w-100 w-full min-w-35 flex h-14 md:max-w-25 items-center
+			justify-center font-semibold bg-transparent tracking-widest border border-white/20 rounded-[100px] duration-300"
 		>
-			Skills
+			<span class="on-hover-text-purple">Skills</span>
 		</a>
 	</div>
 
@@ -60,38 +66,45 @@ import GithubIcon from "../assets/icons/logos/github.astro";
 		href="#contact"
 		class="flex group hover:bg-gray-200/20 p-3 rounded-md justify-center flex-col text-gray-400 text-md duration-300"
 	>
-		<span class="group-hover:text-gray-100 block"> get it touch! </span>
+		<span class="text-white/40 group-hover:text-gray-100 block duration-300">
+			get it touch!
+		</span>
 		<span class="block">
-			<ChevronUpIcon
-				class="rotate-180 mx-auto size-4 group-hover:translate-y-0.75 duration-300"
+			<ChevronDown
+				class="mx-auto size-4 group-hover:translate-y-0.75 duration-300"
 			/>
 		</span>
 	</a>
 
-	<div
-		data-slot="contact"
-		class="h-15 absolute bottom-0 left-0 right-0 flex justify-center items-start gap-4"
-	>
-		<a
-			href="#"
-			data-slot="icon1"
-			class="rounded-md size-6 hover:-translate-y-0.5 hover:shadow-[0_2px_3px_rgba(255,255,255,0.8)]"
+	<div data-slot="contact" class="h-15 absolute bottom-10 left-0 right-0">
+		<div
+			data-slot="links-container"
+			class="w-full h-10 p-2 flex justify-center gap-4"
 		>
-			<LinkedIn class="size-6" fill="white" stroke="white" />
-		</a>
-		<a
-			href="#"
-			data-slot="icon2"
-			class="rounded-md size-6 hover:-translate-y-0.5 hover:shadow-[0_2px_3px_rgba(255,255,255,0.8)]"
-		>
-			<TwitterIcon outline fill="white" stroke="white" class="size-full" />
-		</a>
-		<a
-			href="#"
-			data-slot="icon3"
-			class="rounded-md size-6 hover:-translate-y-0.5 hover:shadow-[0_2px_3px_rgba(255,255,255,0.8)]"
-		>
-			<GithubIcon class="size-6" fill="white" strokee="white" style="0" />
+			<a
+				href="#"
+				data-slot="icon1"
+				class="rounded-md size-6 hover:-translate-y-0.5 hover:shadow-[0_2px_3px_rgba(255,255,255,0.8)]"
+			>
+				<LinkedIn class="size-6" fill="white" stroke="white" />
+			</a>
+			<a
+				href="#"
+				data-slot="icon2"
+				class="rounded-md size-6 hover:-translate-y-0.5 hover:shadow-[0_2px_3px_rgba(255,255,255,0.8)]"
+			>
+				<TwitterIcon outline fill="white" stroke="white" class="size-full" />
+			</a>
+			<a
+				href="#"
+				data-slot="icon3"
+				class="rounded-md size-6 hover:-translate-y-0.5 hover:shadow-[0_2px_3px_rgba(255,255,255,0.8)]"
+			>
+				<GithubIcon class="size-6" fill="white" strokee="white" style="0" />
+			</a>
+		</div>
+		<a href="#about" class="w-full">
+			<ChevronDown class="mx-auto hover:translate-y-0.75" />
 		</a>
 	</div>
 </section>

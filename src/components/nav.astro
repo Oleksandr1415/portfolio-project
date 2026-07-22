@@ -1,11 +1,10 @@
 ---
-import IconMenu from "../assets/icons/hamburger.astro";
-import IconClose from "../assets/icons/close.astro";
+import { Menu, X } from "@lucide/astro";
 ---
 
 <nav
 	data-slot="nav"
-	class="fixed top-0 left-0 z-1 right-0 h-15 max-w-300 w-full mx-auto px-3 md:px-10 bg-gray-500/40 text-white rounded-b-md"
+	class="fixed top-0 left-0 z-1 right-0 h-15 max-w-300 w-full mx-auto px-6 md:px-10 bg-gray-500/40 text-white rounded-b-md"
 >
 	<div
 		data-slot="container"
@@ -14,34 +13,56 @@ import IconClose from "../assets/icons/close.astro";
 		<a
 			href="/"
 			data-slot="logo"
-			class="text-white text-2xl font-bold hover:bg-linear-to-r from-red-600 via-yellow-500 to-orange-400 bg-clip-text hover:text-transparent transition-all duration-300"
+			class="text-white font-heading text-2xl font-black tracking-[4px] hover:bg-linear-to-r from-red-600 via-yellow-500 to-orange-400 bg-clip-text hover:text-transparent transition-all duration-300"
 		>
-			Portfolio
+			Oleksandr
 		</a>
-		<button data-slot="toggleMenu" class="group relative md:hidden size-8">
-			<IconMenu
+		<button data-slot="toggleMenu" class="relative md:hidden size-7">
+			<Menu
 				id="nav-menu-burger-icon"
-				fill="white"
-				class="absolute top-0 group-hover:rotate-10 transition-all duration-300 rotate-0 hover:cursor-pointer"
+				class="absolute top-0 size-full transition-all duration-300 hover:cursor-pointer"
 			/>
-			<IconClose
+			<X
 				id="nav-menu-close-icon"
 				fill="white"
-				class="absolute top-0 opacity-0 rotate-45 transition-all duration-300 hover:cursor-pointer group-hover:rotate-10"
+				class="absolute top-0 opacity-0 size-full transition-all duration-300 hover:cursor-pointer"
 			/>
 		</button>
 
-		<div
+		<ul
 			data-slot="menu"
 			class="hidden md:flex flex-col md:flex-row gap-4 text-white text-md font-bold p-2"
 		>
-			<a href="#hero" data-slot="menu-item" class="">Hero</a>
-			<a href="#about" data-slot="menu-item" class="">About</a>
-			<a href="#skills" data-slot="menu-item" class="">Skills</a>
-			<a href="#roadmap" data-slot="menu-item" class="">Roadmap</a>
-			<a href="#hobbies" data-slot="menu-item" class="">Hobbies</a>
-			<a href="#contact" data-slot="menu-item" class="">Contact</a>
-		</div>
+			<li>
+				<a href="#hero" data-slot="menu-item" class="on-hover-text-purple"
+					>Hero</a>
+			</li>
+			<li>
+				<a href="#about" data-slot="menu-item" class="on-hover-text-purple"
+					>About me</a
+				>
+			</li>
+			<li>
+				<a href="#skills" data-slot="menu-item" class="on-hover-text-purple"
+					>Skills</a
+				>
+			</li>
+			<li>
+				<a href="#roadmap" data-slot="menu-item" class="on-hover-text-purple"
+					>Roadmap</a
+				>
+			</li>
+			<li>
+				<a href="#hobbies" data-slot="menu-item" class="on-hover-text-purple"
+					>Hobbies</a
+				>
+			</li>
+			<li>
+				<a href="#contact" data-slot="menu-item" class="on-hover-text-purple"
+					>Contact</a
+				>
+			</li>
+		</ul>
 	</div>
 </nav>
 
