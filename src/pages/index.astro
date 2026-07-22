@@ -1,7 +1,16 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import ContentWrapperLayout from "../layouts/ContentWrapperLayout.astro";
+
+import Hero from "../components/hero.astro";
+import Nav from "../components/nav.astro";
+import About from "../components/about.astro";
 ---
 
 <BaseLayout>
-	<slot />
+	<Hero />
+	<ContentWrapperLayout>
+		<Nav />
+		<About />
+	</ContentWrapperLayout>
 </BaseLayout>
