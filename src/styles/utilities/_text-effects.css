@@ -1,3 +1,18 @@
 @utility on-hover-text-purple {
 	@apply bg-linear-to-r from-red-600 via-yellow-500 to-orange-400 bg-clip-text hover:text-transparent duration-300;
 }
+
+@utility text-gradient {
+	@apply bg-linear-to-br from-purple-500 to-cyan-500 bg-clip-text text-transparent;
+}
+
+@utility bg-gradient-text {
+	-webkit-background-clip: text;
+	color: transparent;
+
+	background-image: linear-gradient(
+		135deg,
+		var(--color-primary-light) 0%,
+		var(--color-accent) 100%
+	);
+}

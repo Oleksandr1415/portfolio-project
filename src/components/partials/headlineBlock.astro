@@ -1,0 +1,56 @@
+---
+import Headline from "./headline.astro";
+
+interface Props {
+	class?: string;
+	align?: "start" | "center" | "end";
+	postHeadline?: string;
+	postHeadlineClass?: string;
+	subHeadline?: string;
+	subHeadlineClass?: string;
+	headlineClass?: string;
+	headlineLevel?: 1 | 2 | 3 | 4 | 5 | 6;
+	headlineVariant?: "hero" | "h1" | "h2" | "h3" | "h4" | "label" | "badge";
+}
+const {
+	class: className,
+	align = "center",
+	headlineClass,
+	headlineLevel,
+	headlineVariant = "h3",
+	postHeadline = "",
+	postHeadlineClass = "",
+	subHeadline = "",
+	subHeadlineClass = "",
+} = Astro.props;
+
+const baseClass = "flex flex-col";
+const itemsAlign = "items-" + align;
+---
+
+<div
+	data-slot="headline-block-container"
+	class:list={[baseClass, itemsAlign, className]}
+>
+	<span
+		data-slot="subHeadline"
+		class:list={[
+			"text-xs uppercase text-subheadline tracking-[3px]",
+			subHeadlineClass,
+		]}>{subHeadline}</span
+	>
+	<Headline
+		variant={headlineVariant}
+		level={headlineLevel}
+		class:list={["pt-4", headlineClass]}
+	>
+		<slot />
+	</Headline>
+	<span
+		data-slot="postHeadline"
+		class:list={[
+			"text-base font-normal text-center text-white/30 pt-2",
+			postHeadlineClass,
+		]}>{postHeadline}</span
+	>
+</div>
