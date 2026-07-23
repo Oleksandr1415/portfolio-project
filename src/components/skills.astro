@@ -1,0 +1,40 @@
+---
+import Card from "./partials/card.astro";
+import HeadlineBlock from "./partials/headlineBlock.astro";
+
+const mockCards = [
+	{
+		class: "",
+		headline: "Markup",
+		description: "5 technologies",
+		planetVariant: "teal" as "teal",
+	},
+];
+---
+
+<section id="skills" class="text-white pt-20 flex flex-col items-center">
+	<HeadlineBlock
+		headlineVariant="h2"
+		subHeadline="Expertise"
+		postHeadline="Tap a category to explore"
+	>
+		Skills PLanet
+	</HeadlineBlock>
+
+	<div data-slot="skills-diagram-mobile"></div>
+	<span class="text-center text-xs pt-8 uppercase text-white/30 tracking-[4px]"
+		>Core skills</span
+	>
+	<!-- Badgelist here -->
+	<div class="cardList pt-10 flex w-full flex-col gap-2">
+		{
+			mockCards.map((card) => (
+				<Card
+					headline={card.headline}
+					description={card.description}
+					planetVariant={card.planetVariant}
+				/>
+			))
+		}
+	</div>
+</section>
