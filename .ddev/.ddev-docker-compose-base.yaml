@@ -1,16 +1,16 @@
-name:
-  ${COMPOSE_PROJECT_NAME}
+name: ${COMPOSE_PROJECT_NAME}
   #ddev-generated
 services:
+  
   db:
     container_name: ddev-${DDEV_SITENAME}-db
     build:
-      context: "./.dbimageBuild"
+      context: './.dbimageBuild'
       args:
         BASE_IMAGE: $DDEV_DBIMAGE
-        username: "nautenpratikant"
-        uid: "501"
-        gid: "20"
+        username: 'nautenpratikant'
+        uid: '501'
+        gid: '20'
     image: ${DDEV_DBIMAGE}-${DDEV_SITENAME}-built
     cap_add:
       - SYS_NICE
@@ -22,15 +22,15 @@ services:
         target: "/var/lib/mysql"
         volume:
           nocopy: true
-
+       
       # On db container ddev_config is mounted rw so we can create snapshots
       - .:/mnt/ddev_config
       - ./db_snapshots:/mnt/snapshots
-
+       
       - ddev-global-cache:/mnt/ddev-global-cache
     restart: "no"
 
-    user: "$DDEV_UID:$DDEV_GID"
+    user: '$DDEV_UID:$DDEV_GID'
     hostname: portfolio-project-db
     ports:
       - "127.0.0.1:$DDEV_HOST_DB_PORT:3306"
@@ -78,16 +78,17 @@ services:
       start_period: "120s"
       start_interval: "1s"
       timeout: "70s"
+   
 
   web:
     container_name: ddev-${DDEV_SITENAME}-web
     build:
-      context: "./.webimageBuild"
+      context: './.webimageBuild'
       args:
         BASE_IMAGE: $DDEV_WEBIMAGE
-        username: "nautenpratikant"
-        uid: "501"
-        gid: "20"
+        username: 'nautenpratikant'
+        uid: '501'
+        gid: '20'
         DDEV_PHP_VERSION: ${DDEV_PHP_VERSION}
         DDEV_DATABASE: ${DDEV_DATABASE}
     image: ${DDEV_WEBIMAGE}-${DDEV_SITENAME}-built
@@ -99,9 +100,11 @@ services:
     working_dir: "/var/www/html/"
 
     expose:
-      - 4321
+    - 4321
 
     volumes:
+       
+      
       # For mutagen, mount a directory higher in /var/www so that we can use
       # stageMode: "neighboring"
       - type: volume
@@ -122,7 +125,7 @@ services:
       - ddev-ssh-agent_socket_dir:/home/.ssh-agent
 
     restart: "no"
-    user: "$DDEV_UID:$DDEV_GID"
+    user: '$DDEV_UID:$DDEV_GID'
     hostname: portfolio-project-web
 
     ports:
@@ -132,71 +135,72 @@ services:
       - "127.0.0.1::8025"
 
     environment:
-      - COLUMNS
-      - COREPACK_ENABLE_DOWNLOAD_PROMPT=0
-      - COREPACK_HOME=/mnt/ddev-global-cache/corepack
-      - DOCROOT=${DDEV_DOCROOT}
-      - DDEV_APPROOT=/var/www/html
-      - DDEV_COMPOSER_ROOT
-      - DDEV_DATABASE
-      - DDEV_DOCROOT
-      - DDEV_DATABASE_FAMILY
-      - DDEV_GID
-      - DDEV_GOARCH
-      - DDEV_GOOS
-      - DDEV_HOSTNAME
-      - DDEV_MUTAGEN_ENABLED
-      - DDEV_PHP_VERSION
-      - DDEV_PRIMARY_URL
-      - DDEV_PRIMARY_URL_PORT
-      - DDEV_PRIMARY_URL_WITHOUT_PORT
-      - DDEV_PROJECT
-      - DDEV_PROJECT_TYPE
-      - DDEV_ROUTER_HTTP_PORT
-      - DDEV_ROUTER_HTTPS_PORT
-      - DDEV_SCHEME
-      - DDEV_SITENAME
-      - DDEV_TLD
-      - DDEV_UID
-      - DDEV_USER
-      - DDEV_FILES_DIR
-      - DDEV_FILES_DIRS
-      - DDEV_WEB_ENTRYPOINT=/mnt/ddev_config/web-entrypoint.d
-      - DDEV_WEBSERVER_TYPE
-      - DDEV_XDEBUG_ENABLED
-      - DDEV_XHPROF_MODE
-      - DDEV_VERSION
-      - DEPLOY_NAME=local
-
-      - DRUSH_OPTIONS_URI=$DDEV_PRIMARY_URL
-
-      - DOCKER_IP=127.0.0.1
-      # HTTP_EXPOSE allows for ports accepting HTTP traffic to be accessible from <site>.ddev.site:<port>
-      # To expose a container port to a different host port, define the port as hostPort:containerPort
-      # You can optionally expose an HTTPS port option for any ports defined in HTTP_EXPOSE.
-      # To expose an HTTPS port, define the port as securePort:containerPort.
-
-      - HTTP_EXPOSE=${DDEV_ROUTER_HTTP_PORT}:80,${DDEV_MAILPIT_PORT}:8025,4321:4321
-      - HTTPS_EXPOSE=${DDEV_ROUTER_HTTPS_PORT}:80,${DDEV_MAILPIT_HTTPS_PORT}:8025,4322:4321
-
-      - IS_DDEV_PROJECT=true
-      - LINES
-      - MYSQL_HISTFILE=/mnt/ddev-global-cache/mysqlhistory/${DDEV_SITENAME}-web/mysql_history
-      - NODE_EXTRA_CA_CERTS=/mnt/ddev-global-cache/mkcert/rootCA.pem
-      - npm_config_cache=/mnt/ddev-global-cache/npm
-      - PGDATABASE=db
-      - PGHOST=db
-      - PGPASSWORD=db
-      - PGUSER=db
-      - PHP_IDE_CONFIG=serverName=portfolio-project.${DDEV_TLD}
-      - SSH_AUTH_SOCK=/home/.ssh-agent/socket
-      - TZ=Europe/Berlin
-      - USER=nautenpratikant
-      - VIRTUAL_HOST=${DDEV_HOSTNAME}
-      # Web /start.sh timeout (default_container_timeout - 5s). Prevents startup scripts from
-      # hitting container timeout limit, which would cause "ddev start" to fail completely.
-      # For N uses: "div (sub .DefaultContainerTimeout 5) N". Currently: 1 use (n-install.sh)
-      - START_SCRIPT_TIMEOUT=115
+    - COLUMNS
+    - COREPACK_ENABLE_DOWNLOAD_PROMPT=0
+    - COREPACK_HOME=/mnt/ddev-global-cache/corepack
+    - DOCROOT=${DDEV_DOCROOT}
+    - DDEV_APPROOT=/var/www/html
+    - DDEV_COMPOSER_ROOT
+    - DDEV_DATABASE
+    - DDEV_DOCROOT
+    - DDEV_DATABASE_FAMILY
+    - DDEV_GID
+    - DDEV_GOARCH
+    - DDEV_GOOS
+    - DDEV_HOSTNAME
+    - DDEV_MUTAGEN_ENABLED
+    - DDEV_PHP_VERSION
+    - DDEV_PRIMARY_URL
+    - DDEV_PRIMARY_URL_PORT
+    - DDEV_PRIMARY_URL_WITHOUT_PORT
+    - DDEV_PROJECT
+    - DDEV_PROJECT_TYPE
+    - DDEV_ROUTER_HTTP_PORT
+    - DDEV_ROUTER_HTTPS_PORT
+    - DDEV_SCHEME
+    - DDEV_SITENAME
+    - DDEV_TLD
+    - DDEV_UID
+    - DDEV_USER
+    - DDEV_FILES_DIR
+    - DDEV_FILES_DIRS
+    - DDEV_WEB_ENTRYPOINT=/mnt/ddev_config/web-entrypoint.d
+    - DDEV_WEBSERVER_TYPE
+    - DDEV_XDEBUG_ENABLED
+    - DDEV_XHPROF_MODE
+    - DDEV_VERSION
+    - DEPLOY_NAME=local
+    
+    - DRUSH_OPTIONS_URI=$DDEV_PRIMARY_URL
+    
+    - DOCKER_IP=127.0.0.1
+    # HTTP_EXPOSE allows for ports accepting HTTP traffic to be accessible from <site>.ddev.site:<port>
+    # To expose a container port to a different host port, define the port as hostPort:containerPort
+    # You can optionally expose an HTTPS port option for any ports defined in HTTP_EXPOSE.
+    # To expose an HTTPS port, define the port as securePort:containerPort.
+    
+    - HTTP_EXPOSE=${DDEV_ROUTER_HTTP_PORT}:80,${DDEV_MAILPIT_PORT}:8025,4321:4321
+    - HTTPS_EXPOSE=${DDEV_ROUTER_HTTPS_PORT}:80,${DDEV_MAILPIT_HTTPS_PORT}:8025,4322:4321
+    
+    - IS_DDEV_PROJECT=true
+    - LINES
+    - MYSQL_HISTFILE=/mnt/ddev-global-cache/mysqlhistory/${DDEV_SITENAME}-web/mysql_history
+    - NODE_EXTRA_CA_CERTS=/mnt/ddev-global-cache/mkcert/rootCA.pem
+    - npm_config_cache=/mnt/ddev-global-cache/npm
+    - PGDATABASE=db
+    - PGHOST=db
+    - PGPASSWORD=db
+    - PGUSER=db
+    - PHP_IDE_CONFIG=serverName=portfolio-project.${DDEV_TLD}
+    - SSH_AUTH_SOCK=/home/.ssh-agent/socket
+    - TZ=Europe/Berlin
+    - USER=nautenpratikant
+    - VIRTUAL_HOST=${DDEV_HOSTNAME}
+    # Web /start.sh timeout (default_container_timeout - 5s). Prevents startup scripts from
+    # hitting container timeout limit, which would cause "ddev start" to fail completely.
+    # For N uses: "div (sub .DefaultContainerTimeout 5) N". Currently: 1 use (n-install.sh)
+    - START_SCRIPT_TIMEOUT=115
+    
 
     healthcheck:
       test: "/healthcheck.sh"
@@ -205,13 +209,14 @@ services:
       start_period: "120s"
       start_interval: "1s"
       timeout: "70s"
-
+  
   xhgui:
     image: ddev/ddev-xhgui:v1.25.2
     container_name: ddev-${DDEV_SITENAME}-xhgui
     profiles:
       - xhgui
     restart: "no"
+    
 
     environment:
       - VIRTUAL_HOST=$DDEV_HOSTNAME
@@ -241,17 +246,23 @@ networks:
     name: ${COMPOSE_PROJECT_NAME}_default
 
 volumes:
+  
   database:
     name: "portfolio-project-mariadb"
     external: true
+   
 
+  
   ddev-ssh-agent_socket_dir:
     external: true
-
+  
   ddev-global-cache:
     name: ddev-global-cache
     external: true
-
+  
+  
   project_mutagen:
     name: portfolio-project_project_mutagen
     external: true
+
+  
