@@ -45,7 +45,7 @@ services:
       DOCKER_IP: 127.0.0.1
       HOST_DOCKER_INTERNAL_IP: ""
       IS_DDEV_PROJECT: "true"
-      LINES: "20"
+      LINES: "33"
       MYSQL_HISTFILE: /mnt/ddev-global-cache/mysqlhistory/portfolio-project-db/mysql_history
       PGDATABASE: db
       PGHOST: 127.0.0.1
@@ -167,7 +167,7 @@ services:
       HTTP_EXPOSE: 80:80,8025:8025,4321:4321
       HTTPS_EXPOSE: 443:80,8026:8025,4322:4321
       IS_DDEV_PROJECT: "true"
-      LINES: "20"
+      LINES: "33"
       MYSQL_HISTFILE: /mnt/ddev-global-cache/mysqlhistory/portfolio-project-web/mysql_history
       NODE_EXTRA_CA_CERTS: /mnt/ddev-global-cache/mkcert/rootCA.pem
       PGDATABASE: db
@@ -290,7 +290,7 @@ services:
       default: null
     restart: "no"
     x-ddev:
-      describe-url-port: "Launch: ddev xhgui"
+      describe-url-port: 'Launch: ddev xhgui'
 networks:
   ddev_default:
     name: ddev_default

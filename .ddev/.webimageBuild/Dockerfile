@@ -24,9 +24,6 @@ RUN (groupadd --gid "$gid" "$username" || groupadd "$username" || true) && \
 ### DDEV-injected extra content
 
 RUN mkdir -p /home/$username && chown $username /home/$username && chmod 600 /home/$username/.pgpass
-ENV N_PREFIX=/home/$username/.n
-ENV N_INSTALL_VERSION="22"
-
 RUN log-stderr.sh mariadb-compat-install.sh || true
 
 RUN log-stderr.sh mariadb-skip-ssl-wrapper-install.sh || true

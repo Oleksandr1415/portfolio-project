@@ -1,0 +1,57 @@
+---
+interface MenuElement {
+	href: string;
+	title: string;
+	linkClass?: string;
+}
+
+const baseClass =
+	"on-hover-text-purple h-full flex items-center text-nowrap hover:shadow-[0_2px_3px_0_rgba(255,255,255,0.3)]";
+const menuElements: MenuElement[] = [
+	{
+		href: "#hero",
+		title: "Hero",
+	},
+	{
+		href: "#about",
+		title: "About me",
+	},
+	{
+		href: "#skills",
+		title: "Skills",
+	},
+	{
+		href: "#roadmap",
+		title: "Roadmap",
+	},
+	{
+		href: "#hobbies",
+		title: "Hobbies",
+	},
+	{
+		href: "#contact",
+		title: "Contact",
+	},
+];
+
+const { class: className, dataSlot = "menu" } = Astro.props;
+---
+
+<ul
+	data-slot={dataSlot}
+	class:list={["gap-4 text-white text-md font-bold py-2", className]}
+>
+	{
+		menuElements.map((menuLink) => (
+			<li class="h-full">
+				<a
+					href={menuLink.href}
+					data-slot="menu-item"
+					class:list={[baseClass, menuLink.linkClass]}
+				>
+					{menuLink.title}
+				</a>
+			</li>
+		))
+	}
+</ul>
