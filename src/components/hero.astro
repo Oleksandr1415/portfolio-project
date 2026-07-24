@@ -1,22 +1,22 @@
 ---
-import Picture from "astro/components/Picture.astro";
-import heroBg from "../assets/heroBg.jpg";
+import Picture from 'astro/components/Picture.astro';
+import heroBg from '../assets/heroBg.jpg';
 
-import { ChevronDown, Dot } from "@lucide/astro";
-import TwitterIcon from "../assets/icons/logos/twitter.astro";
-import LinkedIn from "../assets/icons/logos/linkedIn.astro";
-import GithubIcon from "../assets/icons/logos/github.astro";
+import { ChevronDown, Dot } from '@lucide/astro';
+import TwitterIcon from '../assets/icons/logos/twitter.astro';
+import LinkedIn from '../assets/icons/logos/linkedIn.astro';
+import GithubIcon from '../assets/icons/logos/github.astro';
 ---
 
 <section
   data-slot="Hero"
   id="hero"
-  class="relative flex min-h-screen w-screen flex-col items-center justify-center px-4 text-gray-600"
+  class="relative flex min-h-screen min-w-screen flex-col items-center justify-center px-4 text-gray-600"
 >
   <Picture
     src={heroBg}
     alt=""
-    formats={["avif", "webp"]}
+    formats={['avif', 'webp']}
     widths={[640, 1280, 1920]}
     sizes="100vw"
     class="absolute inset-0 -z-10 h-full w-full bg-black bg-linear-to-b from-transparent from-50% to-black object-cover"
@@ -25,25 +25,17 @@ import GithubIcon from "../assets/icons/logos/github.astro";
     class="pointer-events-none absolute inset-0 bg-linear-to-b from-transparent from-50% to-black"
   >
   </div>
-  <span
-    class="mx-auto pl-2 tracking-[8px] text-white/90 uppercase backdrop-blur-[1px]"
-    >Hello</span
-  >
+  <span class="mx-auto pl-2 tracking-[8px] text-white/90 uppercase backdrop-blur-[1px]">Hello</span>
 
   <div data-slot="text" class="flex justify-center p-2 backdrop-blur-[1px]">
-    <span
-      class="font-heading text-center text-8xl font-black text-white select-none"
-      >I am <span
-        class="bg-gradient-hero font-heading bg-clip-text font-black text-transparent"
-      >
+    <span class="font-heading text-center text-8xl font-black text-white select-none"
+      >I am <span class="bg-gradient-hero font-heading bg-clip-text font-black text-transparent">
         Dev.
       </span>
     </span>
   </div>
 
-  <span class="text-white/45"
-    >Fast & curious<Dot class="inline size-6" />communicative
-  </span>
+  <span class="text-white/45">Fast & curious<Dot class="inline size-6" />communicative </span>
 
   <div
     class="anchors flex w-full flex-col items-center justify-center gap-5 p-5 pb-5 text-sm text-white md:flex-row"
@@ -66,21 +58,14 @@ import GithubIcon from "../assets/icons/logos/github.astro";
     href="#contact"
     class="group text-md flex flex-col justify-center rounded-md p-3 text-gray-400 duration-300 hover:bg-gray-200/20"
   >
-    <span class="block text-white/40 duration-300 group-hover:text-gray-100">
-      get it touch!
-    </span>
+    <span class="block text-white/40 duration-300 group-hover:text-gray-100"> get it touch! </span>
     <span class="block">
-      <ChevronDown
-        class="mx-auto size-4 duration-300 group-hover:translate-y-0.75"
-      />
+      <ChevronDown class="mx-auto size-4 duration-300 group-hover:translate-y-0.75" />
     </span>
   </a>
 
   <div data-slot="contact" class="absolute right-0 bottom-10 left-0 h-15">
-    <div
-      data-slot="links-container"
-      class="flex h-10 w-full justify-center gap-4 p-2"
-    >
+    <div data-slot="links-container" class="flex h-10 w-full justify-center gap-4 p-2">
       <a
         href="#"
         data-slot="icon1"

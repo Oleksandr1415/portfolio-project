@@ -1,33 +1,61 @@
 ---
 import Headline from './headline.astro';
+import Badges from './badges.astro';
 import { ChevronDown } from '@lucide/astro';
 
 interface Props {
   class?: string;
   headline: string;
   description: string;
-  planetVariant: 'teal' | 'red' | 'purple' | 'orange';
+  design: 'teal' | 'red' | 'purple' | 'orange';
   // modal or so? for the menu
 }
-const { class: className, headline = '', description = '', planetVariant } = Astro.props;
+const { class: className, headline = '', description = '', design = 'teal' } = Astro.props;
+
+const designSet = {
+  teal: { planet: 'planet-teal', card: 'bg-[rgba(6,182,212,0.33] border-' },
+  red: { planet: 'planet-red' },
+  purple: { planet: 'planet-purple' },
+  orange: { planet: 'planet-orange' },
+};
+
+const selectedDesign = designSet[design];
 ---
 
-<div
-  data-slot="card-container"
-  class:list={[
-    'background-white-3 flex flex-row items-center justify-between self-stretch rounded-2xl border border-white/8 px-5 py-4',
-  ]}
->
-  <!-- Simple cards with menus | for skills | on mobile devices -->
-  <div data-slot="skill-planet size-10"></div>
+<div data-slot="card" class:list={['rounded-2xl border border-white/10 bg-white/5', className]}>
+  <div
+    data-slot="card-container"
+    class:list={['flex flex-row items-center justify-between gap-3 self-stretch px-5 py-4']}
+  >
+    <div data-slot="skill-planet" class:list={['size-10 w-10 shrink-0', selectedDesign.planet]}>
+    </div>
 
-  <section data-slot="card-description" class="flex w-full grow flex-col items-start">
-    <Headline variant="h3">
-      {headline}
-    </Headline>
-    <span class="text-xs font-medium text-white/35">
-      {description}
-    </span>
+    <section data-slot="card-description" class="flex w-full grow flex-col items-start gap-1">
+      <Headline variant="h4">
+        {headline}
+      </Headline>
+      <span class="text-xs font-medium text-white/35">
+        {description}
+      </span>
+    </section>
+    <ChevronDown
+      data-slot="chevron"
+      class="animation-all size-4 duration-300"
+      stroke="rgba(255,255,255,0.25)"
+    />
+  </div>
+
+  <!-- Mobile Badges Section -->
+  <section
+    data-slot="card-badges-section"
+    class="grid grid-rows-[0fr] border-t-white/15 transition-[grid-template-rows] duration-300 ease-out"
+  >
+    <div class="overflow-hidden">
+      <Badges badgeList={[{ text: 'test' }, { text: 'test' }]} class="p-4" />
+    </div>
   </section>
-  <ChevronDown class="size-4" stroke="rgba(255,255,255,0.25)" />
 </div>
+
+<script>
+  import '../../scripts/card.js';
+</script>

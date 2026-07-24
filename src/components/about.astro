@@ -1,88 +1,71 @@
-<section id="about" data-slot="about-section" class="p-6 pt-0 w-full bg-black">
-	<div
-		data-slot="container"
-		class="flex flex-col pt-20 md:grid md:grid-cols-[1.5fr_1fr] md:gap-10 justify-center align-start text-white"
-	>
-		<section data-slot="about-me" class="flex flex-col">
-			<h1 class="uppercase text-subheadline text-xs tracking-[5px]">About</h1>
-			<h2
-				class="pt-5 text-4xl text-headline font-extrabold border-b border-black"
-			>
-				My name is Sasha
-			</h2>
-			<span class="pt-2 bg-gradient-text text-transparent">
-				I am a front-end developer.
-			</span>
+<section id="about" data-slot="about-section" class="w-full bg-black p-6 pt-0">
+  <div
+    data-slot="container"
+    class="align-start flex flex-col justify-center pt-20 text-white md:grid md:grid-cols-[1.5fr_1fr] md:gap-10"
+  >
+    <section data-slot="about-me" class="flex flex-col">
+      <h1 class="text-subheadline text-xs tracking-[5px] uppercase">About</h1>
+      <h2 class="text-headline border-b border-black pt-5 text-4xl font-extrabold">
+        My name is Sasha
+      </h2>
+      <span class="bg-gradient-text pt-2 text-transparent"> I am a front-end developer. </span>
 
-			<p class="text-base font-light text-white/50 pt-7">
-				I was born and began my way in Ukraine but was somewhat interrupted in
-				the process. Currently I am working on my opportunities in Germany.
-			</p>
+      <p class="pt-7 text-base font-light text-white/50">
+        I was born and began my way in Ukraine but was somewhat interrupted in the process.
+        Currently I am working on my opportunities in Germany.
+      </p>
 
-			<p class="text-sm font-light text-white/50 pt-5">
-				I might not have years of experience in development yet, but I am:
-			</p>
+      <p class="pt-5 text-sm font-light text-white/50">
+        I might not have years of experience in development yet, but I am:
+      </p>
 
-			<section data-slot="personlichkeiten" class="pt-4 flex flex-col gap-3">
-				<div class="flex gap-2">
-					<h5 class="block h-full font-bold text-base text-headline">
-						Resilient
-					</h5>
-					<p class="font-light text-sm text-white/35">
-						— adapted to completely new conditions and kept moving forward.
-					</p>
-				</div>
-				<div class="flex gap-2">
-					<h5 class="block h-full font-bold text-base text-headline">
-						Adaptive
-					</h5>
-					<p class="font-light text-sm text-white/35">
-						— learned a new language in two years, still learning.
-					</p>
-				</div>
-				<div class="flex gap-2">
-					<h5 class="block h-full font-bold text-base text-headline">
-						Communicative
-					</h5>
-					<p class="font-light text-sm text-white/35">
-						— I can explain what I know clearly enough that others actually
-						understand it.
-					</p>
-				</div>
-			</section>
-		</section>
+      <section data-slot="personlichkeiten" class="flex flex-col gap-3 pt-4">
+        <div class="flex gap-2">
+          <h5 class="text-headline block h-full text-base font-bold">Resilient</h5>
+          <p class="text-sm font-light text-white/35">
+            — adapted to completely new conditions and kept moving forward.
+          </p>
+        </div>
+        <div class="flex gap-2">
+          <h5 class="text-headline block h-full text-base font-bold">Adaptive</h5>
+          <p class="text-sm font-light text-white/35">
+            — learned a new language in two years, still learning.
+          </p>
+        </div>
+        <div class="flex gap-2">
+          <h5 class="text-headline block h-full text-base font-bold">Communicative</h5>
+          <p class="text-sm font-light text-white/35">
+            — I can explain what I know clearly enough that others actually understand it.
+          </p>
+        </div>
+      </section>
+    </section>
 
-		<dl class="pt-16 grid grid-cols-2 gap-4">
-			<div
-				class="w-full flex flex-col justify-center align-center p-6 rounded-2xl bg-white/3 border border-white/10"
-			>
-				<dd class="text-center text-4xl font-extrabold bg-gradient-text">
-					20+
-				</dd>
-				<dt class="text-center text-base text-white/35">
-					Tools & Technologies
-				</dt>
-			</div>
-			<div
-				class="w-full flex flex-col justify-center align-center p-6 rounded-2xl bg-white/3 border border-white/10"
-			>
-				<dd class="text-center text-4xl font-extrabold bg-gradient-text">4</dd>
-				<dt class="text-center text-base text-white/35">Languages Spoken</dt>
-			</div>
-			<div
-				class="w-full flex flex-col justify-center align-center p-6 rounded-2xl bg-white/3 border border-white/10"
-			>
-				<dd class="text-center text-4xl font-extrabold bg-gradient-text">
-					2(+1)
-				</dd>
-				<dt class="text-center text-base text-white/35">Degrees</dt>
-			</div>
-			<div
-				class="w-full flex flex-col justify-center align-center p-6 rounded-2xl bg-white/3 border border-white/10"
-			>
-				<dd class="text-center text-4xl font-extrabold bg-gradient-text">1+</dd>
-				<dt class="text-center text-base text-white/35">Years training</dt>
-			</div>
-		</dl>
-	</div>
+    <dl class="grid grid-cols-2 gap-4 pt-16">
+      <div
+        class="align-center flex w-full flex-col justify-center rounded-2xl border border-white/10 bg-white/3 p-6"
+      >
+        <dd class="bg-gradient-text text-center text-4xl font-extrabold">20+</dd>
+        <dt class="text-center text-base text-white/35">Tools & Technologies</dt>
+      </div>
+      <div
+        class="align-center flex w-full flex-col justify-center rounded-2xl border border-white/10 bg-white/3 p-6"
+      >
+        <dd class="bg-gradient-text text-center text-4xl font-extrabold">4</dd>
+        <dt class="text-center text-base text-white/35">Languages Spoken</dt>
+      </div>
+      <div
+        class="align-center flex w-full flex-col justify-center rounded-2xl border border-white/10 bg-white/3 p-6"
+      >
+        <dd class="bg-gradient-text text-center text-4xl font-extrabold">2(+1)</dd>
+        <dt class="text-center text-base text-white/35">Degrees</dt>
+      </div>
+      <div
+        class="align-center flex w-full flex-col justify-center rounded-2xl border border-white/10 bg-white/3 p-6"
+      >
+        <dd class="bg-gradient-text text-center text-4xl font-extrabold">1+</dd>
+        <dt class="text-center text-base text-white/35">Years training</dt>
+      </div>
+    </dl>
+  </div>
 </section>

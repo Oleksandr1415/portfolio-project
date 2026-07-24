@@ -5,6 +5,7 @@
 @import './themes/_themes.css';
 @import './utilities/_utilities.css';
 
+@plugin './plugins/planet-gradients.js';
 html {
   text-color: white;
   font-family: 'DM Sans', sans-serif;
