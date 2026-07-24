@@ -1,41 +1,33 @@
 ---
-import Headline from "./headline.astro";
-import { ChevronDown } from "@lucide/astro";
+import Headline from './headline.astro';
+import { ChevronDown } from '@lucide/astro';
 
 interface Props {
-	class?: string;
-	headline: string;
-	description: string;
-	planetVariant: "teal" | "red" | "purple" | "orange";
-	// modal or so? for the menu
+  class?: string;
+  headline: string;
+  description: string;
+  planetVariant: 'teal' | 'red' | 'purple' | 'orange';
+  // modal or so? for the menu
 }
-const {
-	class: className,
-	headline = "",
-	description = "",
-	planetVariant,
-} = Astro.props;
+const { class: className, headline = '', description = '', planetVariant } = Astro.props;
 ---
 
 <div
-	data-slot="card-container"
-	class:list={[
-		"flex flex-row items-center justify-between rounded-2xl px-5 py-4 self-stretch border border-white/8 background-white-3",
-	]}
+  data-slot="card-container"
+  class:list={[
+    'background-white-3 flex flex-row items-center justify-between self-stretch rounded-2xl border border-white/8 px-5 py-4',
+  ]}
 >
-	<!-- Simple cards with menus | for skills | on mobile devices -->
-	<div data-slot="skill-planet size-10"></div>
+  <!-- Simple cards with menus | for skills | on mobile devices -->
+  <div data-slot="skill-planet size-10"></div>
 
-	<section
-		data-slot="card-description"
-		class="flex w-full grow flex-col items-start"
-	>
-		<Headline variant="h3">
-			{headline}
-		</Headline>
-		<span class="text-xs text-white/35 font-medium">
-			{description}
-		</span>
-	</section>
-	<ChevronDown class="size-4" stroke="rgba(255,255,255,0.25)" />
+  <section data-slot="card-description" class="flex w-full grow flex-col items-start">
+    <Headline variant="h3">
+      {headline}
+    </Headline>
+    <span class="text-xs font-medium text-white/35">
+      {description}
+    </span>
+  </section>
+  <ChevronDown class="size-4" stroke="rgba(255,255,255,0.25)" />
 </div>

@@ -1,19 +1,19 @@
 ---
 interface Props {
-	level?: 1 | 2 | 3 | 4 | 5 | 6;
-	class?: string;
-	variant?: "hero" | "h1" | "h2" | "h3" | "h4" | "label" | "badge";
+  level?: 1 | 2 | 3 | 4 | 5 | 6;
+  class?: string;
+  variant?: 'hero' | 'h1' | 'h2' | 'h3' | 'h4' | 'label' | 'badge';
 }
-const { level, class: className, variant = "h1" } = Astro.props;
+const { level, class: className, variant = 'h1' } = Astro.props;
 
 const variants = {
-	hero: "text-8xl font-black font-heading",
-	h1: "text-6xl font-extrabold font-heading",
-	h2: "text-4xl font-bold font-heading",
-	h3: "text-xl font-semibold font-heading",
-	h4: "text-sm font-medium font-heading tracking-wide",
-	label: "text-xs font-semibold font-heading uppercase tracking-[0.45]",
-	badge: "text-[9px] font-semibold font-heading",
+  hero: 'text-8xl font-black font-heading',
+  h1: 'text-6xl font-extrabold font-heading',
+  h2: 'text-4xl font-bold font-heading',
+  h3: 'text-xl font-semibold font-heading',
+  h4: 'text-sm font-medium font-heading tracking-wide',
+  label: 'text-xs font-semibold font-heading uppercase tracking-[0.45]',
+  badge: 'text-[9px] font-semibold font-heading',
 };
 
 const selectedLevel = level || Object.keys(variants).indexOf(variant);
@@ -21,7 +21,7 @@ const Tag = `h${selectedLevel}` as `h${1 | 2 | 3 | 4 | 5 | 6}`;
 ---
 
 <Tag class:list={[variants[variant], className]}>
-	<slot />
+  <slot />
 </Tag>
 
 <!-- {

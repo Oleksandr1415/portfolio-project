@@ -1,39 +1,39 @@
 @theme {
-	/* Backgrounds */
-	--color-background: #060914;
-	--color-card: #0d1128;
-	--color-secondary: #111728;
-	--color-muted: #1a2035;
+  /* Backgrounds */
+  --color-background: #060914;
+  --color-card: #0d1128;
+  --color-secondary: #111728;
+  --color-muted: #1a2035;
 
-	/* Brand */
-	--color-primary-dark: #7c3aed;
-	--color-primary: #9333ea;
-	--color-primary-light: #a855f7;
+  /* Brand */
+  --color-primary-dark: #7c3aed;
+  --color-primary: #9333ea;
+  --color-primary-light: #a855f7;
 
-	--color-accent-dark: #0891b2;
-	--color-accent: #06b6d4;
+  --color-accent-dark: #0891b2;
+  --color-accent: #06b6d4;
 
-	/* Skill Categories */
-	--color-framework: var(--color-primary-light);
-	--color-markup: var(--color-accent);
-	--color-tools: #ec4899;
-	--color-design: #f97316;
+  /* Skill Categories */
+  --color-framework: var(--color-primary-light);
+  --color-markup: var(--color-accent);
+  --color-tools: #ec4899;
+  --color-design: #f97316;
 
-	/* Roadmap */
-	--color-science: var(--color-primary-light);
-	--color-experience: #fb923c;
-	--color-after-knot: var(--color-accent);
+  /* Roadmap */
+  --color-science: var(--color-primary-light);
+  --color-experience: #fb923c;
+  --color-after-knot: var(--color-accent);
 
-	/* Text */
-	--color-foreground: #dde3f0;
-	--color-subheadline: #c27aff;
+  /* Text */
+  --color-foreground: #dde3f0;
+  --color-subheadline: #c27aff;
 
-	--color-text: rgb(255 255 255 / 85%);
-	--color-text-muted: rgb(255 255 255 / 55%);
-	--color-text-subtle: rgb(255 255 255 / 40%);
-	--color-text-disabled: rgb(255 255 255 / 28%);
+  --color-text: rgb(255 255 255 / 85%);
+  --color-text-muted: rgb(255 255 255 / 55%);
+  --color-text-subtle: rgb(255 255 255 / 40%);
+  --color-text-disabled: rgb(255 255 255 / 28%);
 
-	/* Borders */
-	--color-border: rgb(255 255 255 / 8%);
-	--color-border-hover: rgb(168 85 247 / 30%);
+  /* Borders */
+  --color-border: rgb(255 255 255 / 8%);
+  --color-border-hover: rgb(168 85 247 / 30%);
 }
