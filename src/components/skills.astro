@@ -1,28 +1,32 @@
 ---
-import Card from './partials/card.astro';
-import HeadlineBlock from './partials/headlineBlock.astro';
+import HeadlineBlock from './partials/headlineBlock.tsx';
+import { AccordionComponent } from './partials/accordion/accordion';
 
-const mockCards = [
+const mockPlanets = [
   {
     class: '',
+    badgesList: ['React', 'Next.js', 'Laravel Blade', 'Angular', '...'],
     description: '5 technologies',
     headline: 'Framework',
     design: 'teal' as 'teal',
   },
   {
     class: '',
+    badgesList: ['CSS', 'SCSS/Sass', 'Tailwind', 'Bulma', 'Material UI'],
     description: '5 technologies',
     headline: 'Markup',
     design: 'red' as 'red',
   },
   {
     class: '',
+    badgesList: ['Figma', 'Miro'],
     description: '2 technologies',
     headline: 'Design',
     design: 'purple' as 'purple',
   },
   {
     class: '',
+    badgesList: ['Git/GitHub', 'Docker (ddev)', 'Vite', 'Vs Code', 'DevTools'],
     description: '6 technologies',
     headline: 'Tools',
     design: 'orange' as 'orange',
@@ -31,27 +35,19 @@ const mockCards = [
 ---
 
 <section id="skills" class="flex flex-col items-center pt-20 text-white">
-  <HeadlineBlock
+  <!-- <HeadlineBlock
+    client:load
     headlineVariant="h2"
     subHeadline="Expertise"
     postHeadline="Tap a category to explore"
   >
     Skills PLanet
-  </HeadlineBlock>
+  </HeadlineBlock> -->
 
   <div data-slot="skills-diagram-mobile"></div>
   <span class="pt-8 text-center text-xs tracking-[4px] text-white/30 uppercase">Core skills</span>
   <!-- Badgelist here -->
   <div class="cardList flex w-full flex-col gap-2 pt-10">
-    {
-      mockCards.map((card) => (
-        <Card
-          class:list={[card.class]}
-          headline={card.headline}
-          description={card.description}
-          design={card.design}
-        />
-      ))
-    }
+    <AccordionComponent accordionItems={mockPlanets} client:load />
   </div>
 </section>esbenp.prettier-vscode
