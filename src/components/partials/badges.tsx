@@ -10,7 +10,7 @@ export interface BadgesProps {
 const variants = {
   default: {
     container: '',
-    badge: 'bg-white/7 border-white/15',
+    badge: 'bg-white/7 border-white/15 text-[12px]',
   },
   markup: {
     container: '',
@@ -41,7 +41,11 @@ export default function Badges({
   return (
     <div
       data-slot="badges-container"
-      className={cn('flex flex-wrap gap-2 text-black', selectedVariant.container, className)}
+      className={cn(
+        'flex flex-wrap items-center justify-center gap-2 text-black',
+        selectedVariant.container,
+        className,
+      )}
     >
       {badgeList.map((badge, index) => {
         return (
