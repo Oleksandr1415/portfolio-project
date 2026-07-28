@@ -36,4 +36,11 @@
   /* Borders */
   --color-border: rgb(255 255 255 / 8%);
   --color-border-hover: rgb(168 85 247 / 30%);
+
+  /* Skills */
+  --color-skill-markup: #06b6d4;
+  --color-skill-tool: #ec4899;
+  --color-skill-framework: #a855f7;
+  --color-skill-design: #f97316;
+  --color-skill-bg: rgba(0, 0, 0, 0.45);
 }

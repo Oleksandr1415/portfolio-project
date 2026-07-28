@@ -1,28 +1,32 @@
 import { cn } from '@/utils/helpers';
 
-interface BadgesProps {
+export interface BadgesProps {
   className?: string;
   badgeClass?: string;
   badgeList?: string[];
-  variant?: 'gray' | 'science' | 'experience' | 'after';
+  variant?: 'default' | 'markup' | 'tool' | 'framework' | 'design';
 }
 
 const variants = {
-  gray: {
+  default: {
     container: '',
-    badge: 'rounded-[10000px] border border-white/15 bg-white/7 text-white/80 text-xs uppercase',
+    badge: 'bg-white/7 border-white/15',
   },
-  science: {
+  markup: {
     container: '',
-    badge: '',
+    badge: 'border-skill-markup/35 text-skill-markup/90',
   },
-  experience: {
+  tool: {
     container: '',
-    badge: '',
+    badge: 'border-skill-tool/35 text-skill-tool/90',
   },
-  after: {
+  framework: {
     container: '',
-    badge: '',
+    badge: 'border-skill-framework/35 text-skill-framework/90',
+  },
+  design: {
+    container: '',
+    badge: 'border-skill-design/35 text-skill-design/90',
   },
 };
 
@@ -32,23 +36,23 @@ export default function Badges({
   badgeList = [],
   variant = undefined,
 }: BadgesProps) {
-  const selectedVariant = variant ? variants[variant] : variants['gray'];
+  const selectedVariant = variant ? variants[variant] : variants['default'];
 
   return (
     <div
       data-slot="badges-container"
-      className={cn('flex gap-2 text-black', selectedVariant.container, className)}
+      className={cn('flex flex-wrap gap-2 text-black', selectedVariant.container, className)}
     >
       {badgeList.map((badge, index) => {
-        console.log(badge);
         return (
           <span
             key={`${badge}-${index}`}
             data-slot="badge"
             className={cn(
-              'flex flex-wrap items-center justify-center px-3 py-1',
+              'flex items-center justify-center border px-3 py-1',
+              'rounded-[10000px] bg-white/7 text-[10px] text-white/80 uppercase',
               selectedVariant.badge,
-              'text-[10px]',
+              '',
               badgeClass,
             )}
           >

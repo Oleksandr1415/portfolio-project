@@ -1,10 +1,10 @@
 import plugin from 'tailwindcss/plugin';
 
 const planetColors = {
-  teal: '6, 182, 212',
-  red: '236, 72, 153',
-  purple: '168, 85, 247',
-  orange: '249, 115, 22',
+  markup: '6, 182, 212',
+  tool: '236, 72, 153',
+  framework: '168, 85, 247',
+  design: '249, 115, 22',
 };
 export default plugin(function ({ addUtilities }) {
   const utilities = Object.entries(planetColors).reduce((acc, [name, rgb]) => {
