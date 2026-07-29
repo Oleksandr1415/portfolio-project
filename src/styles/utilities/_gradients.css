@@ -4,7 +4,7 @@
 }
 
 @utility bg-gradient-hero-hover {
-  background-image: linear-gradient(135deg, var(--color-primary-dark), var(--color-accent-dark));
+  background-image: linear-gradient(135deg, var(--color-primary-light), var(--color-accent-dark));
 }
 
 @utility bg-gradient-planet {

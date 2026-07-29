@@ -1,22 +1,11 @@
 ---
-import HeadlineBlock from './partials/headlineBlock.tsx';
+
 ---
 
-<section data-slot="footer" class="pt-25">
-  <div data-slot="footer-container flex flex-col items-center justify-center">
-    <HeadlineBlock
-      subHeadline="Contact"
-      headlineVariant="h2"
-      headlineClass="text-white"
-      postHeadline="Something Great"
-      postHeadlineClass="bg-gradient-text pt-2 text-transparent text-5xl"
-    >
-      Let's Build
-    </HeadlineBlock>
-
-    <p class="pt-7 text-base text-white/42">
-      I'm currently open to new opportunities. Whether you have a project in mind or just want to
-      say hello — my inbox is always open.
-    </p>
-  </div>
-</section>
+<footer
+  data-clot="footer-container"
+  class="relative flex w-full items-center justify-center border-t border-t-white/20 bg-black px-4 py-10 text-white"
+>
+  <div class="absolute inset-0 top-0 bottom-0 left-0 z-1 w-full bg-white/5"></div>
+  <span class="text-white/25">2026 OLEKSANDR · Crafted with code & curiosity · Dorsten </span>
+</footer>
