@@ -22,7 +22,7 @@ const variants = {
   },
   framework: {
     container: '',
-    badge: 'border-skill-framework/35 text-skill-framework/90',
+    badge: 'border-skill-framework/35 text-[#b06af5]',
   },
   design: {
     container: '',

@@ -42,12 +42,12 @@ export default function HeadlineBlock({
         >
           {children}
         </Headline>
-        <span
+        <p
           data-slot="postHeadline"
           className={cn('pt-2 text-center text-base font-normal text-white/30', postHeadlineClass)}
         >
           {postHeadline}
-        </span>
+        </p>
       </div>
     </>
   );

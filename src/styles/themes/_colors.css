@@ -9,6 +9,8 @@
   --color-primary-dark: #7c3aed;
   --color-primary: #9333ea;
   --color-primary-light: #a855f7;
+  /* --color-primary-soft: #c9a9f0; */
+  --color-primary-soft: #b06af5;
 
   --color-accent-dark: #0891b2;
   --color-accent: #06b6d4;
@@ -20,9 +22,11 @@
   --color-design: #f97316;
 
   /* Roadmap */
-  --color-science: var(--color-primary-light);
+  --color-science: var(--color-primary-soft);
   --color-experience: #fb923c;
-  --color-after-knot: var(--color-accent);
+  --color-germany: var(--color-accent);
+
+  --color-roadmap-subheadline: #d8b4fe;
 
   /* Text */
   --color-foreground: #dde3f0;

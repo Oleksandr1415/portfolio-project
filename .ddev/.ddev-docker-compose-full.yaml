@@ -21,7 +21,7 @@ services:
     container_name: ddev-portfolio-project-db
     environment:
       BITNAMI_VOLUME_DIR: ""
-      COLUMNS: "140"
+      COLUMNS: "158"
       DDEV_DATABASE: mariadb:11.8
       DDEV_DATABASE_FAMILY: mysql
       DDEV_GID: "20"
@@ -45,7 +45,7 @@ services:
       DOCKER_IP: 127.0.0.1
       HOST_DOCKER_INTERNAL_IP: ""
       IS_DDEV_PROJECT: "true"
-      LINES: "7"
+      LINES: "17"
       MYSQL_HISTFILE: /mnt/ddev-global-cache/mysqlhistory/portfolio-project-db/mysql_history
       PGDATABASE: db
       PGHOST: 127.0.0.1
@@ -126,7 +126,7 @@ services:
       - /pre-start.sh
     container_name: ddev-portfolio-project-web
     environment:
-      COLUMNS: "140"
+      COLUMNS: "158"
       COREPACK_ENABLE_DOWNLOAD_PROMPT: "0"
       COREPACK_HOME: /mnt/ddev-global-cache/corepack
       DDEV_APPROOT: /var/www/html
@@ -167,7 +167,7 @@ services:
       HTTP_EXPOSE: 80:80,8025:8025,4321:4321
       HTTPS_EXPOSE: 443:80,8026:8025,4322:4321
       IS_DDEV_PROJECT: "true"
-      LINES: "7"
+      LINES: "17"
       MYSQL_HISTFILE: /mnt/ddev-global-cache/mysqlhistory/portfolio-project-web/mysql_history
       NODE_EXTRA_CA_CERTS: /mnt/ddev-global-cache/mkcert/rootCA.pem
       PGDATABASE: db

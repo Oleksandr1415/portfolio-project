@@ -53,7 +53,13 @@ const mockPlanets = [
     Core skills
   </span>
   <Badges badgeList={coreSkills} className="pt-3" />
-  <div class="cardList flex w-full flex-col gap-2 pt-5">
-    <AccordionComponent accordionItems={mockPlanets} client:load />
+  <div class="cardList flex w-full flex-col items-center gap-2 pt-5">
+    <AccordionComponent
+      class="w-full"
+      accordionItems={mockPlanets}
+      multiple={true}
+      defaultValue={mockPlanets[0].headline}
+      client:load
+    />
   </div>
 </section>esbenp.prettier-vscode
