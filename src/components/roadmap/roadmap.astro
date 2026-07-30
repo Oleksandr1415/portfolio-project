@@ -1,0 +1,18 @@
+---
+import HeadlineBlock from '../partials/headlineBlock';
+import RoadmapMobile from './roadmap-mobile.astro';
+---
+
+<section data-slot="roadmap-container" class="flex flex-col items-center pt-30">
+  <HeadlineBlock
+    data-slot="roadmap-header"
+    className="text-white"
+    headlineVariant="h2"
+    postHeadline="every opportunity on my way to where I am"
+    subHeadline="journey"
+  >
+    Life Roadmap
+  </HeadlineBlock>
+
+  <RoadmapMobile class="md:hidden" />
+</section>

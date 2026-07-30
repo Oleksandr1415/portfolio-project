@@ -53,33 +53,43 @@ const designSet = {
 };
 
 interface AccordionComponentProps {
+  class?: string;
   accordionItems: AccordionData[];
+  defaultValue?: string;
+  multiple?: boolean;
 }
 
-export function AccordionComponent({ accordionItems }: AccordionComponentProps) {
+export function AccordionComponent({
+  class: className = '',
+  accordionItems,
+  defaultValue = '',
+  multiple = false,
+}: AccordionComponentProps) {
   if (!accordionItems) {
     return <p>No skills are loaded</p>;
   }
 
   return (
-    <Accordion defaultValue={['']} className="max-w-lg">
+    <Accordion
+      className={cn(['max-w-lg', className])}
+      defaultValue={[defaultValue]}
+      multiple={multiple}
+    >
       {accordionItems.map((item, index) => {
+        console.log(defaultValue);
+        console.log(item.headline);
         const selectedDesign = designSet[item.design];
 
         return (
           <AccordionItem
-            value={item.headline}
-            key={`${item.headline} - ${index}`}
             className={cn('group/accordion-item', selectedDesign.card)}
+            key={`${item.headline} - ${index}`}
+            value={item.headline}
           >
             <AccordionTrigger>
               <div
                 data-slot="skill-planet"
                 className={cn('size-10 w-10 shrink-0', selectedDesign.planet)}
-                // style={{
-                //   boxShadow:
-                //     '0 0 20px 0 rgba(236, 72, 153, 0.40), 0 0 40px 0 rgba(236, 72, 153, 0.16), -4px -3px 10px 0 rgba(0, 0, 0, 0.50) inset',
-                // }}
               ></div>
 
               <section
@@ -103,8 +113,3 @@ export function AccordionComponent({ accordionItems }: AccordionComponentProps) 
     </Accordion>
   );
 }
-
-// box-shadow: 0 0 20px 0 rgba(6, 182, 212, 0.40),  0 0 40px 0 rgba(6, 182, 212, 0.16),  -4px -3px 10px 0 rgba(0, 0, 0, 0.50) inset;
-// box-shadow: 0 0 20px 0 rgba(236, 72, 153, 0.40), 0 0 40px 0 rgba(236, 72, 153, 0.16), -4px -3px 10px 0 rgba(0, 0, 0, 0.50) inset;
-// box-shadow: 0 0 20px 0 rgba(168, 85, 247, 0.40), 0 0 40px 0 rgba(168, 85, 247, 0.16), -4px -3px 10px 0 rgba(0, 0, 0, 0.50) inset;
-// box-shadow: 0 0 20px 0 rgba(249, 115, 22, 0.40), 0 0 40px 0 rgba(249, 115, 22, 0.16), -4px -3px 10px 0 rgba(0, 0, 0, 0.50) inset;

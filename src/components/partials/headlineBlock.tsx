@@ -36,18 +36,18 @@ export default function HeadlineBlock({
           {subHeadline}
         </span>
         <Headline
-          variant={headlineVariant}
-          level={headlineLevel}
           className={cn('pt-4', headlineClass)}
+          level={headlineLevel}
+          variant={headlineVariant}
         >
           {children}
         </Headline>
-        <span
+        <p
           data-slot="postHeadline"
           className={cn('pt-2 text-center text-base font-normal text-white/30', postHeadlineClass)}
         >
           {postHeadline}
-        </span>
+        </p>
       </div>
     </>
   );

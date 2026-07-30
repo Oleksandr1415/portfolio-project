@@ -2,38 +2,9 @@
 import HeadlineBlock from './partials/headlineBlock.tsx';
 import { AccordionComponent } from './partials/accordion/accordion';
 import Badges from './partials/badges';
+import { skillPlanets } from '@/mock/skill-planets';
 
 const coreSkills = ['JS', 'TS', 'HTML', 'CSS', 'PHP', 'React'];
-const mockPlanets = [
-  {
-    class: '',
-    badgesList: ['React', 'Next.js', 'Laravel Blade', 'Angular', '...'],
-    description: '5 technologies',
-    design: 'framework' as 'framework',
-    headline: 'Framework',
-  },
-  {
-    class: '',
-    badgesList: ['CSS', 'SCSS/Sass', 'Tailwind', 'Bulma', 'Material UI'],
-    description: '5 technologies',
-    design: 'markup' as 'markup',
-    headline: 'Markup',
-  },
-  {
-    class: '',
-    badgesList: ['Figma', 'Miro'],
-    description: '2 technologies',
-    design: 'design' as 'design',
-    headline: 'Design',
-  },
-  {
-    class: '',
-    badgesList: ['Git/GitHub', 'Docker (ddev)', 'Vite', 'Vs Code', 'DevTools'],
-    description: '6 technologies',
-    design: 'tool' as 'tool',
-    headline: 'Tools',
-  },
-];
 ---
 
 <section id="skills" class="flex flex-col items-center pt-20 text-white">
@@ -53,7 +24,13 @@ const mockPlanets = [
     Core skills
   </span>
   <Badges badgeList={coreSkills} className="pt-3" />
-  <div class="cardList flex w-full flex-col gap-2 pt-5">
-    <AccordionComponent accordionItems={mockPlanets} client:load />
+  <div class="cardList flex w-full flex-col items-center gap-2 pt-5">
+    <AccordionComponent
+      client:load
+      class="w-full"
+      accordionItems={skillPlanets}
+      defaultValue={skillPlanets[0].headline}
+      multiple={true}
+    />
   </div>
 </section>esbenp.prettier-vscode

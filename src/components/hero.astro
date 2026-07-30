@@ -25,7 +25,9 @@ import GithubIcon from '../assets/icons/logos/github.astro';
     class="pointer-events-none absolute inset-0 bg-linear-to-b from-transparent from-50% to-black"
   >
   </div>
-  <span class="mx-auto pl-2 tracking-[8px] text-white/90 uppercase backdrop-blur-[1px]">Hello</span>
+  <span class="text-text-gray-white mx-auto pl-2 tracking-[8px] uppercase backdrop-blur-[1px]"
+    >Hello</span
+  >
 
   <div data-slot="text" class="flex justify-center p-2 backdrop-blur-[1px]">
     <span class="font-heading text-center text-8xl font-black text-white select-none"
@@ -35,7 +37,9 @@ import GithubIcon from '../assets/icons/logos/github.astro';
     </span>
   </div>
 
-  <span class="text-white/45">Fast & curious<Dot class="inline size-6" />communicative </span>
+  <span class="text-text-gray-light"
+    >Fast & curious<Dot class="inline size-6" />communicative
+  </span>
 
   <div
     class="anchors flex w-full flex-col items-center justify-center gap-5 p-5 pb-5 text-sm text-white md:flex-row"
@@ -56,11 +60,13 @@ import GithubIcon from '../assets/icons/logos/github.astro';
 
   <a
     href="#contact"
-    class="group text-md flex flex-col justify-center rounded-md p-3 text-gray-400 duration-300 hover:bg-gray-200/20"
+    class="group text-md flex flex-col justify-center rounded-md p-3 duration-300 hover:bg-gray-200/20"
   >
-    <span class="block text-white/40 duration-300 group-hover:text-gray-100"> get it touch! </span>
+    <span class="text-text-gray block duration-300 group-hover:text-gray-100"> get in touch! </span>
     <span class="block">
-      <ChevronDown class="mx-auto size-4 duration-300 group-hover:translate-y-0.75" />
+      <ChevronDown
+        class="stroke-text-gray mx-auto size-4 duration-300 group-hover:translate-y-0.75"
+      />
     </span>
   </a>
 
@@ -71,25 +77,25 @@ import GithubIcon from '../assets/icons/logos/github.astro';
         data-slot="icon1"
         class="size-6 rounded-md hover:-translate-y-0.5 hover:shadow-[0_2px_3px_rgba(255,255,255,0.8)]"
       >
-        <LinkedIn class="size-6" fill="white" stroke="white" />
+        <LinkedIn class="fill-text-gray-light stroke-text-gray-light size-6" />
       </a>
       <a
         href="#"
         data-slot="icon2"
         class="size-6 rounded-md hover:-translate-y-0.5 hover:shadow-[0_2px_3px_rgba(255,255,255,0.8)]"
       >
-        <TwitterIcon outline fill="white" stroke="white" class="size-full" />
+        <TwitterIcon outline class="fill-text-gray-light stroke-text-gray-light size-full" />
       </a>
       <a
         href="#"
         data-slot="icon3"
         class="size-6 rounded-md hover:-translate-y-0.5 hover:shadow-[0_2px_3px_rgba(255,255,255,0.8)]"
       >
-        <GithubIcon class="size-6" fill="white" strokee="white" style="0" />
+        <GithubIcon class="fill-text-gray-light stroke-text-gray-light size-6" style="0" />
       </a>
     </div>
     <a href="#about" class="w-full">
-      <ChevronDown class="mx-auto hover:translate-y-0.75" />
+      <ChevronDown class="fill-text-gray-dim stroke-text-gray-dim mx-auto hover:translate-y-0.75" />
     </a>
   </div>
 </section>

@@ -1,6 +1,7 @@
 ---
 import { Menu, X } from '@lucide/astro';
 import NavItemList from './nav-item-list.astro';
+import { cn } from '@/utils/helpers';
 ---
 
 <nav
@@ -30,19 +31,19 @@ import NavItemList from './nav-item-list.astro';
 
     <div
       data-slot="nav-menu-background"
-      class:list={[
+      class={cn([
         'fixed top-0 left-0 z-50 size-full bg-gray-900/50 transition-all duration-600 ease-in md:hidden',
         '-translate-y-full',
-      ]}
+      ])}
     >
     </div>
     <div
       id="navigation-planet"
-      class:list={[
+      class={cn([
         'bg-gradient-nav-menu flex size-[220vh] flex-col items-center justify-end rounded-[60%] bg-red-500 md:hidden',
         'absolute top-0 left-[50%] z-1000 -translate-x-1/2 -translate-y-full',
         'duration-800 ease-out',
-      ]}
+      ])}
     >
       <NavItemList
         dataSlot="nav-menu"

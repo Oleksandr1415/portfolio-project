@@ -1,8 +1,8 @@
 import { cn } from '@/utils/helpers';
 
 interface HeadlineProps {
-  children: React.ReactNode;
   className?: string;
+  children: React.ReactNode;
   level?: 1 | 2 | 3 | 4 | 5 | 6;
   variant?: 'hero' | 'h1' | 'h2' | 'h3' | 'h4' | 'label' | 'badge';
 }
@@ -17,7 +17,7 @@ const variants = {
   badge: 'text-[9px] font-semibold font-heading',
 };
 
-export default function Headline({ level, className, children, variant = 'h1' }: HeadlineProps) {
+export default function Headline({ className, children, level, variant = 'h1' }: HeadlineProps) {
   const selectedLevel = level || Object.keys(variants).indexOf(variant) * 1 + 1;
   const Tag = `h${selectedLevel}` as `h${1 | 2 | 3 | 4 | 5 | 6}`;
   return <Tag className={cn(variants[variant], className)}>{children}</Tag>;
