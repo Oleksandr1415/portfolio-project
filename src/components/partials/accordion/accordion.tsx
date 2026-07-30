@@ -62,8 +62,8 @@ interface AccordionComponentProps {
 export function AccordionComponent({
   class: className = '',
   accordionItems,
-  multiple = false,
   defaultValue = '',
+  multiple = false,
 }: AccordionComponentProps) {
   if (!accordionItems) {
     return <p>No skills are loaded</p>;
@@ -71,9 +71,9 @@ export function AccordionComponent({
 
   return (
     <Accordion
+      className={cn(['max-w-lg', className])}
       defaultValue={[defaultValue]}
       multiple={multiple}
-      className={cn(['max-w-lg', className])}
     >
       {accordionItems.map((item, index) => {
         console.log(defaultValue);
@@ -82,9 +82,9 @@ export function AccordionComponent({
 
         return (
           <AccordionItem
-            value={item.headline}
-            key={`${item.headline} - ${index}`}
             className={cn('group/accordion-item', selectedDesign.card)}
+            key={`${item.headline} - ${index}`}
+            value={item.headline}
           >
             <AccordionTrigger>
               <div

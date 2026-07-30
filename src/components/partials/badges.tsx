@@ -9,24 +9,24 @@ export interface BadgesProps {
 
 const variants = {
   default: {
-    container: '',
     badge: 'bg-white/7 border-white/15 text-[12px]',
+    container: '',
   },
   markup: {
-    container: '',
     badge: 'border-skill-markup/35 text-skill-markup/90',
+    container: '',
   },
   tool: {
-    container: '',
     badge: 'border-skill-tool/35 text-skill-tool/90',
+    container: '',
   },
   framework: {
-    container: '',
     badge: 'border-skill-framework/35 text-[#b06af5]',
+    container: '',
   },
   design: {
-    container: '',
     badge: 'border-skill-design/35 text-skill-design/90',
+    container: '',
   },
 };
 

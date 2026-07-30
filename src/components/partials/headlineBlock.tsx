@@ -36,9 +36,9 @@ export default function HeadlineBlock({
           {subHeadline}
         </span>
         <Headline
-          variant={headlineVariant}
-          level={headlineLevel}
           className={cn('pt-4', headlineClass)}
+          level={headlineLevel}
+          variant={headlineVariant}
         >
           {children}
         </Headline>

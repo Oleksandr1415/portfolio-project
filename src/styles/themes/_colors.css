@@ -32,10 +32,12 @@
   --color-foreground: #dde3f0;
   --color-subheadline: #c27aff;
 
-  --color-text: rgb(255 255 255 / 85%);
-  --color-text-muted: rgb(255 255 255 / 55%);
-  --color-text-subtle: rgb(255 255 255 / 40%);
-  --color-text-disabled: rgb(255 255 255 / 28%);
+  --color-text-gray-white: rgb(255 255 255 / 95%);
+  --color-text-gray-lighter: rgb(255 255 255 / 80%);
+  --color-text-gray-light: rgb(255 255 255 / 60%);
+  --color-text-gray: rgb(255 255 255 / 50%);
+  --color-text-gray-dim: rgb(255 255 255 / 30%);
+  --color-text-gray-dim-alt: rgb(255 255 255 / 35%);
 
   /* Borders */
   --color-border: rgb(255 255 255 / 8%);
