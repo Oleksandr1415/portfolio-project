@@ -1,9 +1,9 @@
 ---
-import HeadlineBlock from '../partials/headlineBlock';
+import HeadlineBlock from '../partials/headlineBlock.tsx';
 import RoadmapMobile from './roadmap-mobile.astro';
 ---
 
-<section data-slot="roadmap-container" class="flex flex-col items-center pt-30">
+<section data-slot="roadmap-container" class="mx-auto flex max-w-125 flex-col items-center pt-30">
   <HeadlineBlock
     data-slot="roadmap-header"
     className="text-white"

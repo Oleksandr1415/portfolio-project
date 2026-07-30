@@ -2,12 +2,10 @@
 import HeadlineBlock from './partials/headlineBlock.tsx';
 import { AccordionComponent } from './partials/accordion/accordion';
 import Badges from './partials/badges';
-import { skillPlanets } from '@/mock/skill-planets';
-
-const coreSkills = ['JS', 'TS', 'HTML', 'CSS', 'PHP', 'React'];
+import { skillPlanets, coreSkills } from '@/mock/skill-planets';
 ---
 
-<section id="skills" class="flex flex-col items-center pt-20 text-white">
+<section id="skills" class="mx-auto flex flex-col items-center pt-20 text-white">
   <HeadlineBlock
     client:load
     headlineVariant="h2"

@@ -1,3 +1,5 @@
+export const coreSkills = ['JS', 'TS', 'HTML', 'CSS', 'PHP', 'React'];
+
 export const skillPlanets = [
   {
     class: '',
