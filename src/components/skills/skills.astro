@@ -3,6 +3,7 @@ import HeadlineBlock from '../partials/headlineBlock.tsx';
 import { skillPlanets, coreSkills } from '@/mock/skill-planets';
 import SkillsMobile from './skillsMobile.astro';
 import SkillsDesktop from './skillsDesktop.astro';
+import SkillsPlanetDesktop from './skillsPlanetDesktop';
 ---
 
 <section id="skills" class="mx-auto flex flex-col items-center pt-20 text-white">
@@ -17,5 +18,7 @@ import SkillsDesktop from './skillsDesktop.astro';
 
   <SkillsMobile skillPlanets={skillPlanets} coreSkills={coreSkills} />
 
-  <SkillsDesktop skillPlanets={skillPlanets} coreSkills={coreSkills} />
+  <SkillsPlanetDesktop skillPlanets={skillPlanets} coreSkills={coreSkills} client:load />
+
+  <!-- <SkillsDesktop skillPlanets={skillPlanets} coreSkills={coreSkills} /> -->
 </section>esbenp.prettier-vscode

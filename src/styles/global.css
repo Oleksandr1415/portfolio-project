@@ -11,4 +11,6 @@ html {
   text-color: white;
   font-family: 'DM Sans', sans-serif;
   scroll-behavior: smooth;
+
+  overflow-x: hidden;
 }

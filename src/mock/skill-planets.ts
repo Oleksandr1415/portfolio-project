@@ -1,6 +1,6 @@
 export const coreSkills = ['JS', 'TS', 'HTML', 'CSS', 'PHP', 'React'];
 
-export type PlanetDesign = 'default' | 'markup' | 'tool' | 'framework' | 'design';
+export type PlanetDesign = 'default' | 'core' | 'markup' | 'tools' | 'framework' | 'design';
 
 export interface SkillPlanets {
   class?: string;
@@ -36,7 +36,7 @@ export const skillPlanets: SkillPlanets[] = [
     class: '',
     badgesList: ['Git/GitHub', 'Docker (ddev)', 'Vite', 'Vs Code', 'DevTools'],
     description: '6 technologies',
-    design: 'tool' as 'tool',
+    design: 'tools' as 'tools',
     headline: 'Tools',
   },
 ];

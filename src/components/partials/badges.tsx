@@ -4,7 +4,7 @@ export interface BadgesProps {
   className?: string;
   badgeClass?: string;
   badgeList?: string[];
-  variant?: 'default' | 'markup' | 'tool' | 'framework' | 'design';
+  variant?: 'default' | 'core' | 'markup' | 'tools' | 'framework' | 'design';
 }
 
 const variants = {
@@ -16,8 +16,8 @@ const variants = {
     badge: 'border-skill-markup/35 text-skill-markup/90',
     container: '',
   },
-  tool: {
-    badge: 'border-skill-tool/35 text-skill-tool/90',
+  tools: {
+    badge: 'border-skill-tools/35 text-skill-tools/90',
     container: '',
   },
   framework: {
@@ -26,6 +26,10 @@ const variants = {
   },
   design: {
     badge: 'border-skill-design/35 text-skill-design/90',
+    container: '',
+  },
+  core: {
+    badge: '',
     container: '',
   },
 };
