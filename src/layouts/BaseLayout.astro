@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { TooltipProvider } from '@/components/ui/tooltip';
 ---
 
 <html lang="en">
@@ -16,6 +17,9 @@ import '../styles/global.css';
     <title>Astro</title>
   </head>
   <body>
+    <TooltipProvider>
+      <slot />
+    </TooltipProvider>
     <!-- <div class="animate-slow-spin absolute inset-0 -z-10 overflow-hidden bg-[#0a0a0f]">
       {/* Fog-Layer */}
       <div
@@ -47,6 +51,5 @@ import '../styles/global.css';
       >
       </div>
     </div> -->
-    <slot />
   </body>
 </html>

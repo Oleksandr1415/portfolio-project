@@ -16,7 +16,7 @@ export default plugin(function ({ addUtilities }) {
     };
     acc[`.planet-${name}-desktop`] = {
       borderRadius: '9999px',
-      background: `radial-gradient(97% 97% at 35% 28%, rgba(${rgb}, 0.93) 0%, rgba(${rgb}, 0.70) 45%, #0A0520 100%)`,
+      background: `radial-gradient(97% 97% at 35% 28%, rgba(${rgb}, 0.98) 0%, rgba(${rgb}, 0.85) 45%, #0A0520 100%)`,
       boxShadow: `0 0 20px 4px rgba(${rgb}, 0.70)`,
     };
     acc[`.planet-${name}-desktop-hover`] = {
