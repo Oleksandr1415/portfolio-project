@@ -6,13 +6,14 @@ import {
 } from './accordionDirectives';
 import { cn } from '@/utils/helpers';
 import Badges from '../badges.tsx';
+import { type PlanetDesign } from '@/mock/skill-planets.ts';
 
 export interface AccordionData {
   class: string;
   badgesList: string[];
   description: string;
   headline: string;
-  design: 'default' | 'markup' | 'tool' | 'framework' | 'design';
+  design: PlanetDesign;
 }
 
 const designSet = {
@@ -82,11 +83,11 @@ export function AccordionComponent({
 
         return (
           <AccordionItem
-            className={cn('group/accordion-item', selectedDesign.card)}
+            className={cn('group/accordion-item w-full', selectedDesign.card)}
             key={`${item.headline} - ${index}`}
             value={item.headline}
           >
-            <AccordionTrigger>
+            <AccordionTrigger className="w-full">
               <div
                 data-slot="skill-planet"
                 className={cn('size-10 w-10 shrink-0', selectedDesign.planet)}
@@ -96,11 +97,11 @@ export function AccordionComponent({
                 data-slot="card-description"
                 className="flex w-full grow flex-col items-start gap-1 pl-5"
               >
-                <h4>{item.headline}</h4>
+                <h4 className="text-text-gray-lighter">{item.headline}</h4>
                 <span className="text-xs font-medium text-white/35">{item.description}</span>
               </section>
             </AccordionTrigger>
-            <AccordionContent className={cn(selectedDesign.content)}>
+            <AccordionContent className={cn('overflow-hidden', selectedDesign.content)}>
               <Badges
                 badgeList={item.badgesList}
                 className={cn('')}

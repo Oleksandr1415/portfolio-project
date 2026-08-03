@@ -1,6 +1,16 @@
 export const coreSkills = ['JS', 'TS', 'HTML', 'CSS', 'PHP', 'React'];
 
-export const skillPlanets = [
+export type PlanetDesign = 'default' | 'markup' | 'tool' | 'framework' | 'design';
+
+export interface SkillPlanets {
+  class?: string;
+  badgesList: string[];
+  description: string;
+  design: PlanetDesign;
+  headline: string;
+}
+
+export const skillPlanets: SkillPlanets[] = [
   {
     class: '',
     badgesList: ['React', 'Next.js', 'Laravel Blade', 'Angular', '...'],
