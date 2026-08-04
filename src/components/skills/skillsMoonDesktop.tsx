@@ -1,8 +1,11 @@
 import { type SkillPlanets, type PlanetDesign } from '@/mock/skill-planets';
 import { cn } from '@/utils/helpers';
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+import Badges from '../partials/badges';
 
 export interface SkillsMoonDesktopProps {
+  className?: string;
   planet: SkillPlanets;
   angle: number;
   phaseShift?: number;
@@ -19,7 +22,17 @@ const planetsVariants: Record<PlanetDesign, string> = {
   tools: 'planet-tools-desktop hover:planet-tools-desktop-hover',
 };
 
+const tooltipVariants: Record<PlanetDesign, string> = {
+  core: '',
+  default: '',
+  design: '',
+  framework: '',
+  markup: '',
+  tools: '',
+};
+
 export default function skillsMoonDesktop({
+  className = '',
   planet,
   angle = 0,
   phaseShift = 0,
@@ -87,19 +100,32 @@ export default function skillsMoonDesktop({
       />
 
       {/* Orbiting Planet */}
-      <div
-        onMouseEnter={handleEnter}
-        onMouseLeave={handleLeave}
-        style={{
-          left: `${x}%`,
-          top: `${y}%`,
-        }}
-        className={cn([
-          planetsVariants[planet.headline.toLowerCase() as PlanetDesign],
-          'absolute size-[6%] -translate-x-1/2 -translate-y-1/2 rounded-full',
-          'hover:cursor-pointer',
-        ])}
-      />
+      <Tooltip>
+        <TooltipTrigger
+          render={
+            <div
+              onMouseEnter={handleEnter}
+              onMouseLeave={handleLeave}
+              style={{
+                left: `${x}%`,
+                top: `${y}%`,
+              }}
+              className={cn([
+                planetsVariants[planet.headline.toLowerCase() as PlanetDesign],
+                'absolute size-[6%] -translate-x-1/2 -translate-y-1/2 rounded-full',
+                'hover:cursor-pointer',
+                className,
+              ])}
+            />
+          }
+        />
+        <TooltipContent side="top" align="center" sideOffset={8} className="">
+          <Badges
+            badgeList={planet.badgesList}
+            variant={planet.headline.toLowerCase() as PlanetDesign}
+          />
+        </TooltipContent>
+      </Tooltip>
     </>
   );
 }

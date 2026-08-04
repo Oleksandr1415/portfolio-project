@@ -1,5 +1,5 @@
 @theme {
-  --animate-slow-spin: slow-spin 30s linear infinite;
+  --animate-slow-spin: slow-spin 60s linear infinite;
 }
 
 @keyframes slow-spin {

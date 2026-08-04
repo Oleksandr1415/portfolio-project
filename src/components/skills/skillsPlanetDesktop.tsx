@@ -3,7 +3,7 @@ import SkillsMoonDesktop from './skillsMoonDesktop';
 import { type PlanetDesign, type SkillPlanets } from '@/mock/skill-planets';
 import Badges from '../partials/badges';
 import { cn } from '@/utils/helpers';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
 export interface SkillsPlanetDestopProps {
   skillPlanets: SkillPlanets[];
@@ -39,29 +39,30 @@ export default function skillsPlanetDestop({ skillPlanets, coreSkills }: SkillsP
           <Badges badgeList={coreSkills} badgeClass="bg-primary-light" />
         </div>
         {/* Moons */}
-
-        {skillPlanets?.map((planet, index) => {
-          return (
-            <Tooltip>
-              <TooltipTrigger>
-                <SkillsMoonDesktop
-                  key={planet.headline}
-                  planet={planet}
-                  angle={angle}
-                  speed={0.4 - index * 0.1}
-                  phaseShift={index * 2.7}
-                  index={index}
-                />
-              </TooltipTrigger>
-              <TooltipContent>
-                <Badges
-                  badgeList={planet.badgesList}
-                  variant={planet.headline.toLowerCase() as PlanetDesign}
-                />
-              </TooltipContent>
-            </Tooltip>
-          );
-        })}
+        <TooltipProvider closeDelay={1000000}>
+          {skillPlanets?.map((planet, index) => {
+            return (
+              <Tooltip>
+                <TooltipTrigger>
+                  <SkillsMoonDesktop
+                    key={planet.headline}
+                    planet={planet}
+                    angle={angle}
+                    speed={0.4 - index * 0.1}
+                    phaseShift={index * 2.7}
+                    index={index}
+                  />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <Badges
+                    badgeList={planet.badgesList}
+                    variant={planet.headline.toLowerCase() as PlanetDesign}
+                  />
+                </TooltipContent>
+              </Tooltip>
+            );
+          })}
+        </TooltipProvider>
       </div>
 
       <div className="absolute inset-0">
