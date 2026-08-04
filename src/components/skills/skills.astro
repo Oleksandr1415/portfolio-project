@@ -2,7 +2,6 @@
 import HeadlineBlock from '../partials/headlineBlock.tsx';
 import { skillPlanets, coreSkills } from '@/mock/skill-planets';
 import SkillsMobile from './skillsMobile.astro';
-import SkillsDesktop from './skillsDesktop.astro';
 import SkillsPlanetDesktop from './skillsPlanetDesktop';
 ---
 
@@ -19,6 +18,4 @@ import SkillsPlanetDesktop from './skillsPlanetDesktop';
   <SkillsMobile skillPlanets={skillPlanets} coreSkills={coreSkills} />
 
   <SkillsPlanetDesktop skillPlanets={skillPlanets} coreSkills={coreSkills} client:load />
-
-  <!-- <SkillsDesktop skillPlanets={skillPlanets} coreSkills={coreSkills} /> -->
 </section>esbenp.prettier-vscode

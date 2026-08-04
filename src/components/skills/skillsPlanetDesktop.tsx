@@ -27,8 +27,8 @@ export default function skillsPlanetDestop({ skillPlanets, coreSkills }: SkillsP
   }, []);
 
   return (
-    <div className="relative z-1 flex w-screen items-center justify-center">
-      <div className="relative z-2 hidden aspect-square h-[90vh] overflow-hidden lg:block">
+    <div className="relative z-1 hidden w-screen items-center justify-center lg:flex">
+      <div className="relative z-2 aspect-square h-[90vh] overflow-hidden">
         {/* Central Star */}
         <div
           className={cn([
@@ -64,7 +64,6 @@ export default function skillsPlanetDestop({ skillPlanets, coreSkills }: SkillsP
           })}
         </TooltipProvider>
       </div>
-
       <div className="absolute inset-0">
         <div
           data-slot="skills-diagram-desktop"
@@ -104,7 +103,7 @@ export default function skillsPlanetDestop({ skillPlanets, coreSkills }: SkillsP
               }}
             ></div>
             <div
-              className="animate-slow-spin absolute inset-0 opacity-50 [animation-direction:reverse]"
+              className="animate-slow-spin shimmer-reverse absolute inset-0 opacity-50"
               style={{
                 backgroundImage: `
     radial-gradient(1.5px 1.5px at 20px 30px, white, transparent),
@@ -119,7 +118,7 @@ export default function skillsPlanetDestop({ skillPlanets, coreSkills }: SkillsP
               }}
             ></div>
             <div
-              className="animate-slow-spin absolute inset-0 opacity-50 [animation-direction:reverse]"
+              className="animate-slow-spin shimmer-reverse absolute inset-0 opacity-50"
               style={{
                 backgroundImage: `
     radial-gradient(1.5px 1.5px at 20px 30px, white, transparent),
@@ -139,7 +138,7 @@ export default function skillsPlanetDestop({ skillPlanets, coreSkills }: SkillsP
             className="pointer-events-none absolute inset-0 z-2 size-full shadow-[inset_0_0_60px_30px_#000000]"
           ></div>
         </div>
-      </div>
+      </div>{' '}
     </div>
   );
 }

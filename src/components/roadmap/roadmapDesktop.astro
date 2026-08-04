@@ -1,0 +1,58 @@
+---
+import { cn } from '@/utils/helpers';
+import HeadlineBlock from '../partials/headlineBlock';
+import { roadmapStops, roadmapStopVariants } from '@/mock/roadmap';
+import Curve from '@/assets/svgs/curve.svg';
+
+// SSoT for the height of the roadmap stop
+const boxHeight = 120;
+---
+
+<div data-slot="roadmap-stops-container" class="hidden w-full md:block">
+  <ul
+    class="relative mt-8 w-full grow"
+    style={{ height: `${(roadmapStops.length + 1) * boxHeight}px` }}
+  >
+    {
+      roadmapStops.map((stop, index) => {
+        const selectedVariant = roadmapStopVariants[stop.variant];
+        return (
+          <Curve class="absolute w-full" stroke-width={0.025} fill="transparent" style={{ top: `${index * boxHeight - 120}px` }} />
+          <li
+            class={cn(['absolute max-w-70', index % 2 ? 'right-0' : 'left-0'])}
+            style={{ top: `${index * boxHeight}px` }}
+          >
+            <div class="relative flex items-center">
+              <div
+                data-slot="roadmap-stop-container"
+                class={cn([
+                  'relative mt-3 flex grow flex-col rounded-xl border p-4',
+                  selectedVariant.container,
+                ])}
+              >
+                <HeadlineBlock
+                  data-slot="roadmap-stop-headline"
+                  className="items-start text-white/90"
+                  headlineClass="pt-1"
+                  headlineVariant="h3"
+                  subHeadline={stop.headlineBlock?.subHeadline}
+                  subHeadlineClass={cn([selectedVariant.subHeadlineClass])}
+                  postHeadline={stop.headlineBlock?.postHeadline}
+                  postHeadlineClass={cn([
+                    'text-[10px] text-start pt-0 tracking-[0.5px]',
+                    selectedVariant.postHeadlineClass,
+                  ])}
+                >
+                  {stop.headlineBlock?.headline}
+                </HeadlineBlock>
+                <p data-slot="roadmap-stop-description" class="text-xs font-light text-white/45">
+                  {stop.description}
+                </p>
+              </div>
+            </div>
+          </li>
+        );
+      })
+    }
+  </ul>
+</div>

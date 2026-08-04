@@ -1,9 +1,14 @@
 ---
 import HeadlineBlock from '../partials/headlineBlock.tsx';
 import RoadmapMobile from './roadmap-mobile.astro';
+import RoadmapDesktop from './roadmapDesktop.astro';
 ---
 
-<section data-slot="roadmap-container" class="mx-auto flex max-w-125 flex-col items-center pt-30">
+<section
+  id="roadmap"
+  data-slot="roadmap-container"
+  class="md: mx-auto flex max-w-125 flex-col items-center pt-30 md:max-w-230"
+>
   <HeadlineBlock
     data-slot="roadmap-header"
     className="text-white"
@@ -15,4 +20,5 @@ import RoadmapMobile from './roadmap-mobile.astro';
   </HeadlineBlock>
 
   <RoadmapMobile class="md:hidden" />
+  <RoadmapDesktop class="hidden lg:flex" />
 </section>

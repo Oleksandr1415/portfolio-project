@@ -3,32 +3,12 @@ import { cn } from '@/utils/helpers';
 import HeadlineBlock from '../partials/headlineBlock';
 import Circle from '@/assets/svgs/circle.svg';
 import { Astroid } from '@lucide/astro';
+import { roadmapStops, roadmapStopVariants } from '@/mock/roadmap';
 
 interface RoadmapMobileProps {
   class?: string;
 }
 const { class: className } = Astro.props;
-
-const roadmapStopVariants = {
-  science: {
-    container: 'bg-primary-light/10 border-primary-light/20',
-    line: 'via-primary',
-    postHeadlineClass: 'text-science/80 ',
-    subHeadlineClass: 'text-science/70',
-  },
-  experience: {
-    container: 'bg-experience/10 border-experience/20',
-    line: 'via-experience/80',
-    postHeadlineClass: 'text-experience/80 ',
-    subHeadlineClass: 'text-experience/70',
-  },
-  germany: {
-    container: 'bg-germany/12 border-germany/30',
-    line: 'via-germany',
-    postHeadlineClass: 'text-germany/85 ',
-    subHeadlineClass: 'text-germany/70',
-  },
-};
 
 const selectedVariant1 = roadmapStopVariants['science'];
 const selectedVariant2 = roadmapStopVariants['experience'];
@@ -39,7 +19,49 @@ const selectedVariant3 = roadmapStopVariants['germany'];
   data-slot="roadmap-stops-container"
   class={cn(['flex flex-col items-stretch pt-10', className])}
 >
-  <div class="relative container flex items-center pl-1">
+  {
+    roadmapStops.map((stop, index) => {
+      const selectedVariant = roadmapStopVariants[stop.variant];
+      return (
+        <div class="relative flex items-center pl-1">
+          <div
+            class={cn([
+              'from-primary/30 to-primary/30 absolute top-0 bottom-0 left-0 mt-[-5] w-1 bg-linear-to-b py-4',
+              selectedVariant.line,
+            ])}
+          />
+          <Circle class="size-5" />
+          <div
+            data-slot="roadmap-stop-container"
+            class={cn([
+              'relative mt-3 flex grow flex-col rounded-xl border p-4',
+              selectedVariant.container,
+            ])}
+          >
+            <HeadlineBlock
+              data-slot="roadmap-stop-headline"
+              className="items-start text-white/90"
+              headlineClass="pt-1"
+              headlineVariant="h3"
+              subHeadline={stop.headlineBlock?.subHeadline}
+              subHeadlineClass={cn([selectedVariant.subHeadlineClass])}
+              postHeadline={stop.headlineBlock?.postHeadline}
+              postHeadlineClass={cn([
+                'text-[10px] text-start pt-0 tracking-[0.5px]',
+                selectedVariant.postHeadlineClass,
+              ])}
+            >
+              {stop.headlineBlock?.headline}
+            </HeadlineBlock>
+            <p data-slot="roadmap-stop-description" class="text-xs font-light text-white/45">
+              {stop.description}
+            </p>
+          </div>
+        </div>
+      );
+    })
+  }
+  <!-- <div class="relative flex items-center pl-1">
     <div
       class={cn([
         'from-primary/30 to-primary/30 absolute top-0 bottom-0 left-0 mt-[-5] w-1 bg-linear-to-b py-4',
@@ -259,5 +281,5 @@ const selectedVariant3 = roadmapStopVariants['germany'];
         Anerkennung.
       </p>
     </div>
-  </div>
+  </div> -->
 </section>
