@@ -1,0 +1,48 @@
+---
+import { cn } from '@/utils/helpers';
+import HeadlineBlock from '../partials/headlineBlock';
+import { roadmapStopVariants, type RoadmapStop } from '@/mock/roadmap';
+
+interface Props {
+  class?: string;
+  stop: RoadmapStop;
+}
+
+const { class: className, stop = null } = Astro.props;
+
+if (!stop || !stop.variant) {
+  return;
+}
+
+const selectedVariant = roadmapStopVariants[stop.variant];
+---
+
+<div class="rounded-xl bg-black">
+  <div
+    data-slot="roadmap-stop-container"
+    class={cn([
+      'relative mt-3 flex flex-col rounded-xl border p-4',
+      selectedVariant.container,
+      className,
+    ])}
+  >
+    <HeadlineBlock
+      data-slot="roadmap-stop-headline"
+      className="items-start text-white/90"
+      headlineClass="pt-1"
+      headlineVariant="h3"
+      subHeadline={stop.headlineBlock?.subHeadline}
+      subHeadlineClass={cn([selectedVariant.subHeadlineClass])}
+      postHeadline={stop.headlineBlock?.postHeadline}
+      postHeadlineClass={cn([
+        'text-[10px] text-start pt-0 tracking-[0.5px]',
+        selectedVariant.postHeadlineClass,
+      ])}
+    >
+      {stop.headlineBlock?.headline}
+    </HeadlineBlock>
+    <p data-slot="roadmap-stop-description" class="text-xs font-light text-white/45">
+      {stop.description}
+    </p>
+  </div>
+</div>
