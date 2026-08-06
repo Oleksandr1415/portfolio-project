@@ -1,43 +1,75 @@
-# Astro Starter Kit: Minimal
+# Project Description
 
-```sh
-npm create astro@latest -- --template minimal
+Hello!
+
+I am happy to introduce you to my [_**Portfolio project**_](https://portfolio-project-gilt-kappa.vercel.app/) <-- Link to the site :).
+
+## 🚀 Tech Stack
+
+- [Astro](https://astro.build/) — static site framework
+- [React](https://react.dev/) — interactive UI components
+- npm — package management (**will change to pnpm**)
+- ddev - Docker Environment
+
+## Running the project
+
+### Prerequisites
+
+- [Docker](https://www.docker.com/) + [DDEV](https://ddev.com/get-started/) + some [code editor](https://code.visualstudio.com/) for comfort
+
+### start the dev server
+
+1. clone the [project](https://github.com/Oleksandr1415/portfolio-project.git) (https://github.com/Oleksandr1415/portfolio-project.git)
+
+```bash
+git clone https://github.com/Oleksandr1415/portfolio-project.git
+cd portfolio-project
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+2. start the containers `ddev start `
 
-## 🚀 Project Structure
+3. run the dev server `ddev npm run dev`
 
-Inside of your Astro project, you'll see the following folders and files:
+The ddev will start the dev server under this link. (alternatively run: - _ddev describe_ -)  
+https://portfolio-project.ddev.site:4322/
+
+## 📁 Project Structure (~~In process~~)
 
 ```text
 /
+├── .ddev
+│   └── config.yaml
 ├── public/
+│   └── favicon.svg
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── components/
+│   ├── layouts/
+│   ├── pages/
+│   └── styles/
+├── astro.config.mjs
+├── package.json
+├── tsconfig.json
+└── README.md
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+- `src/pages/` — file-based routing, each `.astro` or `.md` file becomes a route
+- `src/components/` — reusable Astro and React components
+- `src/layouts/` — shared page layouts
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## 🧞 Available Scripts
 
-Any static assets, like images, can be placed in the `public/` directory.
+All the scripts can be run locally or INSIDE the virtual machine (Docker). Make sure you run commands where you actually want them.
+If the dev server is run by ddev, and you want to add a package, you should definitely use `ddev npm install` instead of `npm install`
 
-## 🧞 Commands
+| Command           | Ddev Command           | Action                                 |
+| ----------------- | ---------------------- | -------------------------------------- |
+| `npm install`     | `ddev npm install`     | Install dependencies                   |
+| `npm run dev`     | `ddev npm run dev`     | Start local dev server                 |
+| `npm run build`   | `ddev npm run build`   | Build production site to `./dist/`     |
+| `npm run preview` | `ddev npm run preview` | Preview build locally before deploying |
 
-All commands are run from the root of the project, from a terminal:
+## 🌐 Deployment
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+This DEMO of the project is deployed on [Vercel](https://vercel.com/).
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+**URL:** https://portfolio-project-gilt-kappa.vercel.app/
