@@ -1,5 +1,5 @@
-@utility on-hover-text-purple {
-  @apply bg-linear-to-r from-red-600 via-yellow-500 to-orange-400 bg-clip-text duration-300 hover:text-transparent;
+@utility on-hover-text-yellow {
+  @apply from-shine via-primary-light to-shine hover:text-accent/30 bg-linear-to-r bg-clip-text duration-300;
 }
 
 @utility text-gradient {
