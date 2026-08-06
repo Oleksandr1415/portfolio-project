@@ -1,9 +1,9 @@
 @utility on-hover-text-yellow {
-  @apply from-shine via-primary-light to-shine hover:text-accent/30 bg-linear-to-r bg-clip-text duration-300;
+  @apply from-target via-target to-target bg-linear-to-r bg-clip-text duration-300 hover:text-transparent hover:text-shadow-[1px_1px_20px] hover:text-shadow-yellow-100/90;
 }
 
 @utility text-gradient {
-  @apply bg-linear-to-br from-purple-500 to-cyan-500 bg-clip-text text-transparent;
+  @apply from-primary-light to-accent bg-linear-to-br bg-clip-text text-transparent;
 }
 
 @utility bg-gradient-text {

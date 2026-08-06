@@ -15,7 +15,6 @@
 
   --color-accent-dark: #0891b2;
   --color-accent: #06b6d4;
-  --color-shine: #8b5cf6;
 
   /* Skill Categories */
   --color-framework: var(--color-primary-light);
@@ -51,4 +50,11 @@
   --color-skill-framework: #a855f7;
   --color-skill-design: #f97316;
   --color-skill-bg: rgba(0, 0, 0, 0.45);
+
+  /* --- TEMPORARY ---------------------------------------------------------------------------------------- */
+  --color-target: #aaffc7;
+  --color-skin: #f8b2b2;
+  --color-cherry: #c13383;
+  --color-green-sand: #5df8d8;
+  --color-some-light-green: #84c5b1;
 }
