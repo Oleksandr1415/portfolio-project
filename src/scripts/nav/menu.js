@@ -1,8 +1,8 @@
-const menuButton = document.querySelector('[data-slot="toggle-nav-menu"]');
-const menuBackground = document.querySelector('[data-slot="nav-menu-background"]');
+const menuButton = document.querySelector('[data-slot="nav-menu-toggle"]');
+const menuBackground = document.querySelector('[data-slot="nav-menu-close-background"]');
 const openMenu = document.getElementById('nav-menu-burger-icon');
 const closeMenu = document.getElementById('nav-menu-close-icon');
-const navMenu = document.getElementById('navigation-planet');
+const navMenu = document.getElementById('nav-menu-background-planet');
 const navMenuItems = document.querySelectorAll('[data-slot="menu-item"');
 
 menuButton?.addEventListener('click', toggleMenu);

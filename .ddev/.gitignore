@@ -31,6 +31,3 @@
 /traefik/certs/portfolio-project.key
 /xhprof/xhprof_prepend.php
 /**/README.*
-.ddev-docker-compose-full.yaml
-traefik/certs/
-traefik/config/
