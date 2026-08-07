@@ -1,26 +1,26 @@
-import { useState, useEffect } from 'react';
-import SkillsMoonDesktop from './skills-desktop-moon';
+import { useEffect, useRef } from 'react';
+import SkillsMoonDesktop, { type SkillsMoonHandle } from './skills-desktop-moon';
 import SkillsDesktopBackground from './skills-desktop-background';
-import { type PlanetDesign, type SkillPlanets } from '@/mock/skill-planets';
+import { type SkillPlanets } from '@/mock/skills';
 import Badges from '../partials/badges';
 import { cn } from '@/utils/helpers';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { TooltipProvider } from '@/components/ui/tooltip';
 
 export interface SkillsPlanetDestopProps {
   skillPlanets: SkillPlanets[];
   coreSkills: string[];
 }
 
-export default function skillsDestop({ skillPlanets, coreSkills }: SkillsPlanetDestopProps) {
-  const [angle, setAngle] = useState(0);
-
-  // Speed of the orbit
+export default function skillsDesktop({ skillPlanets, coreSkills }: SkillsPlanetDestopProps) {
   const speed = 0.02;
+  const moonRefs = useRef<(SkillsMoonHandle | null)[]>([]);
 
   useEffect(() => {
-    let frameId: any;
+    let angle = 0;
+    let frameId: number;
     const animate = () => {
-      setAngle((prev) => prev + speed);
+      angle += speed;
+      moonRefs.current.forEach((moon) => moon?.updateAngle(angle));
       frameId = requestAnimationFrame(animate);
     };
     frameId = requestAnimationFrame(animate);
@@ -40,27 +40,19 @@ export default function skillsDestop({ skillPlanets, coreSkills }: SkillsPlanetD
           <Badges badgeList={coreSkills} badgeClass="bg-primary-light" />
         </div>
         {/* Moons */}
-        <TooltipProvider closeDelay={1000000}>
+        <TooltipProvider closeDelay={2000}>
           {skillPlanets?.map((planet, index) => {
             return (
-              <Tooltip>
-                <TooltipTrigger>
-                  <SkillsMoonDesktop
-                    key={planet.headline}
-                    planet={planet}
-                    angle={angle}
-                    speed={0.4 - index * 0.1}
-                    phaseShift={index * 2.7}
-                    index={index}
-                  />
-                </TooltipTrigger>
-                <TooltipContent>
-                  <Badges
-                    badgeList={planet.badgesList}
-                    variant={planet.headline.toLowerCase() as PlanetDesign}
-                  />
-                </TooltipContent>
-              </Tooltip>
+              <SkillsMoonDesktop
+                ref={(el) => {
+                  moonRefs.current[index] = el;
+                }}
+                key={planet.headline}
+                planet={planet}
+                speed={0.4 - index * 0.1}
+                phaseShift={index * 2.7}
+                index={index}
+              />
             );
           })}
         </TooltipProvider>

@@ -1,18 +1,21 @@
-import { type SkillPlanets, type PlanetDesign } from '@/mock/skill-planets';
+import { type SkillPlanets, type PlanetDesign } from '@/mock/skills';
 import { cn } from '@/utils/helpers';
-import { useRef } from 'react';
+import { forwardRef, useImperativeHandle, useRef } from 'react';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import Badges from '../partials/badges';
 
-export interface SkillsMoonDesktopProps {
+export interface SkillsMoonHandle {
+  updateAngle: (angle: number) => void;
+}
+
+export interface SkillsDesktopMoonProps {
   className?: string;
   planet: SkillPlanets;
-  angle: number;
   phaseShift?: number;
-  radius?: number;
   speed?: number;
   index: number;
 }
+
 const planetsVariants: Record<PlanetDesign, string> = {
   core: 'planet-core-desktop hover:planet-core-desktop-hover',
   default: '',
@@ -24,83 +27,110 @@ const planetsVariants: Record<PlanetDesign, string> = {
 
 const tooltipVariants: Record<PlanetDesign, string> = {
   core: '',
-  default: '',
-  design: '',
-  framework: '',
-  markup: '',
-  tools: '',
+  default: 'bg-skill-markup/10 border-skill-markup/33',
+  design: 'bg-skill-design/10 border-skill-design/33',
+  framework: 'bg-skill-framework/10 border-skill-framework/33',
+  markup: 'bg-skill-markup/10 border-skill-markup/33',
+  tools: 'bg-skill-tools/10 border-skill-tools/33',
 };
 
-export default function skillsMoonDesktop({
-  className = '',
-  planet,
-  angle = 0,
-  phaseShift = 0,
-  speed,
-  index,
-}: SkillsMoonDesktopProps) {
-  const modeRef = useRef<'playing' | 'paused'>('playing'); // Modes [playing | paused]
-  const pauseStartAngleRef = useRef(0); // agnle at the moment of start of hover
-  const offsetRef = useRef(0); // current difference between the angle that should be and the hovered moon
+const SkillsDesktopMoon = forwardRef<SkillsMoonHandle, SkillsDesktopMoonProps>(
+  ({ className = '', planet, phaseShift = 0, speed, index }: SkillsDesktopMoonProps, ref) => {
+    const modeRef = useRef<'playing' | 'paused'>('playing'); // Modes [playing | paused]
+    const pauseStartAngleRef = useRef(0); // agnle at the moment of start of hover
+    const offsetRef = useRef(0); // current difference between the angle that should be and the hovered moon
 
-  const orbitSize = 54 + 12 * index;
-  const effectiveSpeed = speed ?? 1 / Math.sqrt(orbitSize / 80 || 1);
-  const liveAngle = angle * effectiveSpeed + phaseShift;
+    const orbitSize = 54 + 12 * index;
+    const effectiveSpeed = speed ?? 1 / Math.sqrt(orbitSize / 80 || 1);
 
-  const effectiveAngle = liveAngle - offsetRef.current;
+    const elRef = useRef<HTMLDivElement>(null);
+    const lastLiveAngleRef = useRef(0);
 
-  //x & y = center + (default offset + gap between planets) * ([ -1 : +1 ])
-  const x = 50 + (27 + index * 6) * Math.cos(effectiveAngle);
-  const y = 50 + (27 + index * 6) * Math.sin(effectiveAngle);
+    const tooltipClass = tooltipVariants[planet.headline.toLowerCase() as PlanetDesign] ?? '';
 
-  const handleEnter = () => {
-    pauseStartAngleRef.current = liveAngle;
-    modeRef.current = 'paused';
-  };
+    useImperativeHandle(ref, () => ({
+      updateAngle(angle: number) {
+        const liveAngle = angle * effectiveSpeed + phaseShift;
+        lastLiveAngleRef.current = liveAngle;
 
-  const handleLeave = () => {
-    offsetRef.current = offsetRef.current + liveAngle - pauseStartAngleRef.current;
-    modeRef.current = 'playing';
-  };
+        if (modeRef.current === 'paused') return; // frozen while hovered
 
-  return (
-    <>
-      {/* Orbit Path Guide */}
-      <div
-        style={{
-          height: `${orbitSize}%`,
-          width: `${orbitSize}%`,
-        }}
-        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-white/20"
-      />
+        const effectiveAngle = liveAngle - offsetRef.current;
+        const x = 50 + (27 + index * 6) * Math.cos(effectiveAngle);
+        const y = 50 + (27 + index * 6) * Math.sin(effectiveAngle);
 
-      {/* Orbiting Planet */}
-      <Tooltip>
-        <TooltipTrigger
-          render={
-            <div
-              onMouseEnter={handleEnter}
-              onMouseLeave={handleLeave}
-              style={{
-                left: `${x}%`,
-                top: `${y}%`,
-              }}
-              className={cn([
-                planetsVariants[planet.headline.toLowerCase() as PlanetDesign],
-                'absolute size-[6%] -translate-x-1/2 -translate-y-1/2 rounded-full',
-                'hover:cursor-pointer',
-                className,
-              ])}
-            />
-          }
+        if (elRef.current) {
+          elRef.current.style.left = `${x}%`;
+          elRef.current.style.top = `${y}%`;
+        }
+      },
+    }));
+
+    const handleOpenChange = (open: boolean) => {
+      if (open) {
+        pauseStartAngleRef.current = lastLiveAngleRef.current;
+        modeRef.current = 'paused';
+      } else {
+        offsetRef.current += lastLiveAngleRef.current - pauseStartAngleRef.current;
+        modeRef.current = 'playing';
+      }
+    };
+
+    const handleEnter = () => {
+      pauseStartAngleRef.current = lastLiveAngleRef.current;
+      modeRef.current = 'paused';
+    };
+
+    const handleLeave = () => {
+      offsetRef.current += lastLiveAngleRef.current - pauseStartAngleRef.current;
+      modeRef.current = 'playing';
+    };
+
+    return (
+      <>
+        {/* Orbit Path Guide */}
+        <div
+          style={{
+            height: `${orbitSize}%`,
+            width: `${orbitSize}%`,
+          }}
+          className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-white/20"
         />
-        <TooltipContent side="top" align="center" sideOffset={8} className="">
-          <Badges
-            badgeList={planet.badgesList}
-            variant={planet.headline.toLowerCase() as PlanetDesign}
+
+        {/* Orbiting Planet */}
+        <Tooltip onOpenChange={handleOpenChange}>
+          <TooltipTrigger
+            render={
+              <div
+                ref={elRef}
+                className={cn([
+                  planetsVariants[planet.headline.toLowerCase() as PlanetDesign],
+                  'absolute flex size-[6%] -translate-x-1/2 -translate-y-1/2 cursor-pointer items-end justify-center rounded-full',
+                  className,
+                ])}
+              >
+                <span className="translate-y-full text-xs select-none">
+                  {planet.headline.toUpperCase()}
+                </span>
+              </div>
+            }
           />
-        </TooltipContent>
-      </Tooltip>
-    </>
-  );
-}
+          <TooltipContent
+            side="top"
+            align="center"
+            sideOffset={8}
+            className={cn(['m-0 rounded-xl bg-black p-0'])}
+          >
+            <Badges
+              badgeList={planet.badgesList}
+              className={cn([tooltipClass], 'rounded-xl border border-white/15 p-3')}
+              variant={planet.headline.toLowerCase() as PlanetDesign}
+            />
+          </TooltipContent>
+        </Tooltip>
+      </>
+    );
+  },
+);
+
+export default SkillsDesktopMoon;
