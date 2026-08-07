@@ -1,8 +1,8 @@
 ---
-import HeadlineBlock from '../partials/headlineBlock.tsx';
+import HeadlineBlock from '../partials/headline-block.tsx';
 import { skillPlanets, coreSkills } from '@/mock/skill-planets';
-import SkillsMobile from './skillsMobile.astro';
-import SkillsPlanetDesktop from './skillsPlanetDesktop';
+import SkillsMobile from './skills-mobile.astro';
+import SkillsDesktop from './skills-desktop';
 ---
 
 <section id="skills" class="mx-auto flex flex-col items-center pt-20 text-white">
@@ -17,5 +17,5 @@ import SkillsPlanetDesktop from './skillsPlanetDesktop';
 
   <SkillsMobile skillPlanets={skillPlanets} coreSkills={coreSkills} />
 
-  <SkillsPlanetDesktop skillPlanets={skillPlanets} coreSkills={coreSkills} client:load />
+  <SkillsDesktop skillPlanets={skillPlanets} coreSkills={coreSkills} client:load />
 </section>

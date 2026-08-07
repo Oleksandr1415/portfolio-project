@@ -29,12 +29,12 @@ export default function HeadlineBlock({
   return (
     <>
       <div data-slot="headline-block-container" className={cn(baseClass, className)}>
-        <span
+        <h1
           data-slot="subHeadline"
           className={cn('text-subheadline text-xs tracking-[3px] uppercase', subHeadlineClass)}
         >
           {subHeadline}
-        </span>
+        </h1>
         <Headline
           className={cn('pt-4', headlineClass)}
           level={headlineLevel}

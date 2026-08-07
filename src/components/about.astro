@@ -1,16 +1,24 @@
+---
+import HeadlineBlock from './partials/headline-block';
+---
+
 <section id="about" data-slot="about-section" class="w-full bg-black p-6 px-2 pt-0">
   <div
     data-slot="container"
     class="align-start flex flex-col justify-center pt-20 text-white md:grid md:grid-cols-[1.5fr_1fr] md:gap-10"
   >
     <section data-slot="about-me" class="flex flex-col">
-      <!-- ---------------------------------------------------------------------- TODO: Headline block benutzen --------------  -->
-      <h1 class="text-subheadline text-xs tracking-[5px] uppercase">About</h1>
-      <h2 class="text-headline border-b border-black pt-5 text-4xl font-extrabold">
+      <HeadlineBlock
+        className="items-start"
+        headlineClass=""
+        headlineVariant="h2"
+        subHeadline="About"
+        subHeadlineClass="text-subheadline"
+        postHeadline="I am a front-end developer."
+        postHeadlineClass="bg-gradient-text pt-2 text-transparent"
+      >
         My name is Sasha
-      </h2>
-      <span class="bg-gradient-text pt-2 text-transparent"> I am a front-end developer. </span>
-      <!-- ---------------------------------------------------------------------- // TODO: Headline block benutzen -------------- -->
+      </HeadlineBlock>
 
       <p class="text-text-gray pt-7 text-base font-light">
         I was born and began my way in Ukraine but was somewhat interrupted in the process.
@@ -45,28 +53,28 @@
 
     <dl class="text-text-gray-dim grid grid-cols-2 gap-4 pt-16">
       <div
-        class="align-center flex w-full flex-col justify-center rounded-2xl border border-white/10 bg-white/3 p-6"
+        class="align-center flex w-full flex-col-reverse justify-center rounded-2xl border border-white/10 bg-white/3 p-6"
       >
-        <dd class="bg-gradient-text text-center text-4xl font-extrabold">20+</dd>
         <dt class="text-center text-base">Tools & Technologies</dt>
+        <dd class="bg-gradient-text text-center text-4xl font-extrabold">20+</dd>
       </div>
       <div
-        class="align-center flex w-full flex-col justify-center rounded-2xl border border-white/10 bg-white/3 p-6"
+        class="align-center flex w-full flex-col-reverse justify-center rounded-2xl border border-white/10 bg-white/3 p-6"
       >
-        <dd class="bg-gradient-text text-center text-4xl font-extrabold">4</dd>
         <dt class="text-center text-base">Languages Spoken</dt>
+        <dd class="bg-gradient-text text-center text-4xl font-extrabold">4</dd>
       </div>
       <div
-        class="align-center flex w-full flex-col justify-center rounded-2xl border border-white/10 bg-white/3 p-6"
+        class="align-center flex w-full flex-col-reverse justify-center rounded-2xl border border-white/10 bg-white/3 p-6"
       >
-        <dd class="bg-gradient-text text-center text-4xl font-extrabold">2(+1)</dd>
         <dt class="text-center text-base">Degrees</dt>
+        <dd class="bg-gradient-text text-center text-4xl font-extrabold">2(+1)</dd>
       </div>
       <div
-        class="align-center flex w-full flex-col justify-center rounded-2xl border border-white/10 bg-white/3 p-6"
+        class="align-center flex w-full flex-col-reverse justify-center rounded-2xl border border-white/10 bg-white/3 p-6"
       >
-        <dd class="bg-gradient-text text-center text-4xl font-extrabold">1+</dd>
         <dt class="text-center text-base">Years training</dt>
+        <dd class="bg-gradient-text text-center text-4xl font-extrabold">1+</dd>
       </div>
     </dl>
   </div>

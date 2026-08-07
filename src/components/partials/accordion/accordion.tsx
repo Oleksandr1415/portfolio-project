@@ -3,7 +3,7 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from './accordionDirectives';
+} from './accordion-directives.tsx';
 import { cn } from '@/utils/helpers';
 import Badges from '../badges.tsx';
 import { type PlanetDesign } from '@/mock/skill-planets.ts';
