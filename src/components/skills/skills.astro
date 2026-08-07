@@ -5,7 +5,11 @@ import SkillsMobile from './skills-mobile.astro';
 import SkillsDesktop from './skills-desktop';
 ---
 
-<section id="skills" class="mx-auto flex flex-col items-center pt-20 text-white">
+<section
+  id="skills"
+  data-slot="skills-section"
+  class="mx-auto flex flex-col items-center pt-20 text-white"
+>
   <HeadlineBlock
     client:load
     headlineVariant="h2"

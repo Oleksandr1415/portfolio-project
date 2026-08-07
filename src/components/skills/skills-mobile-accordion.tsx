@@ -3,9 +3,9 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from './accordion-directives.tsx';
+} from '../partials/accordion/index.tsx';
 import { cn } from '@/utils/helpers';
-import Badges from '../badges.tsx';
+import Badges from '../partials/badges.tsx';
 import { type PlanetDesign } from '@/mock/skill-planets.ts';
 
 export interface AccordionData {
@@ -59,19 +59,19 @@ const designSet = {
   },
 };
 
-interface AccordionComponentProps {
+interface SkillsMobileAccordionProps {
   class?: string;
   accordionItems: AccordionData[];
   defaultValue?: string;
   multiple?: boolean;
 }
 
-export function AccordionComponent({
+export default function skillsMobileAccordion({
   class: className = '',
   accordionItems,
   defaultValue = '',
   multiple = false,
-}: AccordionComponentProps) {
+}: SkillsMobileAccordionProps) {
   if (!accordionItems) {
     return <p>No skills are loaded</p>;
   }
@@ -87,11 +87,14 @@ export function AccordionComponent({
 
         return (
           <AccordionItem
-            className={cn('group/accordion-item w-full', selectedDesign.card)}
+            className={cn(
+              'group/accordion-item flex flex-col rounded-2xl border border-white/10 bg-white/5 p-4 pb-0',
+              selectedDesign.card,
+            )}
             key={`${item.headline} - ${index}`}
             value={item.headline}
           >
-            <AccordionTrigger className="w-full">
+            <AccordionTrigger className="flex w-full flex-row items-center justify-between pb-4">
               <div
                 data-slot="skill-planet"
                 className={cn('size-10 w-10 shrink-0', selectedDesign.planet)}
@@ -105,7 +108,7 @@ export function AccordionComponent({
                 <span className="text-xs font-medium text-white/35">{item.description}</span>
               </section>
             </AccordionTrigger>
-            <AccordionContent className={cn('overflow-hidden', selectedDesign.content)}>
+            <AccordionContent className={cn('border-t py-2.5 text-sm', selectedDesign.content)}>
               <Badges
                 badgeList={item.badgesList}
                 className={cn('')}
