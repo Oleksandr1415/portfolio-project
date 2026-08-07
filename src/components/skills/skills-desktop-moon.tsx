@@ -2,7 +2,7 @@ import { type SkillPlanets, type PlanetDesign } from '@/mock/skills';
 import { cn } from '@/utils/helpers';
 import { forwardRef, useImperativeHandle, useRef } from 'react';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
-import Badges from '../partials/badges';
+import Badges from '@/partials/badges/badges';
 
 export interface SkillsMoonHandle {
   updateAngle: (angle: number) => void;
@@ -74,16 +74,6 @@ const SkillsDesktopMoon = forwardRef<SkillsMoonHandle, SkillsDesktopMoonProps>(
         offsetRef.current += lastLiveAngleRef.current - pauseStartAngleRef.current;
         modeRef.current = 'playing';
       }
-    };
-
-    const handleEnter = () => {
-      pauseStartAngleRef.current = lastLiveAngleRef.current;
-      modeRef.current = 'paused';
-    };
-
-    const handleLeave = () => {
-      offsetRef.current += lastLiveAngleRef.current - pauseStartAngleRef.current;
-      modeRef.current = 'playing';
     };
 
     return (

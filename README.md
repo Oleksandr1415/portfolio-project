@@ -38,18 +38,23 @@ https://portfolio-project.ddev.site:4322/
 ```text
 /
 ├── .ddev
-│   └── config.yaml
-├── public/
-│   └── favicon.svg
+│   └── config.yaml. -- Ddev **CONFIG** file
+├── public/          -- publick loadable content
+│   └── ...
 ├── src/
-│   ├── components/
-│   ├── layouts/
-│   ├── pages/
-│   └── styles/
-├── astro.config.mjs
-├── package.json
-├── tsconfig.json
-└── README.md
+│   ├── assets/      -- Loadable content. same as public but will be server loaded and reworked by astro
+│   ├── components/  -- Main components (Mostly sections)
+│   ├── layouts/     -- html + css that is applied to several components at the same time
+│   ├── mock/        -- Astro start points (yet only one page, so only index.astro)
+│   ├── pages/       -- Astro start points (yet only one page, so only index.astro)
+│   ├── partials/    -- Generic components for continuous use. (can often be used more than one on a page)
+│   ├── scripts/     -- TS scripts for use in astro components or somewhere else when needed
+│   ├── styles/      -- global.css / tailwind utils, themes plugins etc. All that connected with css.
+│   └── utils/       -- honestly these are node modules written by yourself. Simple helpful features.
+├── astro.config.mjs -- Astro **CONFIG** file
+├── package.json     -- Project **CONFIG** file
+├── tsconfig.json    -- TS **CONFIG** file (mostly needed for astro to work :D)
+└── README.md        -- Readme is a general information about project
 ```
 
 - `src/pages/` — file-based routing, each `.astro` or `.md` file becomes a route

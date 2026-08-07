@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import SkillsMoonDesktop, { type SkillsMoonHandle } from './skills-desktop-moon';
 import SkillsDesktopBackground from './skills-desktop-background';
 import { type SkillPlanets } from '@/mock/skills';
-import Badges from '../partials/badges';
+import Badges from '@/partials/badges/badges';
 import { cn } from '@/utils/helpers';
 import { TooltipProvider } from '@/components/ui/tooltip';
 

@@ -1,18 +1,10 @@
 ---
 import { cn } from '@/utils/helpers';
-import HeadlineBlock from '../partials/headline-block';
+import HeadlineBlock from '@/partials/headline/headline-block';
 import Circle from '@/assets/svgs/circle.svg';
-import { Astroid } from '@lucide/astro';
 import { roadmapStops, roadmapStopVariants } from '@/mock/roadmap';
 
-interface RoadmapMobileProps {
-  class?: string;
-}
 const { class: className } = Astro.props;
-
-const selectedVariant1 = roadmapStopVariants['science'];
-const selectedVariant2 = roadmapStopVariants['experience'];
-const selectedVariant3 = roadmapStopVariants['germany'];
 ---
 
 <section

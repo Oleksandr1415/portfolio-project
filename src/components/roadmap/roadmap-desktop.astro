@@ -2,6 +2,7 @@
 import { cn } from '@/utils/helpers';
 import RoadmapCard from './roadmap-card.astro';
 import { roadmapStops } from '@/mock/roadmap';
+
 const leftStops = roadmapStops.filter((_, index) => index % 2 === 0);
 const rightStops = roadmapStops.filter((_, index) => index % 2 === 1);
 

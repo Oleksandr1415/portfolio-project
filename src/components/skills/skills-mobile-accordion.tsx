@@ -3,9 +3,9 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '../partials/accordion/index.tsx';
+} from '@/partials/accordion/index.tsx';
 import { cn } from '@/utils/helpers';
-import Badges from '../partials/badges.tsx';
+import Badges from '@/partials/badges/badges.tsx';
 import { designSetMobile, type PlanetDesign } from '@/mock/skills.ts';
 
 export interface AccordionData {
