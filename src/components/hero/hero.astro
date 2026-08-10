@@ -6,6 +6,9 @@ import { ChevronDown, Dot } from '@lucide/astro';
 import TwitterIcon from '@/assets/icons/logos/twitter.astro';
 import LinkedIn from '@/assets/icons/logos/linkedIn.astro';
 import GithubIcon from '@/assets/icons/logos/github.astro';
+import TextWriter from '@/components/ui/text-writer';
+
+const heroHeadlineTexts: string[] = ['Sasha', 'Frontend-Developer'];
 ---
 
 <section
@@ -31,9 +34,16 @@ import GithubIcon from '@/assets/icons/logos/github.astro';
 
   <div data-slot="text" class="flex justify-center p-2 backdrop-blur-[1px]">
     <span class="font-heading text-center text-8xl font-black text-white select-none"
-      >I am <span class="bg-gradient-hero font-heading bg-clip-text font-black text-transparent">
-        Dev.
-      </span>
+      >I am
+      <TextWriter
+        className="bg-gradient-hero font-heading inline bg-clip-text font-black text-transparent"
+        client:load
+        cursorClassName="bg-clip-text text-transparent bg-animate-pulse bg-gradient-hero"
+        deleteSpeed={100}
+        pauseTime={1000}
+        texts={heroHeadlineTexts}
+        typeSpeed={200}
+      />
     </span>
   </div>
 
