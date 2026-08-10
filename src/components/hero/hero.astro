@@ -7,6 +7,7 @@ import TwitterIcon from '@/assets/icons/logos/twitter.astro';
 import LinkedIn from '@/assets/icons/logos/linkedIn.astro';
 import GithubIcon from '@/assets/icons/logos/github.astro';
 import TextWriter from '@/components/ui/text-writer';
+import Lightfall from '@/components/ui/lightfall';
 
 const heroHeadlineTexts: string[] = ['Sasha', 'Frontend-Developer'];
 ---
@@ -16,14 +17,34 @@ const heroHeadlineTexts: string[] = ['Sasha', 'Frontend-Developer'];
   id="hero"
   class="relative flex h-screen w-screen flex-col items-center justify-center"
 >
-  <Picture
+  <div class="absolute size-full">
+    <Lightfall
+      client:load
+      colors={['#A6C8FF', '#5227FF', '#FF9FFC']}
+      backgroundColor="#026684"
+      speed={0.3}
+      streakCount={3}
+      streakWidth={1}
+      streakLength={0.4}
+      glow={0.7}
+      density={0.6}
+      twinkle={1}
+      zoom={1}
+      backgroundGlow={0.2}
+      opacity={1}
+      mouseInteraction
+      mouseStrength={0}
+      mouseRadius={0.4}
+    />
+  </div>
+  <!-- <Picture
     src={heroBg}
     alt=""
     formats={['avif', 'webp']}
     widths={[640, 1280, 1920]}
     sizes="100vw"
     class="absolute inset-0 -z-10 h-full w-full bg-black bg-linear-to-b from-transparent from-50% to-black object-cover"
-  />
+  /> -->
   <div
     class="pointer-events-none absolute inset-0 bg-linear-to-b from-transparent from-50% to-black"
   >

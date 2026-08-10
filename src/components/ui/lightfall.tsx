@@ -37,7 +37,10 @@ const hexToRGB = (hex: string): RGB => {
 };
 
 const prepColors = (input?: string[]) => {
-  const base = (input && input.length ? input : ['#A6C8FF', '#5227FF', '#FF9FFC']).slice(0, MAX_COLORS);
+  const base = (input && input.length ? input : ['#A6C8FF', '#5227FF', '#FF9FFC']).slice(
+    0,
+    MAX_COLORS,
+  );
   const count = base.length;
   const arr: RGB[] = [];
   for (let i = 0; i < MAX_COLORS; i++) arr.push(hexToRGB(base[Math.min(i, base.length - 1)]));
@@ -210,7 +213,7 @@ const Lightfall: React.FC<LightfallProps> = ({
   mouseStrength = 0.5,
   mouseRadius = 1,
   mouseDampening = 0.15,
-  mixBlendMode
+  mixBlendMode,
 }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const rafRef = useRef<number | null>(null);
@@ -228,7 +231,7 @@ const Lightfall: React.FC<LightfallProps> = ({
     const renderer = new Renderer({
       dpr: dpr ?? (typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1),
       alpha: true,
-      antialias: true
+      antialias: true,
     });
     rendererRef.current = renderer;
     const gl = renderer.gl;
@@ -268,7 +271,7 @@ const Lightfall: React.FC<LightfallProps> = ({
       uOpacity: { value: opacity },
       uMouseEnabled: { value: mouseInteraction ? 1 : 0 },
       uMouseStrength: { value: mouseStrength },
-      uMouseRadius: { value: mouseRadius }
+      uMouseRadius: { value: mouseRadius },
     };
 
     const program = new Program(gl, { vertex, fragment, uniforms });
@@ -370,15 +373,15 @@ const Lightfall: React.FC<LightfallProps> = ({
     mouseInteraction,
     mouseStrength,
     mouseRadius,
-    mouseDampening
+    mouseDampening,
   ]);
 
   return (
     <div
       ref={containerRef}
-      className={`w-full h-full overflow-hidden relative ${className ?? ''}`}
+      className={`relative h-full w-full overflow-hidden ${className ?? ''}`}
       style={{
-        ...(mixBlendMode && { mixBlendMode: mixBlendMode as React.CSSProperties['mixBlendMode'] })
+        ...(mixBlendMode && { mixBlendMode: mixBlendMode as React.CSSProperties['mixBlendMode'] }),
       }}
     />
   );
