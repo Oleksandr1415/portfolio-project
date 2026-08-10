@@ -1,5 +1,23 @@
-<div class="bg-black">
+---
+import Particles from '@/components/ui/particles';
+---
+
+<div class="relative bg-black">
   <div data-slot="page-content" class="mx-auto w-full max-w-300 px-4 md:px-10">
     <slot />
+  </div>
+  <div class="absolute top-0 left-0 z-0 h-full w-screen">
+    <Particles
+      client:load
+      particleColors={['#ffffff']}
+      particleCount={5000}
+      particleSpread={20}
+      speed={0.05}
+      particleBaseSize={100}
+      moveParticlesOnHover={false}
+      alphaParticles
+      disableRotation={false}
+      pixelRatio={1}
+    />
   </div>
 </div>

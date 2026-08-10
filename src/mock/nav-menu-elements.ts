@@ -6,10 +6,6 @@ export interface MenuElement {
 
 export const menuElements: MenuElement[] = [
   {
-    href: '#hero',
-    title: 'Hero',
-  },
-  {
     href: '#about',
     title: 'About me',
   },
@@ -21,10 +17,10 @@ export const menuElements: MenuElement[] = [
     href: '#roadmap',
     title: 'Roadmap',
   },
-  {
-    href: '#hobbies',
-    title: 'Hobbies',
-  },
+  // {
+  //   href: '#hobbies',
+  //   title: 'Hobbies',
+  // },
   {
     href: '#contact',
     title: 'Contact',

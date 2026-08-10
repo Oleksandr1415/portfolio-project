@@ -12,13 +12,6 @@
 @custom-variant dark (&:is(.dark *));
 
 @plugin './plugins/planet-gradients.js';
-html {
-  text-color: white;
-  font-family: 'DM Sans', sans-serif;
-  scroll-behavior: smooth;
-
-  overflow-x: hidden;
-}
 
 @theme inline {
   --font-heading: var(--font-sans);
