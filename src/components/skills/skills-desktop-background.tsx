@@ -1,6 +1,9 @@
 export default function skillsDesktopBackground() {
   return (
-    <div data-slot="skills-desktop-background-position-container" className="absolute inset-0">
+    <div
+      data-slot="skills-desktop-background-position-container"
+      className="fade-y absolute inset-0"
+    >
       <div
         data-slot="skills-desktop-background-container"
         className="relative z-1 hidden aspect-square size-full h-[90vh] flex-col items-center overflow-hidden md:flex"
@@ -69,10 +72,10 @@ export default function skillsDesktopBackground() {
             }}
           ></div>
         </div>
-        <div
+        {/* <div
           data-slot="skills-desktop-background-vignette"
-          className="pointer-events-none absolute inset-0 z-2 size-full bg-[linear-gradient(to_bottom,#000000_0%,transparent_20%,transparent_80%,#000000_100%)]"
-        ></div>
+          // className="pointer-events-none absolute inset-0 z-2 size-full bg-[linear-gradient(to_bottom,#000000_0%,transparent_20%,transparent_80%,#000000_100%)]"
+        ></div> */}
       </div>
     </div>
   );

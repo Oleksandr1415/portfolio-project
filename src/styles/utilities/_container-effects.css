@@ -1,0 +1,3 @@
+@utility fade-y {
+  @apply mask-y-from-90% mask-y-to-100%;
+}

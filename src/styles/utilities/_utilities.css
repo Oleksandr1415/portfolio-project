@@ -1,2 +1,3 @@
-@import './_gradients.css';
-@import './_text-effects.css';
+@import './_gradients';
+@import './_text-effects';
+@import './_container-effects';
