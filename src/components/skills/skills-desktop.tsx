@@ -7,11 +7,16 @@ import { cn } from '@/utils/helpers';
 import { TooltipProvider } from '@/components/ui/tooltip';
 
 export interface SkillsPlanetDestopProps {
-  skillPlanets: SkillPlanets[];
+  className?: string;
   coreSkills: string[];
+  skillPlanets: SkillPlanets[];
 }
 
-export default function skillsDesktop({ skillPlanets, coreSkills }: SkillsPlanetDestopProps) {
+export default function skillsDesktop({
+  className,
+  coreSkills,
+  skillPlanets,
+}: SkillsPlanetDestopProps) {
   const speed = 0.02;
   const moonRefs = useRef<(SkillsMoonHandle | null)[]>([]);
 
@@ -28,7 +33,7 @@ export default function skillsDesktop({ skillPlanets, coreSkills }: SkillsPlanet
   }, []);
 
   return (
-    <div className="relative z-1 hidden w-screen items-center justify-center lg:flex">
+    <div className={cn(['relative z-1 hidden w-screen items-center justify-center lg:flex'])}>
       <div className="relative z-2 aspect-square h-[90vh] overflow-hidden">
         {/* Central Star */}
         <div

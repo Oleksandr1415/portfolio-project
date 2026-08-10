@@ -13,7 +13,7 @@ export default function skillsDesktopBackground() {
         >
           {/* Fog-Layer */}
           <div
-            className="bg-animate-pulse animation-duration-[4s] absolute inset-0 opacity-70 blur-3xl"
+            className="bg-animate-pulse animation-duration-[4s] absolute inset-0 opacity-40 blur-3xl"
             style={{
               background: `
         radial-gradient(circle at 20% 30%, rgba(6, 182, 212, 0.25), transparent 50%),
@@ -71,7 +71,7 @@ export default function skillsDesktopBackground() {
         </div>
         <div
           data-slot="skills-desktop-background-vignette"
-          className="pointer-events-none absolute inset-0 z-2 size-full shadow-[inset_0_0_60px_30px_#000000]"
+          className="pointer-events-none absolute inset-0 z-2 size-full bg-[linear-gradient(to_bottom,#000000_0%,transparent_20%,transparent_80%,#000000_100%)]"
         ></div>
       </div>
     </div>
