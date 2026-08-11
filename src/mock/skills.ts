@@ -1,45 +1,54 @@
 export const coreSkills = ['JS', 'TS', 'HTML', 'CSS', 'PHP', 'React'];
 
-export type PlanetDesign = 'default' | 'core' | 'markup' | 'tools' | 'framework' | 'design';
+export type PlanetVariant = 'default' | 'core' | 'markup' | 'tools' | 'framework' | 'design';
 
 export interface SkillPlanets {
   class?: string;
-  badgesList: string[];
+  moons: string[];
   description: string;
-  design: PlanetDesign;
+  variant: PlanetVariant;
   headline: string;
 }
 
 export const skillPlanets: SkillPlanets[] = [
   {
     class: '',
-    badgesList: ['React', 'Next.js', 'Laravel Blade', 'Angular', '...'],
+    moons: ['React', 'Next.js', 'Laravel Blade', 'Angular', '...'],
     description: '5 technologies',
-    design: 'framework' as 'framework',
+    variant: 'framework' as 'framework',
     headline: 'Framework',
   },
   {
     class: '',
-    badgesList: ['CSS', 'SCSS/Sass', 'Tailwind', 'Bulma', 'Material UI'],
+    moons: ['CSS', 'SCSS/Sass', 'Tailwind', 'Bulma', 'Material UI'],
     description: '5 technologies',
-    design: 'markup' as 'markup',
+    variant: 'markup' as 'markup',
     headline: 'Markup',
   },
   {
     class: '',
-    badgesList: ['Figma', 'Miro'],
+    moons: ['Figma', 'Miro'],
     description: '2 technologies',
-    design: 'design' as 'design',
+    variant: 'design' as 'design',
     headline: 'Design',
   },
   {
     class: '',
-    badgesList: ['Git/GitHub', 'Docker (ddev)', 'Vite', 'Vs Code', 'DevTools'],
+    moons: ['Git/GitHub', 'Docker (ddev)', 'Vite', 'Vs Code', 'DevTools'],
     description: '6 technologies',
-    design: 'tools' as 'tools',
+    variant: 'tools' as 'tools',
     headline: 'Tools',
   },
 ];
+
+export const planetStyleVariants: Record<PlanetVariant, string> = {
+  core: 'planet-core-desktop group-hover:planet-core-desktop-hover',
+  default: '',
+  design: 'planet-design-desktop group-hover:planet-design-desktop-hover',
+  framework: 'planet-framework-desktop group-hover:planet-framework-desktop-hover',
+  markup: 'planet-markup-desktop group-hover:planet-markup-desktop-hover',
+  tools: 'planet-tools-desktop group-hover:planet-tools-desktop-hover',
+};
 
 export const designSetMobile = {
   default: {

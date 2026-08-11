@@ -6,14 +6,14 @@ import {
 } from '@/partials/accordion/index.tsx';
 import { cn } from '@/utils/helpers';
 import Badges from '@/partials/badges/badges.tsx';
-import { designSetMobile, type PlanetDesign } from '@/mock/skills.ts';
+import { designSetMobile, type PlanetVariant } from '@/mock/skills.ts';
 
 export interface AccordionData {
   class: string;
   badgesList: string[];
   description: string;
   headline: string;
-  design: PlanetDesign;
+  variant: PlanetVariant;
 }
 
 interface SkillsMobileAccordionProps {
@@ -40,7 +40,7 @@ export default function skillsMobileAccordion({
       multiple={multiple}
     >
       {accordionItems.map((item, index) => {
-        const selectedDesign = designSetMobile[item.design];
+        const selectedDesign = designSetMobile[item.variant];
 
         return (
           <AccordionItem
