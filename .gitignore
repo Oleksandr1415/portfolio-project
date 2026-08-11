@@ -24,4 +24,4 @@ pnpm-debug.log*
 .idea/
 
 # trash-bin for me
-.trash-bin
+trash-bin/
