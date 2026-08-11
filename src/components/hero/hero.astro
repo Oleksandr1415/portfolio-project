@@ -17,7 +17,7 @@ const heroHeadlineTexts: string[] = ['Sasha', 'Frontend-Developer'];
   id="hero"
   class="relative flex h-screen w-screen flex-col items-center justify-center"
 >
-  <div class="absolute size-full">
+  <!-- <div class="absolute size-full">
     <Lightfall
       client:load
       colors={['#A6C8FF', '#5227FF', '#FF9FFC']}
@@ -36,15 +36,15 @@ const heroHeadlineTexts: string[] = ['Sasha', 'Frontend-Developer'];
       mouseStrength={0}
       mouseRadius={0.4}
     />
-  </div>
-  <!-- <Picture
+  </div> -->
+  <Picture
     src={heroBg}
     alt=""
     formats={['avif', 'webp']}
     widths={[640, 1280, 1920]}
     sizes="100vw"
     class="absolute inset-0 -z-10 h-full w-full bg-black bg-linear-to-b from-transparent from-50% to-black object-cover"
-  /> -->
+  />
   <div
     class="pointer-events-none absolute inset-0 bg-linear-to-b from-transparent from-50% to-black"
   >
@@ -54,7 +54,7 @@ const heroHeadlineTexts: string[] = ['Sasha', 'Frontend-Developer'];
   >
 
   <div data-slot="text" class="flex justify-center p-2 backdrop-blur-[1px]">
-    <span class="font-heading text-center text-8xl font-black text-white select-none"
+    <span class="font-heading text-center text-6xl font-black text-white select-none md:text-8xl"
       >I am
       <TextWriter
         className="bg-gradient-hero font-heading inline bg-clip-text font-black text-transparent"
