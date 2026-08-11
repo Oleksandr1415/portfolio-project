@@ -1,5 +1,3 @@
-import { useEffect, useRef } from 'react';
-import { type SkillsMoonHandle } from '../../../../trash-bin/skills-desktop-moon';
 import { type SkillPlanet } from '@/mock/skills';
 import { cn } from '@/utils/helpers';
 import SkillsSolarSystem from './skills-solar-system';
@@ -16,21 +14,6 @@ export default function skillsDesktop({
   coreSkills,
   skillPlanets,
 }: SkillsPlanetDestopProps) {
-  const speed = 0.02;
-  const moonRefs = useRef<(SkillsMoonHandle | null)[]>([]);
-
-  useEffect(() => {
-    let angle = 0;
-    let frameId: number;
-    const animate = () => {
-      angle += speed;
-      moonRefs.current.forEach((moon) => moon?.updateAngle(angle));
-      frameId = requestAnimationFrame(animate);
-    };
-    frameId = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(frameId);
-  }, []);
-
   return (
     <div
       className={cn([
