@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { type SkillsMoonHandle } from '../../../../trash-bin/skills-desktop-moon';
-import { type SkillPlanets } from '@/mock/skills';
+import { type SkillPlanet } from '@/mock/skills';
 import { cn } from '@/utils/helpers';
 import SkillsSolarSystem from './skills-solar-system';
 import SkillsDesktopBackground from './skills-desktop-background';
@@ -8,7 +8,7 @@ import SkillsDesktopBackground from './skills-desktop-background';
 export interface SkillsPlanetDestopProps {
   className?: string;
   coreSkills: string[];
-  skillPlanets: SkillPlanets[];
+  skillPlanets: SkillPlanet[];
 }
 
 export default function skillsDesktop({

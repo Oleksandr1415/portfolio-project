@@ -76,7 +76,6 @@ const roadmapClasses = {
     for (let i = 0; i < TOTAL_STOPS - 1; i++) {
       const right_multiplier = Math.floor(i / 2); // 0 0 1 1 2 2 3 3    --- Right multiplier
       const left_multiplier = Math.floor((i + 1) / 2); // 0 1 1 2 2 3 3  --- left multiplier
-      console.log('right:' + right_multiplier + '-------------' + 'left:' + left_multiplier);
       const y_Left = y_LeftFirst + left_multiplier * yInterval;
 
       if (i % 2 === 0) {
@@ -97,7 +96,6 @@ const roadmapClasses = {
         const c1_Y = y_RightFirst + 50 + Y_BOX_HEIGHT + yInterval * right_multiplier;
         const c2_X = 0;
         const c2_Y = Y_BOX_HEIGHT + Y_BOX_HEIGHT * right_multiplier;
-        console.log(yInterval * right_multiplier - y_Right);
         pathsHtml += `<path d="M ${x_Right} ${y_Right} C ${c1_X} ${c1_Y}, ${c2_X} ${c2_Y}, ${x_Left} ${y_Left} "  stroke="#8b5cf6" stroke-width="2" fill="none" />`;
         // pathsHtml += `<path d="M ${x_Left} ${y_Left} C ${c1_X} ${c1_Y}, ${c2_X} ${c2_Y}, ${x_Right} ${y_Right} "  stroke="#8b5cf6" stroke-width="2" fill="none" />`;
       }

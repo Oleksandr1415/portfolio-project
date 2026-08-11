@@ -1,12 +1,18 @@
 ---
-import SkillsMobileAccordion from './skills-mobile-accordion';
+import type { SkillPlanet } from '@/mock/skills';
 import Badges from '@/partials/badges/badges';
+import PlanetWithMoons from '@/partials/space-orbits-tools/planet-with-moons';
+
+interface Props {
+  coreSkills: string[];
+  skillPlanets: SkillPlanet[];
+}
 
 const { coreSkills, skillPlanets } = Astro.props;
 ---
 
 <div
-  data-slot="skills-mobile"
+  data-slot="skills-mobile-container"
   class="flex w-full max-w-lg flex-col items-center px-2 sm:px-5 lg:hidden"
 >
   <span
@@ -16,12 +22,21 @@ const { coreSkills, skillPlanets } = Astro.props;
   </span>
   <Badges badgeList={coreSkills} className="pt-3" badgeClass="text-text-gray-lighter" />
 
-  <div class="cardList flex w-full flex-col items-center gap-2 pt-5">
-    <SkillsMobileAccordion
-      client:load
-      accordionItems={skillPlanets}
-      defaultValue={skillPlanets[0].headline}
-      multiple={true}
-    />
+  <div class="skills-mobile-planets-container flex w-70 flex-col gap-35 py-35">
+    {
+      skillPlanets.map((planet, index) => {
+        return (
+          <PlanetWithMoons
+            client:load
+            disableHoverEffect={true}
+            label={planet.headline}
+            moons={planet.moons}
+            planetIndex={index}
+            planetVariant={planet.variant}
+            speed={0.03}
+          />
+        );
+      })
+    }
   </div>
 </div>

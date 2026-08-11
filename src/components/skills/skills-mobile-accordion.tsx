@@ -9,11 +9,11 @@ import Badges from '@/partials/badges/badges.tsx';
 import { designSetMobile, type PlanetVariant } from '@/mock/skills.ts';
 
 export interface AccordionData {
-  class: string;
-  badgesList: string[];
-  description: string;
+  class?: string;
+  moons?: string[];
+  description?: string;
   headline: string;
-  variant: PlanetVariant;
+  variant?: PlanetVariant;
 }
 
 interface SkillsMobileAccordionProps {
@@ -40,8 +40,12 @@ export default function skillsMobileAccordion({
       multiple={multiple}
     >
       {accordionItems.map((item, index) => {
+        if (!item.variant) {
+          return;
+        }
         const selectedDesign = designSetMobile[item.variant];
 
+        console.log(accordionItems);
         return (
           <AccordionItem
             className={cn(
@@ -67,7 +71,7 @@ export default function skillsMobileAccordion({
             </AccordionTrigger>
             <AccordionContent className={cn('border-t py-2.5 text-sm', selectedDesign.content)}>
               <Badges
-                badgeList={item.badgesList}
+                badgeList={item.moons}
                 className={cn('')}
                 variant={selectedDesign.badgesVariant}
               ></Badges>

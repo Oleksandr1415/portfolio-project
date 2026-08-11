@@ -1,15 +1,15 @@
 import { useEffect, useRef } from 'react';
-import OrbitingBody, { type OrbitingBodyHandle } from './orbiting-body';
-import OrbitPath from './orbiting-path';
-import PlanetWithMoons from './planet-with-moons';
-import { planetStyleVariants, type SkillPlanets } from '@/mock/skills';
+import OrbitingBody, { type OrbitingBodyHandle } from '@/partials/space-orbits-tools/orbiting-body';
+import OrbitPath from '@/partials/space-orbits-tools/orbiting-path';
+import PlanetWithMoons from '@/partials/space-orbits-tools/planet-with-moons';
+import { type SkillPlanet } from '@/mock/skills';
 import Badges from '@/partials/badges/badges';
 import { cn } from '@/utils/helpers';
 
 export interface SkillsSolarSystemProps {
   className?: string;
   coreSkills: string[];
-  skillPlanets: SkillPlanets[];
+  skillPlanets: SkillPlanet[];
 }
 
 export default function SkillsSolarSystem({
@@ -39,13 +39,16 @@ export default function SkillsSolarSystem({
         className,
       ])}
     >
-      <div className="relative z-2 aspect-square h-[90vh]">
+      <div className="relative z-2 aspect-square w-[90vmin]">
         {/* Sun */}
         <div className="planet-core-desktop bg-gradient-planet absolute top-1/2 left-1/2 flex h-[25%] w-[25%] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full p-4">
-          <span className="text-[40px] font-bold text-purple-200 select-none">Core Skills</span>
+          <span className="pb-4 text-center text-4xl font-bold text-purple-200 select-none">
+            Core Skills
+          </span>
           <Badges
             badgeList={coreSkills}
             badgeClass="bg-primary-dark border border-primary-light text-white"
+            className="overflow-hidden"
           />
         </div>
 

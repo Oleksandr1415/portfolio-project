@@ -11,6 +11,7 @@ export interface PlanetWithMoonsProps {
   moons: string[];
   speed?: number; // moon orbit speed
   planetVariant?: PlanetVariant;
+  disableHoverEffect?: boolean;
 }
 
 export default function PlanetWithMoons({
@@ -20,6 +21,7 @@ export default function PlanetWithMoons({
   speed = 0.03,
   planetIndex,
   planetVariant = 'core',
+  disableHoverEffect = false,
 }: PlanetWithMoonsProps) {
   const moonRefs = useRef<(OrbitingBodyHandle | null)[]>([]);
 
@@ -39,6 +41,7 @@ export default function PlanetWithMoons({
     <div
       className={cn([
         'hover:bg-blur-sm relative aspect-square transition-transform duration-300 ease-out will-change-transform hover:z-100 hover:scale-125',
+        disableHoverEffect && 'pointer-events-none',
         className,
       ])}
     >
@@ -80,7 +83,7 @@ export default function PlanetWithMoons({
                   planetStyleVariants[planetVariant],
                 ])}
               >
-                <span className="text-[8px] text-white select-none">{moon}</span>
+                <span className="text-center text-[8px] text-white select-none">{moon}</span>
               </OrbitingBody>
             </div>
           );

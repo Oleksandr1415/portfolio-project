@@ -2,7 +2,7 @@ export const coreSkills = ['JS', 'TS', 'HTML', 'CSS', 'PHP', 'React'];
 
 export type PlanetVariant = 'default' | 'core' | 'markup' | 'tools' | 'framework' | 'design';
 
-export interface SkillPlanets {
+export interface SkillPlanet {
   class?: string;
   moons: string[];
   description: string;
@@ -10,7 +10,7 @@ export interface SkillPlanets {
   headline: string;
 }
 
-export const skillPlanets: SkillPlanets[] = [
+export const skillPlanets: SkillPlanet[] = [
   {
     class: '',
     moons: ['React', 'Next.js', 'Laravel Blade', 'Angular', '...'],
