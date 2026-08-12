@@ -6,7 +6,6 @@ import { roadmapStops } from '@/mock/roadmap';
 const leftStops = roadmapStops.filter((_, index) => index % 2 === 0);
 const rightStops = roadmapStops.filter((_, index) => index % 2 === 1);
 
-// SSoT. AFFECTS SVG PLACING. NEVER CHANGE WITHOUT CHANGING SVG PARAMS
 const roadmapClasses = {
   ulClass: 'flex flex-col justify-start gap-16 relative z-10 ',
   liClass: 'h-60 max-h-60 max-w-80 w-80 relative z-10',
@@ -15,17 +14,19 @@ const roadmapClasses = {
 ---
 
 <div
-  data-slot="roadmap-stops-container"
+  data-slot="roadmap-desktop-container"
+  data-total-stops={roadmapStops.length}
   class="relative hidden w-full justify-between pt-20 md:flex"
 >
   <svg
     data-slot="roadmap-connectors"
-    class="pointer-events-none absolute inset-0 z-0 size-full overflow-visible"></svg>
+    class="pointer-events-none absolute inset-0 z-0 size-full overflow-visible"
+    aria-hidden="true"></svg>
   <ul data-slot="roadmap-left-col" class={roadmapClasses.ulClass}>
     {
-      leftStops.map((stop) => {
+      leftStops.map((stop, index) => {
         return (
-          <li class={cn(['', roadmapClasses.liClass])}>
+          <li data-roadmap-stop={index * 2} class={cn(['', roadmapClasses.liClass])}>
             <RoadmapCard stop={stop} class={roadmapClasses.roadmapCardClass} />
           </li>
         );
@@ -35,9 +36,9 @@ const roadmapClasses = {
 
   <ul data-slot="roadmap-right-col" class={cn([roadmapClasses.ulClass, 'pt-30'])}>
     {
-      rightStops.map((stop) => {
+      rightStops.map((stop, index) => {
         return (
-          <li class={cn(['', roadmapClasses.liClass])}>
+          <li data-roadmap-stop={index * 2 + 1} class={cn(['', roadmapClasses.liClass])}>
             <RoadmapCard stop={stop} class={roadmapClasses.roadmapCardClass} />
           </li>
         );
@@ -47,63 +48,210 @@ const roadmapClasses = {
 </div>
 
 <script>
-  const Y_BOX_HEIGHT = 240; // li: h-60 *4
-  const Y_GAP = 64; //ul: gap-16 *4
-  const Y_RIGHT_COL_OFFSET = 120; //ul: (second list exclusively) pt-30 *4
-  const Y_CONTAINER_OFFSET = 80;
+  const STROKE_WIDTH = 2;
+  const TRACK_STROKE = 'rgba(255, 255, 255, 0.12)';
+  const PROGRESS_STROKE = 'var(--color-primary)';
 
-  const X_SECTION_WIDTH = 1000; // section-container: max-w-250 * 4
-  const X_BOX_WIDTH = 320; // li: w-80 * 4
+  type Point = { x: number; y: number };
 
-  const TOTAL_STOPS = 10; // replace with actual roadmapStops.length, passed via a data attribute if dynamic
+  type PathSegment = {
+    length: number;
+    progress: SVGPathElement;
+  };
 
-  function drawLine() {
-    const svg = document.querySelector('[data-slot="roadmap-connectors"]');
-    if (!svg) {
-      return;
-    }
-    const x_Left = X_BOX_WIDTH / 2;
-    const x_Right = X_SECTION_WIDTH - X_BOX_WIDTH / 2;
-    const y_LeftFirst = Y_CONTAINER_OFFSET + 120;
-    const y_RightTop = Y_CONTAINER_OFFSET + Y_RIGHT_COL_OFFSET + 30;
-    const y_RightFirst = Y_CONTAINER_OFFSET + Y_RIGHT_COL_OFFSET + 120;
+  let segments: PathSegment[] = [];
 
-    const yInterval = Y_BOX_HEIGHT + Y_GAP;
+  // Progress 0: 3rd card enters view (three cards on screen).
+  // Progress 1: while the last two cards are still visible.
+  const START_CARD_INDEX = 2;
+  const START_VIEWPORT_LINE = 0.82;
+  const END_VIEWPORT_LINE = 0.58;
 
-    // default entrance curve
-    let pathsHtml = `<path d="M 400 0 C 400 40, 100 50,  ${x_Left} ${y_LeftFirst}," stroke="#8b5cf6" stroke-width="2" fill="none" />`;
+  let scrollStartY = 0;
+  let scrollEndY = 1;
 
-    for (let i = 0; i < TOTAL_STOPS - 1; i++) {
-      const right_multiplier = Math.floor(i / 2); // 0 0 1 1 2 2 3 3    --- Right multiplier
-      const left_multiplier = Math.floor((i + 1) / 2); // 0 1 1 2 2 3 3  --- left multiplier
-      const y_Left = y_LeftFirst + left_multiplier * yInterval;
-
-      if (i % 2 === 0) {
-        // ** left to right **
-
-        const y_Right = y_RightTop + right_multiplier * yInterval;
-        const c1_X = X_SECTION_WIDTH / 2;
-        const c1_Y = 100 + yInterval * left_multiplier;
-        const c2_X = X_SECTION_WIDTH;
-        const c2_Y = 200 + yInterval * left_multiplier;
-        pathsHtml += `<path d="M ${x_Left} ${y_Left} C ${c1_X} ${c1_Y}, ${c2_X} ${c2_Y}, ${x_Right} ${y_Right} "  stroke="#8b5cf6" stroke-width="2" fill="none" />`;
-        // pathsHtml += `<path d="M ${x_Right} ${y_Right} C ${c1_X} ${c1_Y}, ${c2_X} ${c2_Y}, ${x_Left} ${y_Left} "  stroke="#8b5cf6" stroke-width="2" fill="none" />`;
-      } else {
-        // ** right to left **
-
-        const y_Right = y_RightFirst + right_multiplier * yInterval;
-        const c1_X = X_SECTION_WIDTH - 100;
-        const c1_Y = y_RightFirst + 50 + Y_BOX_HEIGHT + yInterval * right_multiplier;
-        const c2_X = 0;
-        const c2_Y = Y_BOX_HEIGHT + Y_BOX_HEIGHT * right_multiplier;
-        pathsHtml += `<path d="M ${x_Right} ${y_Right} C ${c1_X} ${c1_Y}, ${c2_X} ${c2_Y}, ${x_Left} ${y_Left} "  stroke="#8b5cf6" stroke-width="2" fill="none" />`;
-        // pathsHtml += `<path d="M ${x_Left} ${y_Left} C ${c1_X} ${c1_Y}, ${c2_X} ${c2_Y}, ${x_Right} ${y_Right} "  stroke="#8b5cf6" stroke-width="2" fill="none" />`;
-      }
-      pathsHtml += '';
-    }
-
-    svg.innerHTML = pathsHtml;
+  // Clamps a number to the given min/max range.
+  function clamp(value: number, min = 0, max = 1) {
+    return Math.min(max, Math.max(min, value));
   }
 
-  drawLine();
+  // Stores the scroll positions where line fill starts (3rd card) and ends (9th card).
+  function cacheScrollBounds(container: HTMLElement) {
+    const stops = getStopElements(container);
+    if (stops.length <= START_CARD_INDEX) return;
+
+    const viewportHeight = window.innerHeight;
+    const startCard = stops[START_CARD_INDEX];
+    const endCard = stops[stops.length - 2];
+
+    scrollStartY =
+      window.scrollY + startCard.getBoundingClientRect().top - viewportHeight * START_VIEWPORT_LINE;
+    scrollEndY =
+      window.scrollY + endCard.getBoundingClientRect().top - viewportHeight * END_VIEWPORT_LINE;
+
+    if (scrollEndY <= scrollStartY) {
+      scrollEndY = scrollStartY + 1;
+    }
+  }
+
+  // Returns 0–1 fill progress based on current scroll between cached start/end bounds.
+  function getScrollProgress() {
+    return clamp((window.scrollY - scrollStartY) / (scrollEndY - scrollStartY));
+  }
+
+  // Card center position relative to the roadmap container (SVG coordinate space).
+  function getAnchor(container: HTMLElement, stop: HTMLElement): Point {
+    const containerRect = container.getBoundingClientRect();
+    const stopRect = stop.getBoundingClientRect();
+
+    return {
+      x: stopRect.left + stopRect.width / 2 - containerRect.left,
+      y: stopRect.top + stopRect.height / 2 - containerRect.top,
+    };
+  }
+
+  // All stop elements in timeline order (0, 1, 2 …).
+  function getStopElements(container: HTMLElement) {
+    return [...container.querySelectorAll<HTMLElement>('[data-roadmap-stop]')].sort(
+      (a, b) => Number(a.dataset.roadmapStop) - Number(b.dataset.roadmapStop),
+    );
+  }
+
+  // Curved path from the top of the section down to the first card.
+  function entrancePath(to: Point, width: number) {
+    const startX = width * 0.42;
+    return `M ${startX} 0 C ${startX} ${to.y * 0.06}, ${width * -0.02} ${to.y * 0.42}, ${to.x} ${to.y}`;
+  }
+
+  // S-curve connecting a left-column card to the next right-column card.
+  function leftToRightPath(from: Point, to: Point, width: number) {
+    const dy = to.y - from.y;
+    const c1X = width * 0.58;
+    const c1Y = from.y + dy * 0.12;
+    const c2X = width * 1.08;
+    const c2Y = from.y + dy * 0.88;
+    return `M ${from.x} ${from.y} C ${c1X} ${c1Y}, ${c2X} ${c2Y}, ${to.x} ${to.y}`;
+  }
+
+  // S-curve connecting a right-column card to the next left-column card.
+  function rightToLeftPath(from: Point, to: Point, width: number) {
+    const dy = to.y - from.y;
+    const c1X = width * 0.98;
+    const c1Y = from.y + dy * 0.18;
+    const c2X = width * -0.1;
+    const c2Y = to.y - dy * 0.12;
+    return `M ${from.x} ${from.y} C ${c1X} ${c1Y}, ${c2X} ${c2Y}, ${to.x} ${to.y}`;
+  }
+
+  // Builds all SVG path `d` strings from measured card anchor positions.
+  function buildPathData(container: HTMLElement) {
+    const stops = getStopElements(container);
+    if (stops.length < 2) return [];
+
+    const width = container.clientWidth;
+    const anchors = stops.map((stop) => getAnchor(container, stop));
+    const paths = [entrancePath(anchors[0], width)];
+
+    for (let i = 0; i < anchors.length - 1; i++) {
+      const from = anchors[i];
+      const to = anchors[i + 1];
+      paths.push(i % 2 === 0 ? leftToRightPath(from, to, width) : rightToLeftPath(from, to, width));
+    }
+
+    return paths;
+  }
+
+  // Adds a dim track path and a colored progress path for one connector segment.
+  function createPathPair(svg: SVGSVGElement, d: string) {
+    const track = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    track.setAttribute('d', d);
+    track.setAttribute('stroke', TRACK_STROKE);
+    track.setAttribute('stroke-width', String(STROKE_WIDTH));
+    track.setAttribute('fill', 'none');
+    track.setAttribute('stroke-linecap', 'round');
+
+    const progress = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    progress.setAttribute('d', d);
+    progress.setAttribute('stroke', PROGRESS_STROKE);
+    progress.setAttribute('stroke-width', String(STROKE_WIDTH));
+    progress.setAttribute('fill', 'none');
+    progress.setAttribute('stroke-linecap', 'round');
+
+    svg.append(track, progress);
+
+    const length = progress.getTotalLength();
+    progress.style.strokeDasharray = String(length);
+    progress.style.strokeDashoffset = String(length);
+
+    segments.push({ length, progress });
+  }
+
+  // Reveals colored strokes along the path based on scroll progress (dashoffset).
+  function updateProgress(container: HTMLElement) {
+    const totalLength = segments.reduce((sum, segment) => sum + segment.length, 0);
+    if (totalLength === 0) return;
+
+    const drawLength = getScrollProgress() * totalLength;
+    let drawn = 0;
+
+    for (const segment of segments) {
+      if (drawn + segment.length <= drawLength) {
+        segment.progress.style.strokeDashoffset = '0';
+        drawn += segment.length;
+        continue;
+      }
+
+      if (drawn < drawLength) {
+        const visible = drawLength - drawn;
+        segment.progress.style.strokeDashoffset = String(segment.length - visible);
+        drawn = drawLength;
+        continue;
+      }
+
+      segment.progress.style.strokeDashoffset = String(segment.length);
+    }
+  }
+
+  // Redraws all connector paths and refreshes scroll bounds after layout changes.
+  function drawLines(container: HTMLElement) {
+    const svg = container.querySelector<SVGSVGElement>('[data-slot="roadmap-connectors"]');
+    if (!svg || container.clientWidth === 0 || container.clientHeight === 0) return;
+
+    const paths = buildPathData(container);
+    if (paths.length === 0) return;
+
+    svg.setAttribute('viewBox', `0 0 ${container.clientWidth} ${container.clientHeight}`);
+
+    segments = [];
+    svg.replaceChildren();
+
+    for (const d of paths) {
+      createPathPair(svg, d);
+    }
+
+    cacheScrollBounds(container);
+    updateProgress(container);
+  }
+
+  // Bootstraps drawing, scroll tracking, resize handling, and Astro page transitions.
+  function initRoadmapConnectors() {
+    const container = document.querySelector<HTMLElement>(
+      '[data-slot="roadmap-desktop-container"]',
+    );
+    if (!container) return;
+
+    drawLines(container);
+
+    const onScroll = () => updateProgress(container);
+    const resizeObserver = new ResizeObserver(() => drawLines(container));
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    resizeObserver.observe(container);
+
+    document.addEventListener('astro:page-load', () => {
+      drawLines(container);
+    });
+  }
+
+  initRoadmapConnectors();
 </script>
