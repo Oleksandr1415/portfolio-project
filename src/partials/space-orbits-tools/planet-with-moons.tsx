@@ -40,7 +40,7 @@ export default function PlanetWithMoons({
   return (
     <div
       className={cn([
-        'hover:bg-blur-sm relative aspect-square transition-transform duration-300 ease-out will-change-transform hover:z-100 hover:scale-125',
+        'relative flex aspect-square size-full items-center justify-center transition-transform duration-300 ease-out will-change-transform hover:z-100',
         disableHoverEffect && 'pointer-events-none',
         className,
       ])}
@@ -48,11 +48,10 @@ export default function PlanetWithMoons({
       <div
         data-slot="planet-node"
         className={cn([
-          'planet-node relative z-10 aspect-square',
+          'planet-node relative z-10 aspect-square w-[80%]',
           'transition-[transform,filter,opacity] duration-300 ease-out will-change-transform',
           'hover:z-50! hover:scale-115! hover:opacity-100! hover:blur-none!',
           'group group-has-[.planet-node:hover]/planets:scale-95 group-has-[.planet-node:hover]/planets:opacity-50 group-has-[.planet-node:hover]/planets:blur-[2px]',
-          className,
         ])}
       >
         {/* Planet body */}
@@ -83,7 +82,7 @@ export default function PlanetWithMoons({
                   planetStyleVariants[planetVariant],
                 ])}
               >
-                <span className="text-center text-[8px] text-white select-none">{moon}</span>
+                <span className="text-center text-[10px] text-white select-none">{moon}</span>
               </OrbitingBody>
             </div>
           );

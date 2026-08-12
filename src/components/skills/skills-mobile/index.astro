@@ -1,8 +1,7 @@
 ---
 import type { SkillPlanet } from '@/mock/skills';
 import Badges from '@/partials/badges/badges';
-import PlanetWithMoons from '@/partials/space-orbits-tools/planet-with-moons';
-import ScrollSequence from '@/partials/motion/scroll-sequence';
+import SkillsMobilePlanets from './skills-mobile-planets';
 
 interface Props {
   coreSkills: string[];
@@ -23,19 +22,5 @@ const { coreSkills, skillPlanets } = Astro.props;
   </span>
   <Badges badgeList={coreSkills} className="pt-3" badgeClass="text-text-gray-lighter" />
 
-  <ScrollSequence client:visible className="w-70">
-    {
-      skillPlanets.map((planet, index) => (
-        <PlanetWithMoons
-          className="h-32 w-32"
-          disableHoverEffect={true}
-          label={planet.headline}
-          moons={planet.moons}
-          planetIndex={index}
-          planetVariant={planet.variant}
-          speed={0.03}
-        />
-      ))
-    }
-  </ScrollSequence>
+  <SkillsMobilePlanets client:load skillPlanets={skillPlanets} />
 </div>

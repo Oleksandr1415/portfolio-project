@@ -72,7 +72,6 @@ export default function SkillsSolarSystem({
                     label={planet.headline}
                     moons={planet.moons}
                     planetVariant={planet.variant}
-                    className={cn(['size-full'])}
                   />
                 </OrbitingBody>
               </div>
