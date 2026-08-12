@@ -26,7 +26,11 @@ const roadmapClasses = {
     {
       leftStops.map((stop, index) => {
         return (
-          <li data-roadmap-stop={index * 2} class={cn(['', roadmapClasses.liClass])}>
+          <li
+            data-roadmap-stop={index * 2}
+            data-roadmap-variant={stop.variant}
+            class={cn(['', roadmapClasses.liClass])}
+          >
             <RoadmapCard stop={stop} class={roadmapClasses.roadmapCardClass} />
           </li>
         );
@@ -38,7 +42,11 @@ const roadmapClasses = {
     {
       rightStops.map((stop, index) => {
         return (
-          <li data-roadmap-stop={index * 2 + 1} class={cn(['', roadmapClasses.liClass])}>
+          <li
+            data-roadmap-stop={index * 2 + 1}
+            data-roadmap-variant={stop.variant}
+            class={cn(['', roadmapClasses.liClass])}
+          >
             <RoadmapCard stop={stop} class={roadmapClasses.roadmapCardClass} />
           </li>
         );
@@ -50,9 +58,22 @@ const roadmapClasses = {
 <script>
   const STROKE_WIDTH = 2;
   const TRACK_STROKE = 'rgba(255, 255, 255, 0.12)';
-  const PROGRESS_STROKE = 'var(--color-primary)';
+
+  const VARIANT_CSS_VARS: Record<string, string> = {
+    science: '--color-science',
+    experience: '--color-experience',
+    germany: '--color-germany',
+  };
 
   type Point = { x: number; y: number };
+
+  type PathSpec = {
+    d: string;
+    from: Point;
+    to: Point;
+    fromVariant: string | null;
+    toVariant: string;
+  };
 
   type PathSegment = {
     length: number;
@@ -117,6 +138,55 @@ const roadmapClasses = {
     );
   }
 
+  // Resolves a card variant to its theme color from CSS variables.
+  function getVariantColor(variant: string | null) {
+    if (!variant) return TRACK_STROKE;
+
+    const cssVar = VARIANT_CSS_VARS[variant];
+    if (!cssVar) return TRACK_STROKE;
+
+    return (
+      getComputedStyle(document.documentElement).getPropertyValue(cssVar).trim() || TRACK_STROKE
+    );
+  }
+
+  function getStopVariant(stop: HTMLElement) {
+    return stop.dataset.roadmapVariant ?? 'science';
+  }
+
+  // Smooth gradient along the path from departure card color to arrival card color.
+  function createConnectorGradient(
+    defs: SVGDefsElement,
+    id: string,
+    from: Point,
+    to: Point,
+    fromVariant: string | null,
+    toVariant: string,
+  ) {
+    const fromColor = getVariantColor(fromVariant);
+    const toColor = getVariantColor(toVariant);
+
+    const gradient = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
+    gradient.setAttribute('id', id);
+    gradient.setAttribute('gradientUnits', 'userSpaceOnUse');
+    gradient.setAttribute('x1', String(from.x));
+    gradient.setAttribute('y1', String(from.y));
+    gradient.setAttribute('x2', String(to.x));
+    gradient.setAttribute('y2', String(to.y));
+
+    for (const [offset, color] of [
+      ['0%', fromColor],
+      ['100%', toColor],
+    ] as const) {
+      const stop = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+      stop.setAttribute('offset', offset);
+      stop.setAttribute('stop-color', color);
+      gradient.append(stop);
+    }
+
+    defs.append(gradient);
+  }
+
   // Curved path from the top of the section down to the first card.
   function entrancePath(to: Point, width: number) {
     const startX = width * 0.42;
@@ -143,26 +213,45 @@ const roadmapClasses = {
     return `M ${from.x} ${from.y} C ${c1X} ${c1Y}, ${c2X} ${c2Y}, ${to.x} ${to.y}`;
   }
 
-  // Builds all SVG path `d` strings from measured card anchor positions.
-  function buildPathData(container: HTMLElement) {
+  // Builds all SVG path specs from measured card anchors and their variants.
+  function buildPathData(container: HTMLElement): PathSpec[] {
     const stops = getStopElements(container);
     if (stops.length < 2) return [];
 
     const width = container.clientWidth;
     const anchors = stops.map((stop) => getAnchor(container, stop));
-    const paths = [entrancePath(anchors[0], width)];
+    const entranceStart = { x: width * 0.42, y: 0 };
+    const specs: PathSpec[] = [
+      {
+        d: entrancePath(anchors[0], width),
+        from: entranceStart,
+        to: anchors[0],
+        fromVariant: null,
+        toVariant: getStopVariant(stops[0]),
+      },
+    ];
 
     for (let i = 0; i < anchors.length - 1; i++) {
       const from = anchors[i];
       const to = anchors[i + 1];
-      paths.push(i % 2 === 0 ? leftToRightPath(from, to, width) : rightToLeftPath(from, to, width));
+      specs.push({
+        d: i % 2 === 0 ? leftToRightPath(from, to, width) : rightToLeftPath(from, to, width),
+        from,
+        to,
+        fromVariant: getStopVariant(stops[i]),
+        toVariant: getStopVariant(stops[i + 1]),
+      });
     }
 
-    return paths;
+    return specs;
   }
 
-  // Adds a dim track path and a colored progress path for one connector segment.
-  function createPathPair(svg: SVGSVGElement, d: string) {
+  // Adds a dim track path and a scroll-revealed gradient progress path for one connector.
+  function createPathPair(svg: SVGSVGElement, defs: SVGDefsElement, id: string, spec: PathSpec) {
+    const { d, from, to, fromVariant, toVariant } = spec;
+
+    createConnectorGradient(defs, id, from, to, fromVariant, toVariant);
+
     const track = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     track.setAttribute('d', d);
     track.setAttribute('stroke', TRACK_STROKE);
@@ -172,7 +261,7 @@ const roadmapClasses = {
 
     const progress = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     progress.setAttribute('d', d);
-    progress.setAttribute('stroke', PROGRESS_STROKE);
+    progress.setAttribute('stroke', `url(#${id})`);
     progress.setAttribute('stroke-width', String(STROKE_WIDTH));
     progress.setAttribute('fill', 'none');
     progress.setAttribute('stroke-linecap', 'round');
@@ -217,17 +306,20 @@ const roadmapClasses = {
     const svg = container.querySelector<SVGSVGElement>('[data-slot="roadmap-connectors"]');
     if (!svg || container.clientWidth === 0 || container.clientHeight === 0) return;
 
-    const paths = buildPathData(container);
-    if (paths.length === 0) return;
+    const specs = buildPathData(container);
+    if (specs.length === 0) return;
 
     svg.setAttribute('viewBox', `0 0 ${container.clientWidth} ${container.clientHeight}`);
 
     segments = [];
     svg.replaceChildren();
 
-    for (const d of paths) {
-      createPathPair(svg, d);
-    }
+    const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+    svg.append(defs);
+
+    specs.forEach((spec, index) => {
+      createPathPair(svg, defs, `roadmap-connector-${index}`, spec);
+    });
 
     cacheScrollBounds(container);
     updateProgress(container);
