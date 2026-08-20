@@ -32,7 +32,7 @@ import { cn } from '@/utils/helpers';
     <div
       data-slot="nav-menu-close-background"
       class={cn([
-        'fixed top-0 left-0 z-50 size-full bg-gray-900/50 transition-all duration-600 ease-in md:hidden',
+        'fixed top-0 left-0 h-screen w-screen z-50 bg-gray-900/50 transition-all duration-600 ease-in md:hidden',
         '-translate-y-full cursor-[url("/x.svg"),pointer]',
       ])}
     >
@@ -47,7 +47,7 @@ import { cn } from '@/utils/helpers';
     >
       <NavItemList
         dataSlot="nav-menu"
-        class="z-1001 flex flex-col items-center pb-15 text-white md:hidden"
+        class="z-1001 flex flex-col items-center gap-10 pb-30 text-xl text-white md:hidden"
       />
     </div>
   </div>

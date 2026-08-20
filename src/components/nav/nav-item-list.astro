@@ -1,7 +1,10 @@
 ---
 import { menuElements } from '@/mock/nav-menu-elements';
-const baseClass =
-  'on-hover-text-yellow h-full flex items-center text-nowrap hover:shadow-[0_2px_3px_0_rgba(255,255,255,0.3)]';
+const baseClass = [
+  'relative inline-block transition-all duration-300',
+  'after:absolute after:left-1/2 after:-bottom-1 after:h-[2px] after:w-0 after:-translate-x-1/2 after:bg-white after:transition-all after:duration-300',
+  'hover:after:w-full',
+];
 
 const { class: className, dataSlot = 'menu' } = Astro.props;
 ---
@@ -9,7 +12,7 @@ const { class: className, dataSlot = 'menu' } = Astro.props;
 <ul data-slot={dataSlot} class:list={['text-md gap-4 py-2 font-bold text-white', className]}>
   {
     menuElements.map((menuLink) => (
-      <li class="h-full">
+      <li class="flex h-full items-center">
         <a href={menuLink.href} data-slot="menu-item" class:list={[baseClass, menuLink.linkClass]}>
           {menuLink.title}
         </a>
