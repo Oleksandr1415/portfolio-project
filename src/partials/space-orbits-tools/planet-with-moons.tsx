@@ -40,6 +40,7 @@ export default function PlanetWithMoons({
     >
       <div
         data-slot="planet-node"
+        data-orbit-root
         className={cn([
           'planet-node relative z-10 aspect-square w-[80%]',
           'transition-[transform,filter,opacity,scale] duration-300 ease-out will-change-transform',

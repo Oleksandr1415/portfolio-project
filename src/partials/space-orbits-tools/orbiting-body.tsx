@@ -16,28 +16,71 @@ export interface OrbitingBodyProps {
 const OrbitingBody = forwardRef<OrbitingBodyHandle, OrbitingBodyProps>(
   ({ className, orbitRadius, phaseShift = 0, speed = 1, children }, ref) => {
     const elRef = useRef<HTMLDivElement>(null);
+    const orbitRootRef = useRef<HTMLElement | null>(null);
     const orbitSizeRef = useRef(0);
     const modeRef = useRef<'playing' | 'paused'>('playing');
     const pauseStartAngleRef = useRef(0);
     const offsetRef = useRef(0);
     const currentLiveAngleRef = useRef(0);
+    const lastEffectiveAngleRef = useRef(0);
+
+    const applyTransform = (effectiveAngle: number) => {
+      const el = elRef.current;
+      const orbitSize = orbitSizeRef.current;
+      if (!el || orbitSize === 0) return;
+
+      const offsetX = (orbitRadius / 100) * orbitSize * Math.cos(effectiveAngle);
+      const offsetY = (orbitRadius / 100) * orbitSize * Math.sin(effectiveAngle);
+      el.style.transform = `translate3d(calc(-50% + ${offsetX}px), calc(-50% + ${offsetY}px), 0)`;
+    };
+
+    const measureOrbitSize = () => {
+      const el = elRef.current;
+      if (!el) return 0;
+
+      const root =
+        orbitRootRef.current ?? (el.closest('[data-orbit-root]') as HTMLElement | null);
+      if (!root) return 0;
+
+      orbitRootRef.current = root;
+      const size = root.offsetWidth;
+      orbitSizeRef.current = size;
+
+      if (size > 0 && modeRef.current === 'playing') {
+        applyTransform(lastEffectiveAngleRef.current);
+      }
+
+      return size;
+    };
 
     useEffect(() => {
       const el = elRef.current;
       if (!el) return;
 
-      const parent = el.offsetParent as HTMLElement | null;
-      if (!parent) return;
+      measureOrbitSize();
 
-      const updateOrbitSize = () => {
-        orbitSizeRef.current = parent.offsetWidth;
+      const resizeObserver = new ResizeObserver(() => {
+        measureOrbitSize();
+      });
+
+      const root = orbitRootRef.current;
+      if (root) resizeObserver.observe(root);
+
+      // Re-measure when hidden containers become visible (e.g. mobile breakpoint).
+      const intersectionObserver = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((entry) => entry.isIntersecting)) {
+            measureOrbitSize();
+          }
+        },
+        { threshold: 0 },
+      );
+      intersectionObserver.observe(el);
+
+      return () => {
+        resizeObserver.disconnect();
+        intersectionObserver.disconnect();
       };
-
-      updateOrbitSize();
-      const resizeObserver = new ResizeObserver(updateOrbitSize);
-      resizeObserver.observe(parent);
-
-      return () => resizeObserver.disconnect();
     }, []);
 
     useImperativeHandle(ref, () => ({
@@ -45,17 +88,16 @@ const OrbitingBody = forwardRef<OrbitingBodyHandle, OrbitingBodyProps>(
         const liveAngle = angle * speed + phaseShift;
         currentLiveAngleRef.current = liveAngle;
 
+        const effectiveAngle = liveAngle - offsetRef.current;
+        lastEffectiveAngleRef.current = effectiveAngle;
+
         if (modeRef.current === 'paused') return;
 
-        const el = elRef.current;
-        const orbitSize = orbitSizeRef.current;
-        if (!el || orbitSize === 0) return;
+        if (orbitSizeRef.current === 0) {
+          measureOrbitSize();
+        }
 
-        const effectiveAngle = liveAngle - offsetRef.current;
-        const offsetX = (orbitRadius / 100) * orbitSize * Math.cos(effectiveAngle);
-        const offsetY = (orbitRadius / 100) * orbitSize * Math.sin(effectiveAngle);
-
-        el.style.transform = `translate3d(calc(-50% + ${offsetX}px), calc(-50% + ${offsetY}px), 0)`;
+        applyTransform(effectiveAngle);
       },
     }));
 
@@ -67,6 +109,7 @@ const OrbitingBody = forwardRef<OrbitingBodyHandle, OrbitingBodyProps>(
     const handleMouseLeave = () => {
       offsetRef.current += currentLiveAngleRef.current - pauseStartAngleRef.current;
       modeRef.current = 'playing';
+      applyTransform(lastEffectiveAngleRef.current);
     };
 
     return (

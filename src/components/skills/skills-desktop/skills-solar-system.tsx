@@ -46,7 +46,7 @@ export default function SkillsSolarSystem({
         </div>
 
         {/* Planets (each with its own moons) */}
-        <div className="group/planets absolute inset-0">
+        <div data-orbit-root className="group/planets absolute inset-0">
           {skillPlanets?.map((planet, index) => {
             const orbitSize = 50 + index * 14;
             return (
