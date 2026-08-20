@@ -1,0 +1,36 @@
+---
+interface Props {
+  class?: string;
+  fill?: string;
+  stroke?: string;
+  strokeWidth?: number | string;
+  style?: object;
+  cx?: number;
+  cy?: number;
+  r?: number;
+}
+
+const {
+  class: className,
+  stroke,
+  fill,
+  strokeWidth = 4,
+  style = {},
+  cx = 10,
+  cy = 10,
+  r = 5,
+} = Astro.props;
+
+const circleAttrs = {
+  cx,
+  cy,
+  r,
+  'stroke-width': strokeWidth,
+  ...(fill !== undefined ? { fill } : {}),
+  ...(stroke !== undefined ? { stroke } : {}),
+};
+---
+
+<svg class={className} style={style} viewBox="0 0 20 20" aria-hidden="true">
+  <circle {...circleAttrs}></circle>
+</svg>

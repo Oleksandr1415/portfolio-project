@@ -1,8 +1,8 @@
 ---
 import { cn } from '@/utils/helpers';
 import HeadlineBlock from '@/partials/headline/headline-block';
-import Circle from '@/assets/svgs/circle.svg';
-import { roadmapStops, roadmapStopVariants } from '@/mock/roadmap';
+import Circle from '@/assets/svgs/circle.astro';
+import { roadmapStopsEnglish, roadmapStopVariants } from '@/mock/roadmap';
 
 const { class: className } = Astro.props;
 ---
@@ -12,7 +12,7 @@ const { class: className } = Astro.props;
   class={cn(['flex flex-col items-stretch pt-10', className])}
 >
   {
-    roadmapStops.map((stop, index) => {
+    roadmapStopsEnglish.map((stop, index) => {
       const selectedVariant = roadmapStopVariants[stop.variant];
       return (
         <div class="relative flex items-center pl-1">
@@ -22,7 +22,7 @@ const { class: className } = Astro.props;
               selectedVariant.line,
             ])}
           />
-          <Circle class="size-5" />
+          <Circle class={cn(['size-5 shrink-0 fill-black', selectedVariant.circle])} />
           <div
             data-slot="roadmap-stop-container"
             class={cn([

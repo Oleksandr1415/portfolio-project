@@ -1,10 +1,10 @@
 ---
 import { cn } from '@/utils/helpers';
 import RoadmapCard from './roadmap-card.astro';
-import { roadmapStops } from '@/mock/roadmap';
+import { roadmapStopsEnglish } from '@/mock/roadmap';
 
-const leftStops = roadmapStops.filter((_, index) => index % 2 === 0);
-const rightStops = roadmapStops.filter((_, index) => index % 2 === 1);
+const leftStops = roadmapStopsEnglish.filter((_, index) => index % 2 === 0);
+const rightStops = roadmapStopsEnglish.filter((_, index) => index % 2 === 1);
 
 const roadmapClasses = {
   ulClass: 'flex flex-col justify-start gap-16 relative z-10 ',
@@ -15,7 +15,7 @@ const roadmapClasses = {
 
 <div
   data-slot="roadmap-desktop-container"
-  data-total-stops={roadmapStops.length}
+  data-total-stops={roadmapStopsEnglish.length}
   class="relative hidden w-full justify-between pt-20 md:flex"
 >
   <svg
