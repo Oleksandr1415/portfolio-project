@@ -2,12 +2,11 @@
 import Picture from 'astro/components/Picture.astro';
 import heroBg from '@/assets/heroBg.jpg';
 
-import { ChevronDown, Dot } from '@lucide/astro';
-import TwitterIcon from '@/assets/icons/logos/twitter.astro';
-import LinkedIn from '@/assets/icons/logos/linkedIn.astro';
-import GithubIcon from '@/assets/icons/logos/github.astro';
+import { Dot } from '@lucide/astro';
+import Button from '@/partials/button/button';
 import TextWriter from '@/components/ui/text-writer';
-import Lightfall from '@/components/ui/lightfall';
+// import Lightfall from '@/components/ui/lightfall';
+import { cn } from '@/utils/helpers';
 
 const heroHeadlineTexts: string[] = ['Sasha', 'Frontend-Developer'];
 ---
@@ -46,7 +45,7 @@ const heroHeadlineTexts: string[] = ['Sasha', 'Frontend-Developer'];
     class="absolute inset-0 -z-10 h-full w-full bg-black bg-linear-to-b from-transparent from-50% to-black object-cover"
   />
   <div
-    class="pointer-events-none absolute inset-0 bg-linear-to-b from-transparent from-50% to-black"
+    class="pointer-events-none absolute inset-0 -z-10 bg-linear-to-b from-transparent from-30% to-black"
   >
   </div>
   <span class="text-text-gray-white mx-auto pl-2 tracking-[8px] uppercase backdrop-blur-[1px]"
@@ -57,7 +56,7 @@ const heroHeadlineTexts: string[] = ['Sasha', 'Frontend-Developer'];
     <span class="font-heading text-center text-6xl font-black text-white select-none md:text-8xl"
       >I am
       <TextWriter
-        className="bg-gradient-hero font-heading inline bg-clip-text font-black text-transparent"
+        className="bg-gradient-hero font-heading inline w-full overflow-hidden bg-clip-text font-black text-transparent"
         client:load
         cursorClassName="bg-clip-text text-transparent bg-animate-pulse bg-gradient-hero"
         deleteSpeed={100}
@@ -72,61 +71,21 @@ const heroHeadlineTexts: string[] = ['Sasha', 'Frontend-Developer'];
     >fast & curious<Dot class="inline size-6" />communicative
   </span>
 
+  <Button href="#contact" className="z-1 mt-10 text-xl">
+    Let's talk
+    <span class="text-base transition-transform duration-300 group-hover:translate-x-1"> → </span>
+  </Button>
+
+  <span class="text-text-gray-light block pt-20">Want to know more?</span>
   <div
-    class="anchors flex w-full flex-col items-center justify-center gap-5 p-5 pb-5 text-sm text-white md:flex-row"
+    class="flex w-full items-center justify-center gap-5 p-5 text-sm text-white backdrop-blur-[1px]"
   >
-    <a
-      href="#about"
-      class="bg-gradient-hero flex h-14 w-full max-w-100 min-w-35 items-center justify-center rounded-[100px] font-semibold tracking-widest md:max-w-25"
-    >
-      <span class="on-hover-text-yellow">About</span>
-    </a>
-    <a
-      href="#skills"
-      class="flex h-14 w-full max-w-100 min-w-35 items-center justify-center rounded-[100px] border border-white/20 bg-transparent font-semibold tracking-widest duration-300 md:max-w-25"
-    >
-      <span class="on-hover-text-yellow">Skills</span>
-    </a>
-  </div>
+    <Button href="#about" variant="empty">
+      <span class="text-inherit">About</span>
+    </Button>
 
-  <a
-    href="#contact"
-    class="group text-md flex flex-col justify-center rounded-md p-3 duration-300 hover:bg-gray-200/20"
-  >
-    <span class="text-text-gray block duration-300 group-hover:text-gray-100"> get in touch! </span>
-    <span class="block">
-      <ChevronDown
-        class="stroke-text-gray mx-auto size-4 duration-300 group-hover:translate-y-0.75"
-      />
-    </span>
-  </a>
-
-  <div data-slot="contact" class="absolute right-0 bottom-10 left-0 h-15">
-    <div data-slot="links-container" class="flex h-10 w-full justify-center gap-4 p-2">
-      <a
-        href="https://www.linkedin.com/in/oleksandr-pustovit-4915b7190"
-        data-slot="icon1"
-        class="size-6 rounded-md hover:-translate-y-0.5 hover:shadow-[0_2px_3px_rgba(255,255,255,0.8)]"
-      >
-        <LinkedIn class="fill-text-gray-light stroke-text-gray-light size-6" />
-      </a>
-      <a
-        href="#"
-        data-slot="icon2"
-        class="size-6 rounded-md hover:-translate-y-0.5 hover:shadow-[0_2px_3px_rgba(255,255,255,0.8)]"
-      >
-        <TwitterIcon outline class="fill-text-gray-light stroke-text-gray-light size-full" />
-      </a>
-      <a
-        href="https://github.com/Oleksandr1415"
-        data-slot="icon3"
-        class="size-6 rounded-md hover:-translate-y-0.5 hover:shadow-[0_2px_3px_rgba(255,255,255,0.8)]"
-      >
-        <GithubIcon class="fill-text-gray-light stroke-text-gray-light size-6" style="0" />
-      </a>
-    </div>
-    <a href="#about" class="w-full">
-      <ChevronDown class="fill-text-gray-dim stroke-text-gray-dim mx-auto hover:translate-y-0.75" />
-    </a>
+    <Button href="#skills" variant="empty">
+      <span class="text-inherit">Skills</span>
+    </Button>
   </div>
 </section>
