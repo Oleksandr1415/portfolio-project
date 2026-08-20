@@ -1,7 +1,8 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import OrbitingBody, { type OrbitingBodyHandle } from '@/partials/space-orbits-tools/orbiting-body';
 import OrbitPath from '@/partials/space-orbits-tools/orbiting-path';
 import PlanetWithMoons from '@/partials/space-orbits-tools/planet-with-moons';
+import { useOrbitAnimation } from '@/partials/space-orbits-tools/use-orbit-animation';
 import { type SkillPlanet } from '@/mock/skills';
 import Badges from '@/partials/badges/badges';
 import { cn } from '@/utils/helpers';
@@ -20,17 +21,9 @@ export default function SkillsSolarSystem({
   const speed = 0.02;
   const planetRefs = useRef<(OrbitingBodyHandle | null)[]>([]);
 
-  useEffect(() => {
-    let angle = 0;
-    let frameId: number;
-    const animate = () => {
-      angle += speed;
-      planetRefs.current.forEach((planet) => planet?.updateAngle(angle));
-      frameId = requestAnimationFrame(animate);
-    };
-    frameId = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(frameId);
-  }, []);
+  useOrbitAnimation(speed, (angle) => {
+    planetRefs.current.forEach((planet) => planet?.updateAngle(angle));
+  });
 
   return (
     <div

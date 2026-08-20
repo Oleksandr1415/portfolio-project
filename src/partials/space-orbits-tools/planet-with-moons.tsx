@@ -1,6 +1,7 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import OrbitingBody, { type OrbitingBodyHandle } from './orbiting-body';
 import OrbitPath from './orbiting-path';
+import { useOrbitAnimation } from './use-orbit-animation';
 import { cn } from '@/utils/helpers';
 import { planetStyleVariants, type PlanetVariant } from '@/mock/skills';
 
@@ -25,22 +26,14 @@ export default function PlanetWithMoons({
 }: PlanetWithMoonsProps) {
   const moonRefs = useRef<(OrbitingBodyHandle | null)[]>([]);
 
-  useEffect(() => {
-    let angle = 0;
-    let frameId: number;
-    const animate = () => {
-      angle += speed;
-      moonRefs.current.forEach((moon) => moon?.updateAngle(angle));
-      frameId = requestAnimationFrame(animate);
-    };
-    frameId = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(frameId);
-  }, [speed]);
+  useOrbitAnimation(speed, (angle) => {
+    moonRefs.current.forEach((moon) => moon?.updateAngle(angle));
+  });
 
   return (
     <div
       className={cn([
-        'relative flex aspect-square size-full items-center justify-center transition-transform duration-300 ease-out will-change-transform hover:z-100',
+        'relative flex aspect-square size-full items-center justify-center hover:z-100',
         disableHoverEffect && 'pointer-events-none',
         className,
       ])}
@@ -49,8 +42,8 @@ export default function PlanetWithMoons({
         data-slot="planet-node"
         className={cn([
           'planet-node relative z-10 aspect-square w-[80%]',
-          'transition-[transform,filter,opacity] duration-300 ease-out will-change-transform',
-          'hover:z-50! hover:scale-115! hover:opacity-100! hover:blur-none!',
+          'transition-[transform,filter,opacity,scale] duration-300 ease-out will-change-transform',
+          'hover:z-50! hover:scale-160! hover:opacity-100! hover:blur-none!',
           'group group-has-[.planet-node:hover]/planets:scale-95 group-has-[.planet-node:hover]/planets:opacity-50 group-has-[.planet-node:hover]/planets:blur-[2px]',
         ])}
       >
@@ -76,7 +69,7 @@ export default function PlanetWithMoons({
                 }}
                 orbitRadius={orbitSize / 2}
                 phaseShift={index * 2.4 + (planetIndex || 0)}
-                speed={0.3 - index * 0.02}
+                speed={0.3}
                 className={cn([
                   'pointer-events-none flex size-[16%] items-center justify-center rounded-full text-white',
                   planetStyleVariants[planetVariant],
