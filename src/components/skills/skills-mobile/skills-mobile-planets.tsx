@@ -31,7 +31,7 @@ export default function SkillsMobilePlanets({ skillPlanets }: SkillsMobilePlanet
         wrapperRect.bottom > window.innerHeight * 0.25;
       setProgressVisible(inPlanetsZone);
 
-      const viewportFocus = window.innerHeight * 0.38;
+      const viewportFocus = window.innerHeight * 0.3;
       let closestIndex = 0;
       let closestDistance = Infinity;
 
