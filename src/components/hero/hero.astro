@@ -13,7 +13,7 @@ const heroHeadlineTexts: string[] = ['Sasha', 'Frontend-Developer'];
 <section
   data-slot="Hero"
   id="hero"
-  class="relative flex h-screen w-screen flex-col items-center justify-center"
+  class="relative flex h-screen w-full flex-col items-center justify-center"
 >
   <!-- <div class="absolute size-full">
     <Lightfall
@@ -35,6 +35,8 @@ const heroHeadlineTexts: string[] = ['Sasha', 'Frontend-Developer'];
       mouseRadius={0.4}
     />
   </div> -->
+
+  <!-- bg-image -->
   <Picture
     src={heroBg}
     alt=""
@@ -43,17 +45,19 @@ const heroHeadlineTexts: string[] = ['Sasha', 'Frontend-Developer'];
     sizes="100vw"
     class="absolute inset-0 -z-10 h-full w-full bg-black bg-linear-to-b from-transparent from-50% to-black object-cover"
   />
+
+  <!-- Shadow in the bottom of bg-image -->
   <div
     class="pointer-events-none absolute inset-0 -z-10 bg-linear-to-b from-transparent from-30% to-black"
   >
   </div>
-  <span class="text-text-gray-white mx-auto pt-15 pl-2 tracking-[8px] uppercase backdrop-blur-[1px]"
+
+  <span class="text-text-gray-white mx-auto pt-14 pl-2 tracking-[8px] uppercase backdrop-blur-[1px]"
     >Hello</span
   >
-
   <div data-slot="text" class="flex justify-center p-2 backdrop-blur-[1px]">
     <span
-      class="font-heading h-[3em] text-center text-5xl font-black text-white select-none md:text-8xl"
+      class="font-heading h-auto text-center text-6xl font-black text-white select-none md:h-auto md:text-8xl"
       >I am
       <TextWriter
         className="bg-gradient-hero font-heading inline w-full overflow-hidden bg-clip-text font-black text-transparent"
@@ -76,7 +80,7 @@ const heroHeadlineTexts: string[] = ['Sasha', 'Frontend-Developer'];
     <span class="text-base transition-transform duration-300 group-hover:translate-x-1"> → </span>
   </Button>
 
-  <span class="text-text-gray-light block pt-20">Want to know more?</span>
+  <span class="text-text-gray-light block pt-30 md:pt-20">Want to know more?</span>
   <div
     class="flex w-full items-center justify-center gap-5 p-5 text-sm text-white backdrop-blur-[1px]"
   >

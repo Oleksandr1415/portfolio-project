@@ -5,6 +5,8 @@ import RoadmapDesktop from './roadmap-desktop.astro';
 import Circle from '@/assets/svgs/circle.astro';
 import { roadmapHistory, roadmapStopVariants, type RoadmapStopVariant } from '@/mock/roadmap';
 import { cn } from '@/utils/helpers';
+
+const activateTailwindUtilities = ['border-science', 'border-experience', 'border-germany'];
 ---
 
 <section
@@ -28,7 +30,7 @@ import { cn } from '@/utils/helpers';
         const selectedVariant = roadmapStopVariants[variant as RoadmapStopVariant];
 
         return (
-          <li class="flex items-center gap-3 rounded-xl border border-white/50 p-4">
+          <li class={cn(['flex items-center gap-3 rounded-xl border p-4', `border-${variant}`])}>
             <Circle class={cn(['size-6 shrink-0 fill-black', selectedVariant.circle])} />
             <span>
               <strong class="text-white capitalize">{variant}</strong> — {label}
