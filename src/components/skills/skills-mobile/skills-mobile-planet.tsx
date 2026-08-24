@@ -8,7 +8,7 @@ interface SkillsMobilePlanetProps {
   index: number;
 }
 
-const STICKY_TOP = '52%';
+const STICKY_TOP = '38%';
 
 function PlanetContent({ planet, index }: SkillsMobilePlanetProps) {
   return (
@@ -33,7 +33,7 @@ const SkillsMobilePlanetScroll = forwardRef<HTMLDivElement, SkillsMobilePlanetPr
     });
     const opacity = useTransform(scrollYProgress, [0, 0.3, 0.5, 0.65, 0.8], [0.4, 1, 1, 1, 0.4]);
     const scale = useTransform(scrollYProgress, [0, 0.3, 0.5, 0.65, 0.8], [0.65, 1, 1, 1, 0.65]);
-    const translate = -20;
+    const translate = -10;
     const transform = useMotionTemplate`translateY(${translate}%) scale(${scale})`;
 
     return (
@@ -73,7 +73,7 @@ const SkillsMobilePlanet = forwardRef<HTMLDivElement, SkillsMobilePlanetProps>(
           className="relative h-svh w-full py-8 last:pb-0"
         >
           <div
-            className="sticky aspect-square w-full -translate-y-1/2"
+            className="sticky aspect-square w-full translate-y-[-10%]"
             style={{ top: STICKY_TOP }}
           >
             <PlanetContent {...props} />
