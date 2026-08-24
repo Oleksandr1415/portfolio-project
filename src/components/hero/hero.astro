@@ -6,7 +6,6 @@ import { Dot } from '@lucide/astro';
 import Button from '@/partials/button/button';
 import TextWriter from '@/components/ui/text-writer';
 // import Lightfall from '@/components/ui/lightfall';
-import { cn } from '@/utils/helpers';
 
 const heroHeadlineTexts: string[] = ['Sasha', 'Frontend-Developer'];
 ---
@@ -53,12 +52,13 @@ const heroHeadlineTexts: string[] = ['Sasha', 'Frontend-Developer'];
   >
 
   <div data-slot="text" class="flex justify-center p-2 backdrop-blur-[1px]">
-    <span class="font-heading text-center text-6xl font-black text-white select-none md:text-8xl"
+    <span
+      class="font-heading h-[3em] text-center text-5xl font-black text-white select-none md:text-8xl"
       >I am
       <TextWriter
         className="bg-gradient-hero font-heading inline w-full overflow-hidden bg-clip-text font-black text-transparent"
         client:load
-        cursorClassName="bg-clip-text text-transparent bg-animate-pulse bg-gradient-hero"
+        cursorClassName="bg-clip-text text-transparent bg-gradient-hero"
         deleteSpeed={100}
         pauseTime={1000}
         texts={heroHeadlineTexts}
