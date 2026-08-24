@@ -1,0 +1,106 @@
+---
+import BaseLayout from '@/layouts/base-layout.astro';
+import ContentWrapperLayout from '../layouts/content-wrapper-layout.astro';
+import Headline from '@/partials/headline/headline';
+import Button from '@/partials/button/button';
+
+import { impressumData } from '@/mock/impressum';
+---
+
+<BaseLayout>
+  <ContentWrapperLayout>
+    <div data-slot="datenschutz-container" class="mt-nav flex w-full flex-col">
+      <div data-slot="datenschutz-headline" class="inline-block pt-5 sm:mx-auto">
+        <Headline
+          level={1}
+          variant="h1"
+          className="font-heading bg-gradient-hero mb-16 bg-clip-text text-5xl font-black text-transparent md:text-6xl"
+        >
+          Datenschutzerklärung
+        </Headline>
+      </div>
+
+      <div class="flex flex-col gap-14">
+        <section>
+          <Headline level={2} variant="h3" className="text-text-gray-white">
+            1. Verantwortlicher
+          </Headline>
+          <div class="text-text-gray-white text-lg">
+            <p>{impressumData.name} {impressumData.surname}</p>
+            <p>{impressumData.street}</p>
+            <p>{impressumData.plz}</p>
+            <p>E-Mail: <span class="text-text-gray-white">{impressumData.email}</span></p>
+          </div>
+        </section>
+
+        <section>
+          <Headline level={2} variant="h3" className="text-text-gray-white">
+            2. Allgemeines zur Datenverarbeitung
+          </Headline>
+          <p class="text-text-gray-light leading-relaxed">
+            Diese Website verwendet keine Cookies, kein Tracking und keine Analyse-Tools. Es werden
+            ausschließlich die technisch notwendigen Daten verarbeitet, die beim Aufruf der Website
+            automatisch durch unseren Hosting-Anbieter erhoben werden.
+          </p>
+        </section>
+
+        <section>
+          <Headline level={2} variant="h3" className="text-text-gray-white"> 3. Hosting </Headline>
+          <p class="text-text-gray-light leading-relaxed">
+            Diese Website wird bei Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA
+            gehostet. Beim Aufruf der Website erhebt Vercel automatisch sogenannte Server-Log-Files,
+            die Ihr Browser übermittelt. Dazu gehören: IP-Adresse, Datum und Uhrzeit der Anfrage,
+            Browsertyp und -version, verwendetes Betriebssystem sowie die aufgerufene Seite. Diese
+            Daten sind technisch erforderlich, um die Website sicher und stabil auszuliefern, und
+            werden nicht mit anderen Datenquellen zusammengeführt.
+          </p>
+          <p class="text-text-gray-light mt-3 leading-relaxed">
+            Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO aus unserem
+            berechtigten Interesse an der technischen Bereitstellung und Sicherheit unseres
+            Internetauftritts. Da Vercel Inc. mit Sitz in den USA verarbeitet, kann eine
+            Datenübermittlung in ein Drittland stattfinden; Vercel verweist hierzu auf eigene
+            Datenschutzmaßnahmen und Standardvertragsklauseln, die auf der Website von Vercel
+            einsehbar sind.
+          </p>
+        </section>
+
+        <section>
+          <Headline level={2} variant="h3" className="text-text-gray-white"> 4. Cookies </Headline>
+          <p class="text-text-gray-light leading-relaxed">Diese Website setzt keine Cookies ein.</p>
+        </section>
+
+        <section>
+          <Headline level={2} variant="h3" className="text-text-gray-white">
+            5. Schriftarten
+          </Headline>
+          <p class="text-text-gray-light leading-relaxed">
+            Diese Website nutzt lokal eingebundene Schriftarten (Self-Hosting). Es findet keine
+            Verbindung zu externen Font-Anbietern statt, und es werden dabei keine Daten an Dritte
+            übermittelt.
+          </p>
+        </section>
+
+        <section class="border-t border-white/10 pt-10">
+          <Headline level={2} variant="h3" className="text-text-gray-white">
+            6. Ihre Rechte
+          </Headline>
+          <p class="text-text-gray-light leading-relaxed">
+            Sie haben jederzeit das Recht auf Auskunft über die zu Ihrer Person gespeicherten Daten,
+            deren Berichtigung, Löschung oder Einschränkung der Verarbeitung sowie ein
+            Widerspruchsrecht gegen die Verarbeitung und ein Recht auf Datenübertragbarkeit. Zudem
+            steht Ihnen ein Beschwerderecht bei einer Datenschutzaufsichtsbehörde zu.
+          </p>
+        </section>
+      </div>
+
+      <Button
+        className="group my-20 inline-flex h-15 items-center justify-center gap-4 self-center p-4"
+        href="/"
+        variant="outline"
+      >
+        <span class="transition-transform duration-300 group-hover:-translate-x-1">←</span>
+        Zurück zur Startseite
+      </Button>
+    </div>
+  </ContentWrapperLayout>
+</BaseLayout>
