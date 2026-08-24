@@ -25,3 +25,4 @@ pnpm-debug.log*
 
 # trash-bin for me
 trash-bin/
+.vercel
