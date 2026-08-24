@@ -1,0 +1,85 @@
+---
+import BaseLayout from '@/layouts/base-layout.astro';
+import ContentWrapperLayout from '../layouts/content-wrapper-layout.astro';
+import Headline from '@/partials/headline/headline';
+import Button from '@/partials/button/button';
+
+import { impressumData } from '@/mock/impressum';
+---
+
+<BaseLayout>
+  <ContentWrapperLayout>
+    <div data-slot="impressum-container" class="mt-nav flex w-full flex-col">
+      <div data-slot="impressum-headline" class="inline-block pt-15 sm:mx-auto">
+        <Headline
+          level={1}
+          variant="h1"
+          className="font-heading bg-gradient-hero mb-16 bg-clip-text text-5xl font-black text-transparent md:text-6xl"
+        >
+          Impressum
+        </Headline>
+      </div>
+
+      <div class="grid grid-cols-1 gap-x-12 gap-y-14 sm:grid-cols-2">
+        <section data-slot="">
+          <Headline level={2} variant="h3" className="text-text-gray-light">
+            Angaben gemäß § 5 DDG
+          </Headline>
+          <div class="text-lg text-white">
+            <p>{impressumData.name} {impressumData.surname}</p>
+            <p>{impressumData.street}</p>
+            <p>{impressumData.plz}</p>
+            <p>{impressumData.country}</p>
+          </div>
+        </section>
+
+        <section>
+          <Headline level={2} variant="h3" className="text-text-gray-light"> Kontakt </Headline>
+          <div class="text-lg text-white">
+            <p>E-Mail: <span class="text-text-gray-white">{impressumData.email}</span></p>
+            <p>Telefon: <span class="text-text-gray-white">{impressumData.telefon}</span></p>
+          </div>
+        </section>
+
+        <section>
+          <Headline level={2} variant="h3" className="text-text-gray-light">
+            Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV
+          </Headline>
+          <div class="text-lg text-white">
+            <p>{impressumData.name} {impressumData.surname}</p>
+            <p>{impressumData.street}</p>
+            <p>{impressumData.plz}</p>
+          </div>
+        </section>
+
+        <section class="border-t border-white/10 pt-10 sm:border-t-0 sm:pt-0">
+          <Headline level={2} variant="h3" className="text-text-gray-light">
+            Haftungsausschluss
+          </Headline>
+          <p class="text-text-gray-light leading-relaxed">
+            Die Inhalte dieser Website wurden mit größter Sorgfalt erstellt. Für die Richtigkeit,
+            Vollständigkeit und Aktualität der Inhalte kann jedoch keine Gewähr übernommen werden.
+          </p>
+        </section>
+
+        <section class="sm:col-span-2">
+          <Headline level={2} variant="h3" className="text-text-gray-light text-3xl">
+            Haftung für Links
+          </Headline>
+          <p class="text-text-gray-light leading-relaxed">
+            Diese Website enthält ggf. Links zu externen Websites Dritter, auf deren Inhalte kein
+            Einfluss besteht. Für diese fremden Inhalte kann daher keine Gewähr übernommen werden.
+          </p>
+        </section>
+      </div>
+      <Button
+        className="group my-20 inline-flex h-15 items-center justify-center gap-4 self-center p-4"
+        href="/"
+        variant="outline"
+      >
+        <span class="transition-transform duration-300 group-hover:-translate-x-1">←</span>
+        Zurück zur Startseite
+      </Button>
+    </div>
+  </ContentWrapperLayout>
+</BaseLayout>

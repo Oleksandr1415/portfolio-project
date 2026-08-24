@@ -2,12 +2,14 @@
 import Particles from '@/components/ui/particles';
 ---
 
-<!-- <div class="relative bg-black"> -->
-<div class="md:page-background relative z-1 min-h-screen w-screen bg-[#050508]">
-  <div data-slot="page-content" class="mx-auto w-full px-4 md:px-10">
+<div
+  data-slot="page-content-wrapper"
+  class="md:page-background relative z-1 min-h-screen w-screen bg-[#050508]"
+>
+  <div data-slot="page-content" class="mx-auto w-full max-w-300 px-4 md:px-10">
     <slot />
   </div>
-  <div class="absolute top-0 left-0 -z-1 h-full w-screen">
+  <div data-slot="page-wrapper-background" class="absolute top-0 left-0 -z-1 h-full w-screen">
     <Particles
       client:load
       particleColors={['#ffffff']}

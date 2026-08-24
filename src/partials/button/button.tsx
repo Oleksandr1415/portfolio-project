@@ -1,6 +1,6 @@
 import { cn } from '@/utils/helpers';
 
-type ButtonVariants = 'primary' | 'empty';
+type ButtonVariants = 'primary' | 'outline';
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -17,8 +17,8 @@ const variants: Record<NonNullable<ButtonProps['variant']>, string[]> = {
     'group relative overflow-hidden px-8 text-sm font-semibold tracking-wide text-white',
     '',
   ],
-  empty: [
-    'w-full max-w-100 min-w-35 border border-white/20 bg-transparent text-text-gray-lighter font-semibold tracking-widest md:max-w-25',
+  outline: [
+    'w-full max-w-100 min-w-35 border border-white/20 bg-transparent text-text-gray-lighter font-semibold tracking-widest md:max-w-45',
     'transition-colors duration-300',
     'hover:border-white/60 hover:text-white',
   ],
@@ -44,7 +44,7 @@ export default function Button({
   }
 
   return (
-    <a href={href} className={cn([BASE_CLASS, ...variants.empty, className])}>
+    <a href={href} className={cn([BASE_CLASS, ...variants.outline, className])}>
       {children}
     </a>
   );

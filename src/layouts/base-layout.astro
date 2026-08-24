@@ -1,5 +1,6 @@
 ---
 import '@/styles/global.css';
+import Nav from '@/components/nav/nav.astro';
 ---
 
 <html lang="en">
@@ -16,6 +17,9 @@ import '@/styles/global.css';
     <title>Portfolio | Oleksandr</title>
   </head>
   <body class="overflow-x-hidden scroll-smooth font-sans text-white">
-    <slot />
+    <Nav />
+    <main>
+      <slot />
+    </main>
   </body>
 </html>
