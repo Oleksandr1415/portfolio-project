@@ -1,5 +1,11 @@
 ---
 import HeadlineBlock from '@/partials/headline/headline-block';
+import { medals, type Medal } from '@/mock/about';
+
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <section id="about" data-slot="about-section" class="w-full bg-black mask-y-from-95% p-4 pt-0">
@@ -12,12 +18,12 @@ import HeadlineBlock from '@/partials/headline/headline-block';
         className="items-start"
         headlineClass=""
         headlineVariant="h2"
-        subHeadline="About"
+        subHeadline={t('nav.about')}
         subHeadlineClass="text-subheadline"
-        postHeadline="I am a front-end developer."
+        postHeadline={t('about.postHeadline')}
         postHeadlineClass="bg-gradient-text pt-2 text-transparent"
       >
-        My name is Sasha
+        {t('about.headline')}
       </HeadlineBlock>
 
       <p class="text-text-gray pt-7 text-base font-light">
@@ -52,30 +58,14 @@ import HeadlineBlock from '@/partials/headline/headline-block';
     </section>
 
     <dl class="text-text-gray grid grid-cols-2 gap-4 pt-16">
-      <div
-        class="align-center flex w-full flex-col-reverse justify-center rounded-2xl border border-white/10 bg-white/3 p-6"
-      >
-        <dt class="text-center text-base">Tools & Technologies</dt>
-        <dd class="bg-gradient-text text-center text-4xl font-extrabold">20+</dd>
-      </div>
-      <div
-        class="align-center flex w-full flex-col-reverse justify-center rounded-2xl border border-white/10 bg-white/3 p-6"
-      >
-        <dt class="text-center text-base">Languages Spoken</dt>
-        <dd class="bg-gradient-text text-center text-4xl font-extrabold">4</dd>
-      </div>
-      <div
-        class="align-center flex w-full flex-col-reverse justify-center rounded-2xl border border-white/10 bg-white/3 p-6"
-      >
-        <dt class="text-center text-base">Degrees</dt>
-        <dd class="bg-gradient-text text-center text-4xl font-extrabold">2(+1)</dd>
-      </div>
-      <div
-        class="align-center flex w-full flex-col-reverse justify-center rounded-2xl border border-white/10 bg-white/3 p-6"
-      >
-        <dt class="text-center text-base">Years training</dt>
-        <dd class="bg-gradient-text text-center text-4xl font-extrabold">1+</dd>
-      </div>
+      {
+        medals.map((medal: Medal) => (
+          <div class="align-center flex w-full flex-col-reverse justify-center rounded-2xl border border-white/10 bg-white/3 p-6">
+            <dt class="text-center text-base">{t(medal.i18nExcerptKey)}</dt>
+            <dd class="bg-gradient-text text-center text-4xl font-extrabold">{medal.value}</dd>
+          </div>
+        ))
+      }
     </dl>
   </div>
 </section>
