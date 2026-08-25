@@ -132,8 +132,7 @@ export default function ContactForm() {
         type="submit"
         disabled={status === 'sending'}
         className={cn([
-          'group from-primary to-accent mt-2 inline-flex h-14 items-center justify-center gap-2 rounded-full bg-linear-to-r px-8 text-sm font-semibold tracking-wide text-white transition-transform duration-300',
-          'hover:-translate-y-0.5',
+          'group from-primary to-accent mt-2 inline-flex h-14 items-center justify-center gap-2 rounded-full bg-linear-to-r px-8 text-sm font-semibold tracking-wide text-white transition-transform duration-300 hover:border hover:border-white/80',
           status === 'sending' && 'cursor-not-allowed opacity-60',
         ])}
       >
