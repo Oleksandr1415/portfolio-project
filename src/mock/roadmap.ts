@@ -136,7 +136,7 @@ export const roadmapStops: RoadmapStop[] = [
 
 export const roadmapStopsEnglish: RoadmapStop[] = [
   {
-    badges: ['finished'],
+    badges: ['Bachelor', 'Uni'],
     badgesVariant: 'science',
     description:
       'Field of study: Programming theory and technology. Finished (translated and approved in Germany).',
@@ -148,7 +148,7 @@ export const roadmapStopsEnglish: RoadmapStop[] = [
     variant: 'science',
   },
   {
-    badges: ['finished'],
+    badges: ['Master', 'Uni', 'Started'],
     badgesVariant: 'science',
     description: 'Field of study: Physics of nanosystems. Finished with regards.',
     headlineBlock: {
@@ -159,7 +159,7 @@ export const roadmapStopsEnglish: RoadmapStop[] = [
     variant: 'science',
   },
   {
-    badges: ['internship'],
+    badges: ['Internship'],
     badgesVariant: 'experience',
     description:
       'Developing a web-application with Java, PostgreSQL, TypeScript, React. OAuth2/OIDC-Integration and Database design',
@@ -171,7 +171,7 @@ export const roadmapStopsEnglish: RoadmapStop[] = [
     variant: 'experience',
   },
   {
-    badges: ['job'],
+    badges: ['Job'],
     badgesVariant: 'experience',
     description:
       'EXADS Ad-Tech-Platform: TypeScript, Strict Null Checks, Refactoring, Webcomponents for Self-Service & Real-time statistics.',
@@ -183,7 +183,7 @@ export const roadmapStopsEnglish: RoadmapStop[] = [
     variant: 'experience',
   },
   {
-    badges: ['finished'],
+    badges: ['Master', 'Uni', 'finished'],
     badgesVariant: 'science',
     description: "Focused on Master's project and exams. ",
     headlineBlock: {
@@ -206,19 +206,19 @@ export const roadmapStopsEnglish: RoadmapStop[] = [
     variant: 'experience',
   },
   {
-    badges: ['course'],
+    badges: ['Full time job'],
     badgesVariant: 'experience',
     description:
       'JavaScript components Migration to React as part of a multi-tenant document governance platform for public-sector organizations.',
     headlineBlock: {
-      headline: 'Entwickler',
+      headline: 'Frontend Entwickler',
       subHeadline: 'Aug 2021 – Mar 2023',
       postHeadline: 'Intecracy Group, Kyiv',
     },
     variant: 'experience',
   },
   {
-    badges: ['not finished'],
+    badges: ['Ph.D.', 'Uni', 'Not finished'],
     badgesVariant: 'science',
     description: 'Conducted research in Computer Engineering before relocating to Germany.',
     headlineBlock: {
@@ -229,7 +229,7 @@ export const roadmapStopsEnglish: RoadmapStop[] = [
     variant: 'science',
   },
   {
-    badges: ['finished'],
+    badges: ['Language', 'Integration'],
     badgesVariant: 'germany',
     description:
       'Intensive language studies from beginner to C1 level. Foundation for a new professional career in Germany.',
@@ -241,7 +241,7 @@ export const roadmapStopsEnglish: RoadmapStop[] = [
     variant: 'germany',
   },
   {
-    badges: ['finished'],
+    badges: ['...cooming soon'],
     badgesVariant: 'germany',
     description:
       'Internship as a Front-End Developer — sorting out how the German job market works.',
@@ -266,22 +266,22 @@ export const roadmapStopVariants: Record<RoadmapStopVariant, RoadmapStopVariants
   science: {
     container: 'bg-primary-light/10 border-primary-light/20',
     line: 'via-primary',
-    postHeadlineClass: 'text-science/80 ',
-    subHeadlineClass: 'text-science/70',
+    postHeadlineClass: 'text-science ',
+    subHeadlineClass: 'text-science',
     circle: 'stroke-science',
   },
   experience: {
     container: 'bg-experience/10 border-experience/20',
     line: 'via-experience/80',
-    postHeadlineClass: 'text-experience/80 ',
-    subHeadlineClass: 'text-experience/70',
+    postHeadlineClass: 'text-experience ',
+    subHeadlineClass: 'text-experience',
     circle: 'stroke-experience',
   },
   germany: {
     container: 'bg-germany/12 border-germany/30',
     line: 'via-germany',
-    postHeadlineClass: 'text-germany/85 ',
-    subHeadlineClass: 'text-germany/70',
+    postHeadlineClass: 'text-germany ',
+    subHeadlineClass: 'text-germany',
     circle: 'stroke-germany',
   },
 };

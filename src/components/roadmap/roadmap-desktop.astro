@@ -2,6 +2,7 @@
 import { cn } from '@/utils/helpers';
 import RoadmapCard from './roadmap-card.astro';
 import { roadmapStopsEnglish } from '@/mock/roadmap';
+import Badges from '@/partials/badges/badges';
 
 const leftStops = roadmapStopsEnglish.filter((_, index) => index % 2 === 0);
 const rightStops = roadmapStopsEnglish.filter((_, index) => index % 2 === 1);
@@ -31,7 +32,16 @@ const roadmapClasses = {
             data-roadmap-variant={stop.variant}
             class={cn(['', roadmapClasses.liClass])}
           >
-            <RoadmapCard stop={stop} class={roadmapClasses.roadmapCardClass} />
+            <RoadmapCard stop={stop} class={roadmapClasses.roadmapCardClass}>
+              <Badges
+                badgeList={stop.badges}
+                badgeClass="text-[10px]"
+                className="pb-4"
+                icon="chevronRight"
+                style={stop.badgesVariant}
+                iconSize={15}
+              />
+            </RoadmapCard>
           </li>
         );
       })
@@ -47,7 +57,16 @@ const roadmapClasses = {
             data-roadmap-variant={stop.variant}
             class={cn(['', roadmapClasses.liClass])}
           >
-            <RoadmapCard stop={stop} class={roadmapClasses.roadmapCardClass} />
+            <RoadmapCard stop={stop} class={roadmapClasses.roadmapCardClass}>
+              <Badges
+                badgeList={stop.badges}
+                className="pb-4"
+                badgeClass="text-[10px]"
+                icon="chevronRight"
+                style={stop.badgesVariant}
+                iconSize={15}
+              />
+            </RoadmapCard>
           </li>
         );
       })

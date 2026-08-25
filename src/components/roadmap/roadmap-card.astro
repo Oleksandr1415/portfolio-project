@@ -26,6 +26,7 @@ const selectedVariant = roadmapStopVariants[stop.variant];
       className,
     ])}
   >
+    <slot />
     <HeadlineBlock
       data-slot="roadmap-stop-headline"
       className="items-start text-white/90"
