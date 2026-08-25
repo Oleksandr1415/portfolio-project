@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { cn } from '@/utils/helpers';
+import Button from '@/partials/button/button';
 
 const MAX_FILES = 3;
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
@@ -128,16 +128,9 @@ export default function ContactForm() {
         <p className="text-sm text-green-400">Message sent — thanks for reaching out!</p>
       )}
 
-      <button
-        type="submit"
-        disabled={status === 'sending'}
-        className={cn([
-          'group from-primary to-accent mt-2 inline-flex h-14 items-center justify-center gap-2 rounded-full bg-linear-to-r px-8 text-sm font-semibold tracking-wide text-white transition-transform duration-300 hover:border hover:border-white/80',
-          status === 'sending' && 'cursor-not-allowed opacity-60',
-        ])}
-      >
+      <Button type="submit" variant="primary" className="mt-2" disabled={status === 'sending'}>
         {status === 'sending' ? 'Sending…' : 'Send message'}
-      </button>
+      </Button>
     </form>
   );
 }

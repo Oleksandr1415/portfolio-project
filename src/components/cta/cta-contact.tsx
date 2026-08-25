@@ -1,17 +1,14 @@
 import { useState } from 'react';
 import { Mail, Send, X } from 'lucide-react';
 import ContactForm from '@/components/ui/contact-form.tsx';
+import Button from '@/partials/button/button';
 
 export default function CtaContact() {
   const [open, setOpen] = useState(false);
 
   return (
     <div className="mb-40 flex w-full flex-col items-center">
-      <button
-        type="button"
-        onClick={() => setOpen((prev) => !prev)}
-        className="group bg-gradient-hero hover:bg-gradient-hero-hover mt-8 flex max-w-40 items-center justify-center rounded-[9999px] p-4 text-white no-underline duration-300"
-      >
+      <Button variant="primary" className="mt-8" onClick={() => setOpen((prev) => !prev)}>
         <div className="relative size-5">
           {open && <X className="absolute top-0 left-0 size-5" />}
           {!open && (
@@ -21,8 +18,8 @@ export default function CtaContact() {
             </>
           )}
         </div>
-        <span className="pl-2 transition-all duration-300">{open ? 'Close' : 'Say Hello !'}</span>
-      </button>
+        <span className="transition-all duration-300">{open ? 'Close' : 'Say Hello !'}</span>
+      </Button>
 
       <div
         className={`w-full overflow-hidden transition-all duration-500 ease-out ${
