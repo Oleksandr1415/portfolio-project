@@ -16,7 +16,7 @@ const BASE_CLASS =
   'inline-flex items-center justify-center  font-semibold rounded-full transition-transform duration-300 h-14 disabled:cursor-not-allowed disabled:opacity-60 cursor-pointer';
 
 const variants: Record<NonNullable<ButtonProps['variant']>, string[]> = {
-  primary: ['group relative overflow-hidden px-8 text-xl  tracking-wide text-white'],
+  primary: ['group relative overflow-hidden px-8 text-lg tracking-wide text-white'],
   outline: [
     'w-full max-w-100 min-w-35 border text-md border-white/20 bg-transparent text-text-gray-lighter tracking-widest md:max-w-45',
     'transition-colors duration-300',
