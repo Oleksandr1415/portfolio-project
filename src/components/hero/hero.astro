@@ -1,14 +1,17 @@
 ---
 import Picture from 'astro/components/Picture.astro';
 import heroBg from '@/assets/heroBg.jpg';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 
 import { Dot } from '@lucide/astro';
 import Button from '@/partials/button/button';
 import TextWriter from '@/components/ui/text-writer';
-import Badges from '@/partials/badges/badges';
 // import Lightfall from '@/components/ui/lightfall';
 
-const heroHeadlineTexts: string[] = ['Sasha', 'Frontend-Developer'];
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const heroHeadlineTexts: string[] = [t('hero.name'), t('hero.title')];
 ---
 
 <section
@@ -53,11 +56,13 @@ const heroHeadlineTexts: string[] = ['Sasha', 'Frontend-Developer'];
   >
   </div>
 
-  <span class="text-text-gray-white pt-nav mx-auto pl-2 tracking-[8px] uppercase">Hello</span>
+  <span class="text-text-gray-white pt-nav mx-auto pl-2 tracking-[8px] uppercase"
+    >{t('hero.greeting')}</span
+  >
   <div data-slot="text" class="flex justify-center p-2 backdrop-blur-[1px]">
     <span
       class="font-heading h-auto text-center text-6xl font-black text-white select-none md:h-auto md:text-8xl"
-      >I am
+      >{t('hero.iAm')}
       <TextWriter
         className="bg-gradient-hero font-heading inline w-full overflow-hidden bg-clip-text font-black text-transparent"
         client:load
@@ -75,20 +80,20 @@ const heroHeadlineTexts: string[] = ['Sasha', 'Frontend-Developer'];
   </span>
 
   <Button href="#contact" className="z-1 mt-10" variant="primary">
-    Let's talk
+    {t('button.talk')}
     <span class="transition-transform duration-300 group-hover:translate-x-1"> → </span>
   </Button>
 
-  <span class="text-text-gray-light block pt-30 md:pt-20">Want to know more?</span>
+  <span class="text-text-gray-light block pt-30 md:pt-20">{t('hero.knowMore')}</span>
   <div
     class="flex w-full items-center justify-center gap-5 p-5 text-sm text-white backdrop-blur-[1px]"
   >
     <Button href="#about" variant="outline">
-      <span class="text-inherit">About</span>
+      <span class="text-inherit">{t('nav.about')}</span>
     </Button>
 
     <Button href="#skills" variant="outline">
-      <span class="text-inherit">Skills</span>
+      <span class="text-inherit">{t('nav.skills')}</span>
     </Button>
   </div>
 </section>
