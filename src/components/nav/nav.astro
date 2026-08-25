@@ -2,9 +2,10 @@
 import { Menu, X } from '@lucide/astro';
 import NavItemList from './nav-item-list.astro';
 import { cn } from '@/utils/helpers';
-import { getLangFromUrl } from '@/i18n/utils';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <nav
@@ -17,7 +18,7 @@ const lang = getLangFromUrl(Astro.url);
       data-slot="logo"
       class="font-heading hover-text-underline relative text-2xl font-black tracking-[4px] text-white transition-all duration-300"
     >
-      Oleksandr
+      {t('nav.logo')}
     </a>
     <button data-slot="nav-menu-toggle" class="relative size-7 md:hidden">
       <Menu

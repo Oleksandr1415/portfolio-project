@@ -1,5 +1,10 @@
 ---
 import { menuElements } from '@/mock/nav-menu-elements';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
 const baseClass = ['relative inline-block transition-all duration-300 hover-text-underline'];
 
 const { class: className, dataSlot = 'menu' } = Astro.props;
@@ -7,12 +12,18 @@ const { class: className, dataSlot = 'menu' } = Astro.props;
 
 <ul data-slot={dataSlot} class:list={['text-md gap-4 py-2 font-bold text-white', className]}>
   {
-    menuElements.map((menuLink) => (
-      <li class="flex h-full items-center">
-        <a href={menuLink.href} data-slot="menu-item" class:list={[baseClass, menuLink.linkClass]}>
-          {menuLink.title}
-        </a>
-      </li>
-    ))
+    menuElements.map((menuLink) => {
+      return (
+        <li class="flex h-full items-center">
+          <a
+            href={menuLink.href}
+            data-slot="menu-item"
+            class:list={[baseClass, menuLink.linkClass]}
+          >
+            {t(menuLink.i18nKey)}
+          </a>
+        </li>
+      );
+    })
   }
 </ul>

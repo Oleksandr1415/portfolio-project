@@ -6,13 +6,14 @@ import Button from '@/partials/button/button';
 
 import { impressumData } from '@/mock/impressum';
 import { languages } from '@/i18n/ui';
-import { getLangFromUrl } from '@/i18n/utils';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 
 export function getStaticPaths() {
   return Object.keys(languages).map((locale) => ({ params: { locale } }));
 }
 
 const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <BaseLayout>
@@ -81,12 +82,12 @@ const lang = getLangFromUrl(Astro.url);
         </section>
       </div>
       <Button
-        className="group my-20 inline-flex h-15 items-center justify-center gap-4 self-center p-4"
+        className="group my-20 inline-flex h-15 w-full items-center justify-center gap-4 self-center p-4 md:max-w-60"
         href={`/${lang}`}
         variant="outline"
       >
         <span class="transition-transform duration-300 group-hover:-translate-x-1">←</span>
-        Zurück zur Startseite
+        {t('impressum.backToStart')}
       </Button>
     </div>
   </ContentWrapperLayout>

@@ -7,6 +7,7 @@ export const defaultLang = 'en';
 
 export const ui = {
   en: {
+    'nav.logo': 'Oleksandr',
     'nav.about': 'About me',
     'nav.skills': 'Skills',
     'nav.roadmap': 'Roadmap',
@@ -15,8 +16,10 @@ export const ui = {
     'hero.subtitle': 'fast & curious',
     'button.talk': "Let's talk",
     'button.sayHello': 'Say Hello !',
+    'impressum.backToStart': 'Zurück zur Startseite',
   },
   de: {
+    'nav.logo': 'Oleksandr',
     'nav.about': 'Über mich',
     'nav.skills': 'Fähigkeiten',
     'nav.roadmap': 'Werdegang',
@@ -25,5 +28,6 @@ export const ui = {
     'hero.subtitle': 'schnell & neugierig',
     'button.talk': 'Sprechen wir',
     'button.sayHello': 'Sag Hallo !',
+    'impressum.backToStart': 'Back to starting page',
   },
 } as const;
