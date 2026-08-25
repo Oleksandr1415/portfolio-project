@@ -1,22 +1,8 @@
 ---
-import BaseLayout from '../layouts/base-layout.astro';
-import ContentWrapperLayout from '../layouts/content-wrapper-layout.astro';
+import { defaultLang } from '@/i18n/ui';
+import { getRelativeLocaleUrl } from 'astro:i18n';
 
-import Hero from '@/components/hero/hero.astro';
-import About from '@/components/about/about.astro';
-import Skills from '@/components/skills/skills.astro';
-import CTA from '@/components/cta/cta.astro';
-import Footer from '@/components/footer/footer.astro';
-import Roadmap from '@/components/roadmap/roadmap.astro';
+const lang = Astro.request.headers.get('accept-language') || defaultLang;
+
+return Astro.redirect(getRelativeLocaleUrl(lang, ''), 301);
 ---
-
-<BaseLayout>
-  <Hero />
-  <ContentWrapperLayout>
-    <About />
-    <Skills />
-    <Roadmap />
-    <CTA />
-  </ContentWrapperLayout>
-  <Footer />
-</BaseLayout>
