@@ -35,14 +35,16 @@ export default function SkillsSolarSystem({
       <div className="relative z-2 aspect-square w-[90vmin]">
         {/* Sun */}
         <div className="planet-core-desktop bg-gradient-planet absolute top-1/2 left-1/2 flex h-[25%] w-[25%] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full p-4">
-          <span className="pb-4 text-center text-4xl font-bold text-purple-200 select-none">
-            Core Skills
-          </span>
-          <Badges
-            badgeList={coreSkills}
-            badgeClass="bg-primary-dark border border-primary-light text-white"
-            className="overflow-hidden"
-          />
+          <div className="relative size-full">
+            <span className="absolute top-0 left-[50%] translate-x-[-50%] -translate-y-full pb-4 text-center text-2xl font-bold text-nowrap text-purple-200 select-none">
+              Core Skills
+            </span>
+            <Badges
+              badgeList={coreSkills}
+              badgeClass="bg-primary-dark h-5 border border-primary-light text-white"
+              className="flex h-full content-center items-center justify-center gap-2 overflow-hidden"
+            />
+          </div>
         </div>
 
         {/* Planets (each with its own moons) */}
