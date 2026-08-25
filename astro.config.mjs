@@ -1,22 +1,27 @@
 // @ts-check
-import { defineConfig } from "astro/config";
+import { defineConfig } from 'astro/config';
 
-import react from "@astrojs/react";
+import react from '@astrojs/react';
 
-import tailwindcss from "@tailwindcss/vite";
+import tailwindcss from '@tailwindcss/vite';
+
+import vercel from '@astrojs/vercel';
 
 // https://astro.build/config
 export default defineConfig({
-	server: {
-		host: true, // binds to 0.0.0.0
-	},
+  output: 'static',
+  server: {
+    host: true, // binds to 0.0.0.0
+  },
 
-	integrations: [react()],
+  integrations: [react()],
 
-	vite: {
-		server: {
-			allowedHosts: ["portfolio-project.ddev.site"],
-		},
-		plugins: [tailwindcss()],
-	},
+  vite: {
+    server: {
+      allowedHosts: ['portfolio-project.ddev.site'],
+    },
+    plugins: [tailwindcss()],
+  },
+
+  adapter: vercel(),
 });
