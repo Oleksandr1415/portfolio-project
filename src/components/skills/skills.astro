@@ -3,6 +3,10 @@ import HeadlineBlock from '@/partials/headline/headline-block.tsx';
 import { skillPlanets, coreSkills } from '@/mock/skills.ts';
 import SkillsMobile from './skills-mobile/index.astro';
 import SkillsDesktop from './skills-desktop';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <section
@@ -13,10 +17,11 @@ import SkillsDesktop from './skills-desktop';
   <HeadlineBlock
     client:load
     headlineVariant="h2"
-    subHeadline="Expertise"
-    postHeadline="Tap a category to explore"
+    subHeadline={t('nav.skills')}
+    postHeadline={t('skills.postHeadline')}
+    postHeadlineClass="hidden lg:block"
   >
-    Skill Planets
+    {t('skills.headline')}
   </HeadlineBlock>
 
   <SkillsMobile skillPlanets={skillPlanets} coreSkills={coreSkills} />
