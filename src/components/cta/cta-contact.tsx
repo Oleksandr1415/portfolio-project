@@ -18,7 +18,10 @@ export default function CtaContact() {
             </>
           )}
         </div>
-        <span className="transition-all duration-300">{open ? 'Close' : 'Say Hello !'}</span>
+        <span className="transition-all duration-300">
+          {/* TODO: translation for buttons */}
+          {open ? 'button.close' : 'button.sayHello'}
+        </span>
       </Button>
 
       <div

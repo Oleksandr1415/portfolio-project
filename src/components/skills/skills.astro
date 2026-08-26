@@ -17,11 +17,11 @@ const t = useTranslations(lang);
   <HeadlineBlock
     client:load
     headlineVariant="h2"
-    subHeadline={t('nav.skills')}
-    postHeadline={t('skills.postHeadline')}
+    subHeadline={t.nav.skills}
+    postHeadline={t.skills.postHeadline}
     postHeadlineClass="hidden lg:block"
   >
-    {t('skills.headline')}
+    {t.skills.headline}
   </HeadlineBlock>
 
   <SkillsMobile skillPlanets={skillPlanets} coreSkills={coreSkills} />

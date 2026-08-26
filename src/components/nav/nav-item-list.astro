@@ -1,6 +1,6 @@
 ---
 import { menuElements } from '@/mock/nav-menu-elements';
-import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+import { getHomeHashLink, getLangFromUrl, resolvePath, useTranslations } from '@/i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -8,6 +8,10 @@ const t = useTranslations(lang);
 const baseClass = ['relative inline-block transition-all duration-300 hover-text-underline'];
 
 const { class: className, dataSlot = 'menu' } = Astro.props;
+
+function resolveMenuHref(href: string) {
+  return href.startsWith('#') ? getHomeHashLink(lang, href) : href;
+}
 ---
 
 <ul data-slot={dataSlot} class:list={['text-md gap-4 py-2 font-bold text-white', className]}>
@@ -16,11 +20,11 @@ const { class: className, dataSlot = 'menu' } = Astro.props;
       return (
         <li class="flex h-full items-center">
           <a
-            href={menuLink.href}
+            href={resolveMenuHref(menuLink.href)}
             data-slot="menu-item"
             class:list={[baseClass, menuLink.linkClass]}
           >
-            {t(menuLink.i18nKey)}
+            {resolvePath(t, menuLink.i18nKey)}
           </a>
         </li>
       );

@@ -2,7 +2,7 @@
 import HeadlineBlock from '@/partials/headline/headline-block';
 import { medals, type Medal } from '@/mock/about';
 
-import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+import { getLangFromUrl, resolvePath, useTranslations } from '@/i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -18,12 +18,12 @@ const t = useTranslations(lang);
         className="items-start"
         headlineClass=""
         headlineVariant="h2"
-        subHeadline={t('nav.about')}
+        subHeadline={t.nav.about}
         subHeadlineClass="text-subheadline"
-        postHeadline={t('about.postHeadline')}
+        postHeadline={t.about.postHeadline}
         postHeadlineClass="bg-gradient-text pt-2 text-transparent"
       >
-        {t('about.headline')}
+        {t.about.headline}
       </HeadlineBlock>
 
       <p class="text-text-gray pt-7 text-base font-light">
@@ -61,7 +61,7 @@ const t = useTranslations(lang);
       {
         medals.map((medal: Medal) => (
           <div class="align-center flex w-full flex-col-reverse justify-center rounded-2xl border border-white/10 bg-white/3 p-6">
-            <dt class="text-center text-base">{t(medal.i18nExcerptKey)}</dt>
+            <dt class="text-center text-base">{resolvePath(t, medal.i18nExcerptKey)}</dt>
             <dd class="bg-gradient-text text-center text-4xl font-extrabold">{medal.value}</dd>
           </div>
         ))

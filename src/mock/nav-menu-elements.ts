@@ -1,7 +1,9 @@
+import type { TranslationKey } from '@/i18n/utils';
+
 // mock/menu.ts
 export interface MenuElement {
   href: string;
-  i18nKey: keyof typeof import('@/i18n/ui').ui.en;
+  i18nKey: TranslationKey;
   linkClass?: string;
 }
 

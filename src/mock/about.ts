@@ -1,5 +1,7 @@
+import type { TranslationKey } from '@/i18n/utils';
+
 export type Medal = {
-  i18nExcerptKey: keyof typeof import('@/i18n/ui').ui.en;
+  i18nExcerptKey: TranslationKey;
   value: string;
 };
 

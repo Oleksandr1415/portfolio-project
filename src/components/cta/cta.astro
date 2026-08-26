@@ -1,18 +1,22 @@
 ---
 import HeadlineBlock from '@/partials/headline/headline-block.tsx';
 import CtaContact from './cta-contact';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <section id="contact" data-slot="ending-cta" class="mx-auto max-w-125 pt-25">
   <div data-slot="footer-container" class="relative flex flex-col items-center justify-center">
     <HeadlineBlock
-      subHeadline="Contact"
+      subHeadline={t.nav.contact}
       headlineVariant="h2"
       headlineClass="text-white"
-      postHeadline="Something Great"
+      postHeadline={t.cta.postHeadline}
       postHeadlineClass="bg-gradient-text py-2 text-transparent text-5xl"
     >
-      Let's Build
+      {t.cta.headline}
     </HeadlineBlock>
 
     <p class="pt-7 text-center text-base text-white/42">

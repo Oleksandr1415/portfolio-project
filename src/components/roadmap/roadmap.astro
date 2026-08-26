@@ -5,6 +5,12 @@ import RoadmapDesktop from './roadmap-desktop.astro';
 import Circle from '@/assets/svgs/circle.astro';
 import { roadmapHistory, roadmapStopVariants, type RoadmapStopVariant } from '@/mock/roadmap';
 import { cn } from '@/utils/helpers';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const activateTailwindUtilities = ['border-science', 'border-experience', 'border-germany'];
 ---
 
 <section
@@ -16,10 +22,10 @@ import { cn } from '@/utils/helpers';
     data-slot="roadmap-header"
     className="text-white"
     headlineVariant="h2"
-    postHeadline="every opportunity on my way to where I am"
-    subHeadline="journey"
+    postHeadline={t.roadmap.postHeadline}
+    subHeadline={t.nav.roadmap}
   >
-    Life Roadmap
+    {t.roadmap.headline}
   </HeadlineBlock>
 
   <ul class="flex flex-col gap-3 pt-6 pb-10 text-sm text-white/80 md:flex-row md:gap-8">
