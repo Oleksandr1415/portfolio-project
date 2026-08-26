@@ -1,0 +1,77 @@
+---
+import { languages } from '@/i18n/ui';
+import { getLangFromUrl, getLocalizedUrl } from '@/i18n/utils';
+import { cn } from '@/utils/helpers';
+
+const lang = getLangFromUrl(Astro.url);
+const entries = Object.entries(languages) as [keyof typeof languages, string][];
+
+const { class: className, variant = 'desktop' } = Astro.props;
+const isDesktop = variant === 'desktop';
+---
+
+<div
+  data-slot="language-selector"
+  role="navigation"
+  aria-label="Language"
+  class:list={[isDesktop ? 'flex items-center' : 'flex flex-col items-center gap-4', className]}
+>
+  {
+    isDesktop ? (
+      <ul class="flex items-center gap-1 text-sm font-bold tracking-wide">
+        {entries.map(([code, label], index) => {
+          const isActive = code === lang;
+
+          return (
+            <>
+              {index > 0 && (
+                <li aria-hidden="true" class="px-1 text-white/25">
+                  |
+                </li>
+              )}
+              <li>
+                <a
+                  href={getLocalizedUrl(Astro.url, code)}
+                  hreflang={code}
+                  lang={code}
+                  aria-current={isActive ? 'page' : undefined}
+                  title={label}
+                  class={cn([
+                    'rounded-full px-2 py-0.5 transition-colors duration-300',
+                    isActive ? 'text-white' : 'text-white/45 hover:text-white/80',
+                  ])}
+                >
+                  {code.toUpperCase()}
+                </a>
+              </li>
+            </>
+          );
+        })}
+      </ul>
+    ) : (
+      <ul class="flex flex-col items-center gap-4 text-xl font-bold">
+        {entries.map(([code, label]) => {
+          const isActive = code === lang;
+
+          return (
+            <li>
+              <a
+                href={getLocalizedUrl(Astro.url, code)}
+                hreflang={code}
+                lang={code}
+                aria-current={isActive ? 'page' : undefined}
+                data-slot="menu-item"
+                class={cn([
+                  'hover-text-underline relative inline-block transition-all duration-300',
+                  isActive ? 'text-white' : 'text-white/55',
+                ])}
+              >
+                {label}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    )
+  }
+</div>

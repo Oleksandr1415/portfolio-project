@@ -2,8 +2,17 @@ import { useState } from 'react';
 import { Mail, Send, X } from 'lucide-react';
 import ContactForm from '@/components/ui/contact-form.tsx';
 import Button from '@/partials/button/button';
+import type { ui } from '@/i18n/ui';
 
-export default function CtaContact() {
+type ButtonLabels = {
+  [K in keyof Pick<(typeof ui)['en']['button'], 'sayHello' | 'close'>]: string;
+};
+
+export interface CtaContactProps {
+  labels: ButtonLabels;
+}
+
+export default function CtaContact({ labels }: CtaContactProps) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -19,8 +28,7 @@ export default function CtaContact() {
           )}
         </div>
         <span className="transition-all duration-300">
-          {/* TODO: translation for buttons */}
-          {open ? 'button.close' : 'button.sayHello'}
+          {open ? labels.close : labels.sayHello}
         </span>
       </Button>
 
