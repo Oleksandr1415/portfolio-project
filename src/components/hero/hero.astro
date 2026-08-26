@@ -2,6 +2,7 @@
 import Picture from 'astro/components/Picture.astro';
 import heroBg from '@/assets/heroBg.jpg';
 import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+import sashaHero from '@/assets/sashaHero.jpg';
 
 import { Dot } from '@lucide/astro';
 import Button from '@/partials/button/button';
@@ -42,7 +43,7 @@ const heroHeadlineTexts: string[] = [t.hero.name, t.hero.title];
 
   <!-- bg-image -->
   <Picture
-    src={heroBg}
+    src={sashaHero}
     alt=""
     formats={['avif', 'webp']}
     widths={[640, 1280, 1920]}
