@@ -17,8 +17,18 @@ const variants = {
   badge: 'text-[9px] font-semibold font-heading',
 };
 
+const variantToLevel: Record<NonNullable<HeadlineProps['variant']>, 1 | 2 | 3 | 4 | 5 | 6> = {
+  hero: 1,
+  h1: 1,
+  h2: 2,
+  h3: 3,
+  h4: 4,
+  label: 5,
+  badge: 6,
+};
+
 export default function Headline({ className, children, level, variant = 'h1' }: HeadlineProps) {
-  const selectedLevel = level || Object.keys(variants).indexOf(variant) * 1 + 1;
+  const selectedLevel = level ?? variantToLevel[variant];
   const Tag = `h${selectedLevel}` as `h${1 | 2 | 3 | 4 | 5 | 6}`;
   return <Tag className={cn(variants[variant], className)}>{children}</Tag>;
 }

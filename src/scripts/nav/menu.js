@@ -17,4 +17,8 @@ function toggleMenu() {
   closeMenu.classList.toggle('rotate-90');
   navMenu.classList.toggle('translate-y-[-70%]');
   menuBackground.classList.toggle('-translate-y-full');
+
+  const isOpen = navMenu.classList.contains('translate-y-[-70%]');
+  menuButton?.setAttribute('aria-expanded', String(isOpen));
+  menuButton?.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
 }

@@ -1,59 +1,110 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import Button from '@/partials/button/button';
-
-const MAX_FILES = 3;
-const MAX_FILE_SIZE = 5 * 1024 * 1024;
+import {
+  EMAIL_FORMAT_HINT,
+  EMAIL_INVALID_MESSAGE,
+  MAX_FILES,
+  MAX_MESSAGE_LENGTH,
+  isValidEmail,
+  validateContactForm,
+  validateIncomingFiles,
+} from '@/lib/contact-validation';
 
 export default function ContactForm() {
   const [files, setFiles] = useState<File[]>([]);
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [emailError, setEmailError] = useState('');
 
   function handleFiles(newFiles: FileList | null) {
     if (!newFiles) return;
-    const incoming = Array.from(newFiles);
-    const combined = [...files, ...incoming].slice(0, MAX_FILES);
 
-    for (const f of incoming) {
-      if (f.size > MAX_FILE_SIZE) {
-        setErrorMsg(`${f.name} is over 5MB.`);
-        return;
-      }
+    const incoming = Array.from(newFiles);
+    const validation = validateIncomingFiles(files, incoming);
+
+    if (!validation.ok) {
+      setErrorMsg(validation.error);
+      return;
     }
+
     setErrorMsg('');
-    setFiles(combined);
+    setFiles(validation.files);
   }
 
   function removeFile(index: number) {
     setFiles((prev) => prev.filter((_, i) => i !== index));
+    setErrorMsg('');
+  }
+
+  function validateEmailField(value: string) {
+    const trimmed = value.trim();
+
+    if (!trimmed) {
+      setEmailError('Email is required.');
+      return false;
+    }
+
+    if (!isValidEmail(trimmed)) {
+      setEmailError(EMAIL_INVALID_MESSAGE);
+      return false;
+    }
+
+    setEmailError('');
+    return true;
   }
 
   async function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
-    setStatus('sending');
     setErrorMsg('');
-    console.log('sending');
 
-    const formData = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const email = formData.get('email')?.toString().trim() ?? '';
+
+    if (!validateEmailField(email)) {
+      setStatus('error');
+      return;
+    }
+
+    const validation = validateContactForm({
+      name: formData.get('name')?.toString().trim() ?? '',
+      email,
+      message: formData.get('message')?.toString().trim() ?? '',
+      files,
+    });
+
+    if (!validation.ok) {
+      if ('field' in validation && validation.field === 'email') {
+        setEmailError(validation.error);
+      } else {
+        setErrorMsg(validation.error);
+      }
+      setStatus('error');
+      return;
+    }
+
+    setStatus('sending');
+
     files.forEach((file) => formData.append('files', file));
 
     try {
       const res = await fetch('/api/contact', { method: 'POST', body: formData });
       const data = await res.json();
-      console.log('try');
-      console.log('res:');
-      console.log(res);
 
       if (!res.ok) {
-        setErrorMsg(data.error ?? 'Something went wrong.');
+        if (data.error === EMAIL_INVALID_MESSAGE || data.error?.includes('email')) {
+          setEmailError(data.error);
+        } else {
+          setErrorMsg(data.error ?? 'Something went wrong.');
+        }
         setStatus('error');
         return;
       }
 
       setStatus('success');
+      setEmailError('');
       setFiles([]);
-      (e.target as HTMLFormElement).reset();
+      form.reset();
     } catch {
       setErrorMsg('Network error. Please try again.');
       setStatus('error');
@@ -61,30 +112,68 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="mx-auto flex w-full max-w-xl flex-col gap-5">
+    <form onSubmit={handleSubmit} className="mx-auto flex w-full max-w-xl flex-col gap-5" noValidate>
+      <label htmlFor="contact-name" className="sr-only">
+        Name
+      </label>
       <input
+        id="contact-name"
         name="name"
         placeholder="Name"
         required
+        autoComplete="name"
         className="rounded-full border border-white/20 bg-transparent px-6 py-3 text-white placeholder-white/40 transition-colors duration-300 outline-none focus:border-white/50"
       />
-      <input
-        name="email"
-        type="email"
-        placeholder="E-Mail"
-        required
-        className="rounded-full border border-white/20 bg-transparent px-6 py-3 text-white placeholder-white/40 transition-colors duration-300 outline-none focus:border-white/50"
-      />
+
+      <div className="flex flex-col gap-1">
+        <label htmlFor="contact-email" className="sr-only">
+          E-Mail
+        </label>
+        <input
+          id="contact-email"
+          name="email"
+          type="email"
+          inputMode="email"
+          autoComplete="email"
+          placeholder="name@example.com"
+          required
+          aria-invalid={emailError ? true : undefined}
+          aria-describedby="contact-email-hint contact-email-error"
+          onBlur={(e) => {
+            if (e.target.value.trim()) validateEmailField(e.target.value);
+          }}
+          onChange={() => {
+            if (emailError) setEmailError('');
+          }}
+          className={`rounded-full border bg-transparent px-6 py-3 text-white placeholder-white/40 transition-colors duration-300 outline-none focus:border-white/50 ${
+            emailError ? 'border-red-400/70' : 'border-white/20'
+          }`}
+        />
+        <p id="contact-email-hint" className="px-6 text-xs text-white/40">
+          {EMAIL_FORMAT_HINT}
+        </p>
+        {emailError && (
+          <p id="contact-email-error" role="alert" className="px-6 text-xs text-red-400">
+            {emailError}
+          </p>
+        )}
+      </div>
+
+      <label htmlFor="contact-message" className="sr-only">
+        Message
+      </label>
       <textarea
+        id="contact-message"
         name="message"
         placeholder="Message"
         required
         rows={5}
+        maxLength={MAX_MESSAGE_LENGTH}
         className="rounded-3xl border border-white/20 bg-transparent px-6 py-3 text-white placeholder-white/40 transition-colors duration-300 outline-none focus:border-white/50"
       />
 
-      <div
-        onClick={() => inputRef.current?.click()}
+      <label
+        htmlFor="contact-files"
         onDragOver={(e) => e.preventDefault()}
         onDrop={(e) => {
           e.preventDefault();
@@ -92,16 +181,16 @@ export default function ContactForm() {
         }}
         className="cursor-pointer rounded-3xl border border-dashed border-white/20 px-6 py-8 text-center text-white/50 transition-colors duration-300 hover:border-white/40"
       >
-        Drop files here or click to browse (max {MAX_FILES}, 5MB each)
+        Drop files here or click to browse (max {MAX_FILES}, 5MB each, 15MB total)
         <input
-          ref={inputRef}
+          id="contact-files"
           type="file"
           multiple
           accept=".pdf,.png,.jpg,.jpeg,.webp"
           onChange={(e) => handleFiles(e.target.files)}
           className="hidden"
         />
-      </div>
+      </label>
 
       {files.length > 0 && (
         <ul className="flex flex-col gap-2">
@@ -114,6 +203,7 @@ export default function ContactForm() {
               <button
                 type="button"
                 onClick={() => removeFile(i)}
+                aria-label={`Remove ${file.name}`}
                 className="text-white/40 hover:text-white"
               >
                 ✕
@@ -123,9 +213,15 @@ export default function ContactForm() {
         </ul>
       )}
 
-      {errorMsg && <p className="text-sm text-red-400">{errorMsg}</p>}
+      {errorMsg && (
+        <p role="alert" className="text-sm text-red-400">
+          {errorMsg}
+        </p>
+      )}
       {status === 'success' && (
-        <p className="text-sm text-green-400">Message sent — thanks for reaching out!</p>
+        <p role="status" className="text-sm text-green-400">
+          Message sent — thanks for reaching out!
+        </p>
       )}
 
       <Button type="submit" variant="primary" className="mt-2" disabled={status === 'sending'}>

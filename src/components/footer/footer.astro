@@ -64,26 +64,28 @@ const lang = getLangFromUrl(Astro.url);
         <a
           href="https://www.linkedin.com/in/oleksandr-pustovit-4915b7190"
           data-slot="icon1"
+          aria-label="LinkedIn profile"
           class="size-6 rounded-md transition-transform hover:-translate-y-0.5 hover:shadow-[0_2px_3px_rgba(255,255,255,0.8)]"
         >
-          <LinkedIn class="fill-text-gray-light stroke-text-gray-light size-6" />
+          <LinkedIn class="fill-text-gray-light stroke-text-gray-light size-6" aria-hidden="true" />
         </a>
 
-        <a
-          href="#"
+        <span
           data-slot="icon2"
-          class="size-6 rounded-md transition-transform hover:-translate-y-0.5 hover:shadow-[0_2px_3px_rgba(255,255,255,0.8)]"
+          aria-hidden="true"
+          class="size-6 rounded-md opacity-40"
         >
           <TwitterIcon outline class="fill-text-gray-light stroke-text-gray-light size-full" />
-        </a>
+        </span>
 
         <a
           href="https://github.com/Oleksandr1415"
           data-slot="icon3"
+          aria-label="GitHub profile"
           class="size-6 rounded-md transition-transform hover:-translate-y-0.5 hover:shadow-[0_2px_3px_rgba(255,255,255,0.8)]"
         >
-          <GithubIcon class="fill-text-gray-light stroke-text-gray-light size-6" /></a
-        >
+          <GithubIcon class="fill-text-gray-light stroke-text-gray-light size-6" aria-hidden="true" />
+        </a>
       </div>
     </div>
 

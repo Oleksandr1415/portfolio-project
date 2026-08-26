@@ -61,9 +61,10 @@ const heroHeadlineTexts: string[] = [t.hero.name, t.hero.title];
     >{t.hero.greeting}</span
   >
   <div data-slot="text" class="flex justify-center p-2 backdrop-blur-[1px]">
-    <span
+    <h1
       class="font-heading h-auto text-center text-6xl font-black text-white select-none md:h-auto md:text-8xl"
-      >{t.hero.iAm}
+    >
+      {t.hero.iAm}
       <TextWriter
         className="bg-gradient-hero font-heading inline w-full overflow-hidden bg-clip-text font-black text-transparent"
         client:load
@@ -73,19 +74,19 @@ const heroHeadlineTexts: string[] = [t.hero.name, t.hero.title];
         texts={heroHeadlineTexts}
         typeSpeed={200}
       />
-    </span>
+    </h1>
   </div>
 
-  <span class="text-text-gray-light"
-    >fast & curious<Dot class="inline size-6" />communicative
-  </span>
+  <p class="text-text-gray-light">
+    fast & curious<Dot class="inline size-6" aria-hidden="true" />communicative
+  </p>
 
   <Button href="#contact" className="z-1 mt-10" variant="primary">
     {t.button.talk}
     <span class="transition-transform duration-300 group-hover:translate-x-1"> → </span>
   </Button>
 
-  <span class="text-text-gray-light block pt-30 md:pt-20">{t.hero.knowMore}</span>
+  <p class="text-text-gray-light block pt-30 md:pt-20">{t.hero.knowMore}</p>
   <div
     class="flex w-full items-center justify-center gap-5 p-5 text-sm text-white backdrop-blur-[1px]"
   >

@@ -12,13 +12,11 @@ const isDesktop = variant === 'desktop';
 
 <div
   data-slot="language-selector"
-  role="navigation"
-  aria-label="Language"
   class:list={[isDesktop ? 'flex items-center' : 'flex flex-col items-center gap-4', className]}
 >
   {
     isDesktop ? (
-      <ul class="flex items-center gap-1 text-sm font-bold tracking-wide">
+      <ul aria-label="Language" class="flex items-center gap-1 text-sm font-bold tracking-wide">
         {entries.map(([code, label], index) => {
           const isActive = code === lang;
 
@@ -49,7 +47,7 @@ const isDesktop = variant === 'desktop';
         })}
       </ul>
     ) : (
-      <ul class="flex flex-col items-center gap-4 text-xl font-bold">
+      <ul aria-label="Language" class="flex flex-col items-center gap-4 text-xl font-bold">
         {entries.map(([code, label]) => {
           const isActive = code === lang;
 

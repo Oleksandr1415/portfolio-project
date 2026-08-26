@@ -22,7 +22,14 @@ const t = useTranslations(lang);
       {t.nav.logo}
     </a>
 
-    <button data-slot="nav-menu-toggle" class="relative size-7 md:hidden">
+    <button
+      type="button"
+      data-slot="nav-menu-toggle"
+      class="relative size-7 md:hidden"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="nav-menu-background-planet"
+    >
       <Menu
         id="nav-menu-burger-icon"
         class="absolute top-0 z-1001 size-full transition-all duration-300 hover:cursor-pointer"

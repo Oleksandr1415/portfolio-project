@@ -14,7 +14,7 @@ function resolveMenuHref(href: string) {
 }
 ---
 
-<ul data-slot={dataSlot} class:list={['text-md gap-4 py-2 font-bold text-white', className]}>
+<ul data-slot={dataSlot} aria-label="Main navigation" class:list={['text-md gap-4 py-2 font-bold text-white', className]}>
   {
     menuElements.map((menuLink) => {
       return (
