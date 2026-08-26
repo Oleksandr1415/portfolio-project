@@ -1,3 +1,4 @@
+import { getRelativeLocaleUrl } from 'astro:i18n';
 import { ui, defaultLang } from './ui';
 
 type Ui = (typeof ui)['en'];
@@ -28,4 +29,11 @@ export function useTranslations(lang: keyof typeof ui) {
 export function getHomeHashLink(lang: keyof typeof ui, hash: string) {
   const fragment = hash.startsWith('#') ? hash : `#${hash}`;
   return `/${lang}/${fragment}`;
+}
+
+export function getLocalizedUrl(url: URL, targetLang: keyof typeof ui) {
+  const segments = url.pathname.split('/').filter(Boolean);
+  const pagePath = segments[0] in ui ? segments.slice(1).join('/') : segments.join('/');
+
+  return `${getRelativeLocaleUrl(targetLang, pagePath)}${url.hash}`;
 }

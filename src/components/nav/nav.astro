@@ -1,6 +1,7 @@
 ---
 import { Menu, X } from '@lucide/astro';
 import NavItemList from './nav-item-list.astro';
+import NavLanguageSelector from './nav-language-selector.astro';
 import { cn } from '@/utils/helpers';
 import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 
@@ -20,6 +21,7 @@ const t = useTranslations(lang);
     >
       {t.nav.logo}
     </a>
+
     <button data-slot="nav-menu-toggle" class="relative size-7 md:hidden">
       <Menu
         id="nav-menu-burger-icon"
@@ -31,8 +33,14 @@ const t = useTranslations(lang);
         class="absolute top-0 z-1001 size-full opacity-0 transition-all duration-300 hover:cursor-pointer"
       />
     </button>
-    <NavItemList class="hidden h-full md:flex" />
 
+    <div class="hidden h-full items-center gap-6 md:flex">
+      <NavLanguageSelector />
+      <NavItemList class="flex h-full" />
+    </div>
+
+    <!-- ------------ Mobile - Menu ------------ -->
+    <!-- close-menu background -->
     <div
       data-slot="nav-menu-close-background"
       class={cn([
@@ -41,6 +49,7 @@ const t = useTranslations(lang);
       ])}
     >
     </div>
+    <!-- menu inhalt -->
     <div
       id="nav-menu-background-planet"
       class={cn([
@@ -49,9 +58,10 @@ const t = useTranslations(lang);
         'duration-800 ease-out',
       ])}
     >
+      <NavLanguageSelector variant="mobile" class="z-1001 pb-30 md:hidden" />
       <NavItemList
         dataSlot="nav-menu"
-        class="z-1001 flex flex-col items-center gap-10 pb-30 text-xl text-white md:hidden"
+        class="z-1001 flex flex-col items-center gap-10 pb-10 text-xl text-white md:hidden"
       />
     </div>
   </div>
