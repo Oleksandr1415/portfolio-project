@@ -1,6 +1,7 @@
 export const languages = {
   en: 'English',
   de: 'Deutsch',
+  ua: 'Ukrainian',
 };
 
 export const defaultLang = 'en';
@@ -151,6 +152,49 @@ export const ui = {
     cta: {
       headline: 'Lass uns',
       postHeadline: 'etwas Großartiges bauen',
+    },
+  },
+  ua: {
+    button: {
+      sayHello: 'Привіт!',
+      talk: 'Поговорімо',
+      close: 'Закрити',
+      backToStart: 'Повернутися на головну',
+    },
+    hero: {
+      greeting: 'Привіт',
+      iAm: 'Я',
+      knowMore: 'Хочете дізнатися більше?',
+      name: 'Sasha',
+      subtitle: 'швидкий та допитливий',
+      title: 'Frontend-розробник',
+    },
+    nav: {
+      about: 'Про мене',
+      contact: 'Контакти',
+      logo: 'Oleksandr',
+      roadmap: 'Шлях розвитку',
+      skills: 'Навички',
+    },
+    about: {
+      tools: 'Інструменти та технології',
+      languages: 'Мови спілкування',
+      degrees: 'Освіта',
+      training: 'Років практики',
+      headline: 'Мене звати Sasha',
+      postHeadline: 'Я front-end розробник.',
+    },
+    skills: {
+      headline: 'Планети навичок',
+      postHeadline: 'Наведіть курсор на планету, щоб наблизити',
+    },
+    roadmap: {
+      headline: 'Шлях життя',
+      postHeadline: 'кожна можливість на шляху до того, ким я є',
+    },
+    cta: {
+      headline: 'Створімо',
+      postHeadline: 'щось грандіозне',
     },
   },
 } as const;
