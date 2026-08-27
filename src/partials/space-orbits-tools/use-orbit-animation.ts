@@ -4,12 +4,12 @@ import { useEffect, useRef } from 'react';
  * Frame-rate independent orbit driver.
  * `speed` is the angle step per frame at 60fps (legacy tuning); motion is normalized via delta time.
  */
-export function useOrbitAnimation(
-  speed: number,
-  onTick: (angle: number) => void,
-) {
+export function useOrbitAnimation(speed: number, onTick: (angle: number) => void) {
   const onTickRef = useRef(onTick);
-  onTickRef.current = onTick;
+
+  useEffect(() => {
+    onTickRef.current = onTick;
+  });
 
   useEffect(() => {
     let angle = 0;

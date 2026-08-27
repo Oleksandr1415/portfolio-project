@@ -3,13 +3,25 @@ const menuBackground = document.querySelector('[data-slot="nav-menu-close-backgr
 const openMenu = document.getElementById('nav-menu-burger-icon');
 const closeMenu = document.getElementById('nav-menu-close-icon');
 const navMenu = document.getElementById('nav-menu-background-planet');
-const navMenuItems = document.querySelectorAll('[data-slot="menu-item"');
+const navMenuItems = document.querySelectorAll('[data-slot="menu-item"]');
 
 menuButton?.addEventListener('click', toggleMenu);
-menuBackground.addEventListener('click', toggleMenu);
+menuBackground?.addEventListener('click', toggleMenu);
 navMenuItems.forEach((item) => {
   item.addEventListener('click', toggleMenu);
 });
+
+function setMenuAccessibility(isOpen) {
+  if (navMenu) {
+    navMenu.toggleAttribute('inert', !isOpen);
+    navMenu.setAttribute('aria-hidden', String(!isOpen));
+  }
+
+  if (menuBackground instanceof HTMLElement) {
+    menuBackground.toggleAttribute('inert', !isOpen);
+    menuBackground.tabIndex = isOpen ? 0 : -1;
+  }
+}
 
 function toggleMenu() {
   openMenu.classList.toggle('opacity-0');
@@ -19,6 +31,9 @@ function toggleMenu() {
   menuBackground.classList.toggle('-translate-y-full');
 
   const isOpen = navMenu.classList.contains('translate-y-[-70%]');
+  setMenuAccessibility(isOpen);
   menuButton?.setAttribute('aria-expanded', String(isOpen));
   menuButton?.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
 }
+
+setMenuAccessibility(false);

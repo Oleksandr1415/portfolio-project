@@ -17,7 +17,7 @@ const t = useTranslations(lang);
     <a
       href={`/${lang}/`}
       data-slot="logo"
-      class="font-heading hover-text-underline relative text-2xl font-black tracking-[4px] text-white transition-all duration-300"
+      class="font-heading hover-text-underline focus-ring-nav relative rounded-sm text-2xl font-black tracking-[4px] text-white transition-all duration-300"
     >
       {t.nav.logo}
     </a>
@@ -25,19 +25,21 @@ const t = useTranslations(lang);
     <button
       type="button"
       data-slot="nav-menu-toggle"
-      class="relative size-7 md:hidden"
+      class="focus-ring-nav relative z-1001 size-7 rounded-sm md:hidden"
       aria-label="Open menu"
       aria-expanded="false"
       aria-controls="nav-menu-background-planet"
     >
       <Menu
         id="nav-menu-burger-icon"
-        class="absolute top-0 z-1001 size-full transition-all duration-300 hover:cursor-pointer"
+        aria-hidden="true"
+        class="pointer-events-none absolute top-0 size-full transition-opacity duration-300"
       />
       <X
         id="nav-menu-close-icon"
+        aria-hidden="true"
         fill="white"
-        class="absolute top-0 z-1001 size-full opacity-0 transition-all duration-300 hover:cursor-pointer"
+        class="pointer-events-none absolute top-0 size-full opacity-0 transition-all duration-300"
       />
     </button>
 
@@ -48,17 +50,23 @@ const t = useTranslations(lang);
 
     <!-- ------------ Mobile - Menu ------------ -->
     <!-- close-menu background -->
-    <div
+    <button
+      type="button"
       data-slot="nav-menu-close-background"
+      aria-label="Close menu"
+      tabindex="-1"
+      inert
       class={cn([
-        'fixed top-0 left-0 h-screen w-screen z-50 bg-gray-900/50 transition-all duration-600 ease-in md:hidden',
+        'fixed top-0 left-0 h-screen w-screen z-50 border-0 bg-gray-900/50 p-0 transition-all duration-600 ease-in md:hidden',
         '-translate-y-full cursor-[url("/x.svg"),pointer]',
       ])}
     >
-    </div>
+    </button>
     <!-- menu inhalt -->
     <div
       id="nav-menu-background-planet"
+      inert
+      aria-hidden="true"
       class={cn([
         'bg-gradient-nav-menu flex size-[220vh] flex-col items-center justify-end rounded-[60%] md:hidden',
         'absolute top-0 left-[50%] z-1000 -translate-x-1/2 -translate-y-full',

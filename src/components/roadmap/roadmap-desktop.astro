@@ -295,7 +295,7 @@ const roadmapClasses = {
   }
 
   // Reveals colored strokes along the path based on scroll progress (dashoffset).
-  function updateProgress(container: HTMLElement) {
+  function updateProgress() {
     const totalLength = segments.reduce((sum, segment) => sum + segment.length, 0);
     if (totalLength === 0) return;
 

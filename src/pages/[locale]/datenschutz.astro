@@ -16,7 +16,7 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<BaseLayout>
+<BaseLayout title="Datenschutz" noindex={true}>
   <ContentWrapperLayout>
     <div data-slot="datenschutz-container" class="mt-nav flex w-full flex-col">
       <div data-slot="datenschutz-headline" class="inline-block pt-5 sm:mx-auto">

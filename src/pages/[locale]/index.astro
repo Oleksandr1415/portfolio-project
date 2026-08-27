@@ -6,10 +6,8 @@ import Hero from '@/components/hero/hero.astro';
 import About from '@/components/about/about.astro';
 import Skills from '@/components/skills/skills.astro';
 import CTA from '@/components/cta/cta.astro';
-import Footer from '@/components/footer/footer.astro';
 import Roadmap from '@/components/roadmap/roadmap.astro';
 
-// src/pages/[locale]/index.astro  (or impressum.astro, etc.)
 import { languages } from '@/i18n/ui';
 
 export function getStaticPaths() {
@@ -25,5 +23,4 @@ export function getStaticPaths() {
     <Roadmap />
     <CTA />
   </ContentWrapperLayout>
-  <Footer />
 </BaseLayout>

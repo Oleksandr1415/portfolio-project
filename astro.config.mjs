@@ -7,8 +7,11 @@ import tailwindcss from '@tailwindcss/vite';
 
 import vercel from '@astrojs/vercel';
 
+import sitemap from '@astrojs/sitemap';
+
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://portfolio-project-gilt-kappa.vercel.app',
   output: 'static',
   adapter: vercel(),
   i18n: {
@@ -22,7 +25,12 @@ export default defineConfig({
     host: true, // binds to 0.0.0.0
   },
 
-  integrations: [react()],
+  integrations: [
+    react(),
+    sitemap({
+      filter: (page) => !page.includes('/impressum') && !page.includes('/datenschutz'),
+    }),
+  ],
 
   vite: {
     server: {

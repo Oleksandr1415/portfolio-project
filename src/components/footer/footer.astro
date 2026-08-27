@@ -51,7 +51,7 @@ const lang = getLangFromUrl(Astro.url);
   <!-- Main footer -->
   <div class="relative z-2 flex flex-col items-center">
     <!-- Identity -->
-    <span class="text-center text-white/25">
+    <span class="text-text-gray-dim text-center">
       2026 OLEKSANDR · Crafted with code & curiosity · Dorsten
     </span>
 
@@ -65,16 +65,12 @@ const lang = getLangFromUrl(Astro.url);
           href="https://www.linkedin.com/in/oleksandr-pustovit-4915b7190"
           data-slot="icon1"
           aria-label="LinkedIn profile"
-          class="size-6 rounded-md transition-transform hover:-translate-y-0.5 hover:shadow-[0_2px_3px_rgba(255,255,255,0.8)]"
+          class="focus-ring-dark size-6 rounded-md transition-transform hover:-translate-y-0.5 hover:shadow-[0_2px_3px_rgba(255,255,255,0.8)]"
         >
           <LinkedIn class="fill-text-gray-light stroke-text-gray-light size-6" aria-hidden="true" />
         </a>
 
-        <span
-          data-slot="icon2"
-          aria-hidden="true"
-          class="size-6 rounded-md opacity-40"
-        >
+        <span data-slot="icon2" aria-hidden="true" class="size-6 rounded-md opacity-40">
           <TwitterIcon outline class="fill-text-gray-light stroke-text-gray-light size-full" />
         </span>
 
@@ -82,9 +78,12 @@ const lang = getLangFromUrl(Astro.url);
           href="https://github.com/Oleksandr1415"
           data-slot="icon3"
           aria-label="GitHub profile"
-          class="size-6 rounded-md transition-transform hover:-translate-y-0.5 hover:shadow-[0_2px_3px_rgba(255,255,255,0.8)]"
+          class="focus-ring-dark size-6 rounded-md transition-transform hover:-translate-y-0.5 hover:shadow-[0_2px_3px_rgba(255,255,255,0.8)]"
         >
-          <GithubIcon class="fill-text-gray-light stroke-text-gray-light size-6" aria-hidden="true" />
+          <GithubIcon
+            class="fill-text-gray-light stroke-text-gray-light size-6"
+            aria-hidden="true"
+          />
         </a>
       </div>
     </div>
@@ -93,12 +92,20 @@ const lang = getLangFromUrl(Astro.url);
     <div class="my-4 h-px w-40 bg-white/15"></div>
 
     <!-- Legal links -->
-    <div class="mt-2 flex items-center gap-2 text-xs text-white/30">
-      <a href={`/${lang}/impressum`} class="transition-colors hover:text-white/70"> Impressum </a>
+    <div class="text-text-gray mt-2 flex items-center gap-2 text-xs">
+      <a
+        href={`/${lang}/impressum`}
+        class="focus-ring-dark rounded-sm transition-colors hover:text-white/70"
+      >
+        Impressum
+      </a>
 
       <span aria-hidden="true" class="text-white/20">·</span>
 
-      <a href={`/${lang}/datenschutz`} class="transition-colors hover:text-white/70">
+      <a
+        href={`/${lang}/datenschutz`}
+        class="focus-ring-dark rounded-sm transition-colors hover:text-white/70"
+      >
         Datenschutz
       </a>
     </div>

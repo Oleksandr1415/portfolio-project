@@ -18,8 +18,15 @@ export function getLangFromUrl(url: URL) {
   return defaultLang;
 }
 
-export function resolvePath(obj: any, path: string): string {
-  return path.split('.').reduce((acc, key) => acc?.[key], obj) ?? path;
+export function resolvePath(obj: Ui, path: TranslationKey): string {
+  const value = path.split('.').reduce<unknown>((acc, key) => {
+    if (acc !== null && typeof acc === 'object') {
+      return (acc as Record<string, unknown>)[key];
+    }
+    return undefined;
+  }, obj);
+
+  return typeof value === 'string' ? value : path;
 }
 
 export function useTranslations(lang: keyof typeof ui) {

@@ -20,4 +20,13 @@
   html {
     @apply scroll-smooth font-sans leading-normal;
   }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible,
+  summary:focus-visible {
+    @apply focus-ring;
+  }
 }

@@ -5,7 +5,9 @@ import { getHomeHashLink, getLangFromUrl, resolvePath, useTranslations } from '@
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const baseClass = ['relative inline-block transition-all duration-300 hover-text-underline'];
+const baseClass = [
+  'relative inline-block rounded-sm transition-all duration-300 hover-text-underline focus-ring-nav',
+];
 
 const { class: className, dataSlot = 'menu' } = Astro.props;
 
@@ -14,7 +16,11 @@ function resolveMenuHref(href: string) {
 }
 ---
 
-<ul data-slot={dataSlot} aria-label="Main navigation" class:list={['text-md gap-4 py-2 font-bold text-white', className]}>
+<ul
+  data-slot={dataSlot}
+  aria-label="Main navigation"
+  class:list={['text-md gap-4 py-2 font-bold text-white', className]}
+>
   {
     menuElements.map((menuLink) => {
       return (

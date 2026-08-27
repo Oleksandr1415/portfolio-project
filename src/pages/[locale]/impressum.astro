@@ -16,7 +16,7 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<BaseLayout>
+<BaseLayout title="Impressum" noindex={true}>
   <ContentWrapperLayout>
     <div data-slot="impressum-container" class="mt-nav flex w-full flex-col">
       <div data-slot="impressum-headline" class="inline-block pt-15 sm:mx-auto">

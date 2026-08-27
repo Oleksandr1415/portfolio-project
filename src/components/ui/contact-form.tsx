@@ -112,7 +112,11 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="mx-auto flex w-full max-w-xl flex-col gap-5" noValidate>
+    <form
+      onSubmit={handleSubmit}
+      className="mx-auto flex w-full max-w-xl flex-col gap-5"
+      noValidate
+    >
       <label htmlFor="contact-name" className="sr-only">
         Name
       </label>
@@ -122,7 +126,7 @@ export default function ContactForm() {
         placeholder="Name"
         required
         autoComplete="name"
-        className="rounded-full border border-white/20 bg-transparent px-6 py-3 text-white placeholder-white/40 transition-colors duration-300 outline-none focus:border-white/50"
+        className="focus-ring rounded-full border border-white/20 bg-transparent px-6 py-3 text-white placeholder-white/40 transition-colors duration-300"
       />
 
       <div className="flex flex-col gap-1">
@@ -145,11 +149,11 @@ export default function ContactForm() {
           onChange={() => {
             if (emailError) setEmailError('');
           }}
-          className={`rounded-full border bg-transparent px-6 py-3 text-white placeholder-white/40 transition-colors duration-300 outline-none focus:border-white/50 ${
+          className={`focus-ring rounded-full border bg-transparent px-6 py-3 text-white placeholder-white/40 transition-colors duration-300 ${
             emailError ? 'border-red-400/70' : 'border-white/20'
           }`}
         />
-        <p id="contact-email-hint" className="px-6 text-xs text-white/40">
+        <p id="contact-email-hint" className="text-text-gray px-6 text-xs">
           {EMAIL_FORMAT_HINT}
         </p>
         {emailError && (
@@ -169,7 +173,7 @@ export default function ContactForm() {
         required
         rows={5}
         maxLength={MAX_MESSAGE_LENGTH}
-        className="rounded-3xl border border-white/20 bg-transparent px-6 py-3 text-white placeholder-white/40 transition-colors duration-300 outline-none focus:border-white/50"
+        className="focus-ring rounded-3xl border border-white/20 bg-transparent px-6 py-3 text-white placeholder-white/40 transition-colors duration-300"
       />
 
       <label
@@ -179,7 +183,7 @@ export default function ContactForm() {
           e.preventDefault();
           handleFiles(e.dataTransfer.files);
         }}
-        className="cursor-pointer rounded-3xl border border-dashed border-white/20 px-6 py-8 text-center text-white/50 transition-colors duration-300 hover:border-white/40"
+        className="focus-ring text-text-gray-light cursor-pointer rounded-3xl border border-dashed border-white/20 px-6 py-8 text-center transition-colors duration-300 hover:border-white/40"
       >
         Drop files here or click to browse (max {MAX_FILES}, 5MB each, 15MB total)
         <input
@@ -204,7 +208,7 @@ export default function ContactForm() {
                 type="button"
                 onClick={() => removeFile(i)}
                 aria-label={`Remove ${file.name}`}
-                className="text-white/40 hover:text-white"
+                className="focus-ring text-text-gray rounded-sm px-1 hover:text-white"
               >
                 ✕
               </button>

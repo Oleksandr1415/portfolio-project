@@ -15,28 +15,28 @@ export const skillPlanets: SkillPlanet[] = [
     class: '',
     moons: ['React', 'Next.js', 'Laravel Blade', 'Angular', '...'],
     description: '5 technologies',
-    variant: 'framework' as 'framework',
+    variant: 'framework' as const,
     headline: 'Framework',
   },
   {
     class: '',
     moons: ['CSS', 'SCSS/Sass', 'Tailwind', 'Bulma', 'Material UI'],
     description: '5 technologies',
-    variant: 'markup' as 'markup',
+    variant: 'markup' as const,
     headline: 'Markup',
   },
   {
     class: '',
     moons: ['Figma', 'Miro'],
     description: '2 technologies',
-    variant: 'design' as 'design',
+    variant: 'design' as const,
     headline: 'Design',
   },
   {
     class: '',
     moons: ['Git/GitHub', 'Docker (ddev)', 'Vite', 'Vs Code', 'DevTools'],
     description: '6 technologies',
-    variant: 'tools' as 'tools',
+    variant: 'tools' as const,
     headline: 'Tools',
   },
 ];
@@ -55,40 +55,40 @@ export const designSetMobile = {
     planet: 'planet-markup',
     card: 'bg-skill-markup/7',
     content: '',
-    badgesVariant: 'default' as 'default',
+    badgesVariant: 'default' as const,
   },
   markup: {
     planet:
       'planet-markup group-data-[open]/accordion-item:shadow-[0_0_20px_0_var(--color-skill-markup),0_0_40px_0_var(--color-skill-markup),-4px_-3px_10px_0_rgba(0,0,0,0.50)_inset] transition-all duration-300',
     card: 'data-open:bg-skill-markup/7 data-open:border-skill-markup/33',
     content: 'bg-transparent border-t-skill-markup/20',
-    badgesVariant: 'markup' as 'markup',
+    badgesVariant: 'markup' as const,
   },
   tools: {
     planet:
       'planet-tools group-data-[open]/accordion-item:shadow-[0_0_20px_0_var(--color-skill-tools),0_0_40px_0_var(--color-skill-tools),-4px_-3px_10px_0_rgba(0,0,0,0.50)_inset] transition-all duration-300',
     card: 'data-open:bg-skill-tools/7 data-open:border-skill-tools/33',
     content: 'bg-transparent border-t-skill-tools/20',
-    badgesVariant: 'tools' as 'tools',
+    badgesVariant: 'tools' as const,
   },
   framework: {
     planet:
       'planet-framework group-data-[open]/accordion-item:shadow-[0_0_20px_0_var(--color-skill-framework),0_0_40px_0_var(--color-skill-framework),-4px_-3px_10px_0_rgba(0,0,0,0.50)_inset] transition-all duration-300',
     card: 'data-open:bg-skill-framework/7 data-open:border-skill-framework/33',
     content: 'bg-transparent border-t-skill-framework/20',
-    badgesVariant: 'framework' as 'framework',
+    badgesVariant: 'framework' as const,
   },
   design: {
     planet:
       'planet-design group-data-[open]/accordion-item:shadow-[0_0_20px_0_var(--color-skill-design),0_0_40px_0_var(--color-skill-design),-4px_-3px_10px_0_rgba(0,0,0,0.50)_inset] transition-all duration-300',
     card: 'data-open:bg-skill-design/7 data-open:border-skill-design/33',
     content: 'bg-transparent border-t-skill-design/20',
-    badgesVariant: 'design' as 'design',
+    badgesVariant: 'design' as const,
   },
   core: {
     planet: '',
     card: '',
     content: '',
-    badgesVariant: 'design' as 'design',
+    badgesVariant: 'design' as const,
   },
 };

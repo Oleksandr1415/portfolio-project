@@ -35,7 +35,7 @@ const isDesktop = variant === 'desktop';
                   aria-current={isActive ? 'page' : undefined}
                   title={label}
                   class={cn([
-                    'rounded-full px-2 py-0.5 transition-colors duration-300',
+                    'focus-ring-nav rounded-sm px-2 py-0.5 transition-colors duration-300',
                     isActive ? 'text-white' : 'text-white/45 hover:text-white/80',
                   ])}
                 >
@@ -60,7 +60,7 @@ const isDesktop = variant === 'desktop';
                 aria-current={isActive ? 'page' : undefined}
                 data-slot="menu-item"
                 class={cn([
-                  'hover-text-underline relative inline-block transition-all duration-300',
+                  'hover-text-underline focus-ring-nav relative inline-block rounded-sm transition-all duration-300',
                   isActive ? 'text-white' : 'text-white/55',
                 ])}
               >

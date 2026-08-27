@@ -25,8 +25,7 @@ function AccordionTrigger({ className, children, ...props }: AccordionPrimitive.
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(
-          'group/accordion-trigger relative aria-disabled:pointer-events-none aria-disabled:opacity-50',
-          '',
+          'group/accordion-trigger focus-ring relative rounded-md aria-disabled:pointer-events-none aria-disabled:opacity-50',
           className,
         )}
         {...props}
@@ -35,10 +34,12 @@ function AccordionTrigger({ className, children, ...props }: AccordionPrimitive.
         <div data-slot="accordion-trigger-icon">
           <ChevronDownIcon
             data-slot="accordion-trigger-icon"
+            aria-hidden="true"
             className="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:hidden"
           />
           <ChevronUpIcon
             data-slot="accordion-trigger-icon"
+            aria-hidden="true"
             className="pointer-events-none hidden shrink-0 group-aria-expanded/accordion-trigger:inline"
           />
         </div>

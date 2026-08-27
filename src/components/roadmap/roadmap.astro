@@ -28,7 +28,10 @@ const activateTailwindUtilities = ['border-science', 'border-experience', 'borde
     {t.roadmap.headline}
   </HeadlineBlock>
 
-  <ul aria-label="Roadmap categories" class="flex flex-col gap-3 pt-6 pb-10 text-sm text-white/80 md:flex-row md:gap-8">
+  <ul
+    aria-label="Roadmap categories"
+    class="flex flex-col gap-3 pt-6 pb-10 text-sm text-white/80 md:flex-row md:gap-8"
+  >
     {
       Object.entries(roadmapHistory).map(([variant, label]) => {
         const selectedVariant = roadmapStopVariants[variant as RoadmapStopVariant];

@@ -1,0 +1,11 @@
+@utility focus-ring {
+  @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+}
+
+@utility focus-ring-dark {
+  @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black;
+}
+
+@utility focus-ring-nav {
+  @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900;
+}

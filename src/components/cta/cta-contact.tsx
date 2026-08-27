@@ -27,9 +27,7 @@ export default function CtaContact({ labels }: CtaContactProps) {
             </>
           )}
         </div>
-        <span className="transition-all duration-300">
-          {open ? labels.close : labels.sayHello}
-        </span>
+        <span className="transition-all duration-300">{open ? labels.close : labels.sayHello}</span>
       </Button>
 
       <div

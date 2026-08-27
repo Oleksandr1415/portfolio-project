@@ -1,4 +1,11 @@
-import { forwardRef, useEffect, useImperativeHandle, useRef, type ReactNode } from 'react';
+import {
+  forwardRef,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  type ReactNode,
+} from 'react';
 import { cn } from '@/utils/helpers';
 
 export interface OrbitingBodyHandle {
@@ -24,22 +31,24 @@ const OrbitingBody = forwardRef<OrbitingBodyHandle, OrbitingBodyProps>(
     const currentLiveAngleRef = useRef(0);
     const lastEffectiveAngleRef = useRef(0);
 
-    const applyTransform = (effectiveAngle: number) => {
-      const el = elRef.current;
-      const orbitSize = orbitSizeRef.current;
-      if (!el || orbitSize === 0) return;
+    const applyTransform = useCallback(
+      (effectiveAngle: number) => {
+        const el = elRef.current;
+        const orbitSize = orbitSizeRef.current;
+        if (!el || orbitSize === 0) return;
 
-      const offsetX = (orbitRadius / 100) * orbitSize * Math.cos(effectiveAngle);
-      const offsetY = (orbitRadius / 100) * orbitSize * Math.sin(effectiveAngle);
-      el.style.transform = `translate3d(calc(-50% + ${offsetX}px), calc(-50% + ${offsetY}px), 0)`;
-    };
+        const offsetX = (orbitRadius / 100) * orbitSize * Math.cos(effectiveAngle);
+        const offsetY = (orbitRadius / 100) * orbitSize * Math.sin(effectiveAngle);
+        el.style.transform = `translate3d(calc(-50% + ${offsetX}px), calc(-50% + ${offsetY}px), 0)`;
+      },
+      [orbitRadius],
+    );
 
-    const measureOrbitSize = () => {
+    const measureOrbitSize = useCallback(() => {
       const el = elRef.current;
       if (!el) return 0;
 
-      const root =
-        orbitRootRef.current ?? (el.closest('[data-orbit-root]') as HTMLElement | null);
+      const root = orbitRootRef.current ?? (el.closest('[data-orbit-root]') as HTMLElement | null);
       if (!root) return 0;
 
       orbitRootRef.current = root;
@@ -51,7 +60,7 @@ const OrbitingBody = forwardRef<OrbitingBodyHandle, OrbitingBodyProps>(
       }
 
       return size;
-    };
+    }, [applyTransform]);
 
     useEffect(() => {
       const el = elRef.current;
@@ -81,7 +90,7 @@ const OrbitingBody = forwardRef<OrbitingBodyHandle, OrbitingBodyProps>(
         resizeObserver.disconnect();
         intersectionObserver.disconnect();
       };
-    }, []);
+    }, [measureOrbitSize]);
 
     useImperativeHandle(ref, () => ({
       updateAngle(angle: number) {
