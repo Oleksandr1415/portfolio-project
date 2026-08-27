@@ -15,7 +15,7 @@ export default defineConfig({
   output: 'static',
   adapter: vercel(),
   i18n: {
-    locales: ['en', 'de', 'ua'],
+    locales: ['en', 'de'],
     defaultLocale: 'en',
     routing: {
       prefixDefaultLocale: true, // e.g. /de/about or /en/about
