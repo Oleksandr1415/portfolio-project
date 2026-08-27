@@ -7,6 +7,12 @@ import About from '@/components/about/about.astro';
 import Skills from '@/components/skills/skills.astro';
 import CTA from '@/components/cta/cta.astro';
 import Roadmap from '@/components/roadmap/roadmap.astro';
+import { neon } from '@neondatabase/serverless';
+
+const sql = neon(import.meta.env.DATABASE_URL);
+
+const response = await sql`SELECT version()`;
+const data = response[0].version;
 
 import { languages } from '@/i18n/ui';
 
@@ -15,7 +21,9 @@ export function getStaticPaths() {
 }
 ---
 
-<BaseLayout>
+{data}
+
+<!-- <BaseLayout>
   <Hero />
   <ContentWrapperLayout>
     <About />
@@ -23,4 +31,4 @@ export function getStaticPaths() {
     <Roadmap />
     <CTA />
   </ContentWrapperLayout>
-</BaseLayout>
+</BaseLayout> -->
